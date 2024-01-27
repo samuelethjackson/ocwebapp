@@ -9,7 +9,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-1000	;
 }
 
 @layer utilities {
@@ -20,4 +20,8 @@ body {
 
 .center {
   @apply justify-center items-center; 
+}
+
+.about p {
+  @apply text-[21px] font-normal leading-7;
 }
