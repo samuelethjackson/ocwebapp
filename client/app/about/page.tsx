@@ -24,7 +24,7 @@ const AboutPage: React.FC = () => {
             <main className="w-screen h-screen grid grid-cols-24 px-5">
                 <div className='col-start-4 col-end-13 about pt-40 flex flex-col gap-20 pb-40'>
                     <div id='about' className='grid grid-cols-10 gap-8'>
-                        <h2 className='col-start-2 col-end-10 paragraph-title'>About</h2>
+                        <h2 className='col-start-2 col-end-10 paragraph-title'>Collective philosophies, values and ethics</h2>
                         <div className='flex flex-col w-full col-span-10 gap-8'>
                             <p>
                                 We are working with a variety of cultural materials that hold great significance, and need to be treated respectfully. We view the materials we are working with as being a part of the places they are taken from containing spiritual and emotional attributes and connections. We do not use these materials lightly. Acknowledging the immeasurable value of the recordings and the contributions of the Pacific people featured in the work, this endeavour incorporates the informed consent of its participants and the guidance and advice of Pacific practitioners of art, culture and development for a generative experience.

@@ -6,7 +6,7 @@ interface TopBandProps {
 
 const TopBand: React.FC<TopBandProps> = ({ pageName }) => {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
-  const [isScrolledUp, setIsScrolledUp] = useState(false);
+  const [isScrolledUp, setIsScrolledUp] = useState(true);
 
   const checkScroll = () => {
     if (window.scrollY > 0 && !isScrolledDown) {

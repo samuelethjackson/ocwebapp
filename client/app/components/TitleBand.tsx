@@ -12,7 +12,7 @@ interface TitleBandProps {
 
 const TitleBand: React.FC<TitleBandProps> = ({ pageName }) => {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
-  const [isScrolledUp, setIsScrolledUp] = useState(false);
+  const [isScrolledUp, setIsScrolledUp] = useState(true);
   const pathname = usePathname()
   const pageTitle = "Oceanic Refractions"
   const isAboutPage = pathname === '/about';
