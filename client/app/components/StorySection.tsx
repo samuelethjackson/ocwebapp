@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { forwardRef } from "react";
 
 interface StorySectionProps {
-  color: string;
   text: string;
+  video: string;
+  id: number;
 }
 
-const colorClasses: { [key: string]: string } = {
-  black: 'bg-black',
-  gray: 'bg-gray-800',
-  blue: 'bg-blue-800	', // adjust this to the specific gray you want
-};
-
-const StorySection: React.FC<StorySectionProps> = ({ color, text }) => {
-  const colorClass = colorClasses[color] || 'bg-white'; // default to white if color not found
-
+const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, text, id }, ref) => {
   return (
-    <section className={`w-screen h-screen ${colorClass} flex items-center justify-center snap-start`}>
-      <p className="text-white text-2xl">{text}</p>
+    <section
+      id={id.toString()}
+      ref={ref}
+      className={`relative w-full h-full bg-grey snap-start grid grid-cols-24 px-5`}
+    >
+      <video
+        src={require(`../../public/videos/${video}`)}
+        autoPlay
+        muted
+        loop
+        className="absolute top-0 left-0 h-full w-full object-cover opacity-70"
+      />
+      <div className="relative z-10 grid place-items-center h-full col-start-1 col-end-10">
+        <p className="text-white text-base font-normal leading-normal">{text}</p>
+      </div>
     </section>
   );
-};
+});
 
 export default StorySection;
