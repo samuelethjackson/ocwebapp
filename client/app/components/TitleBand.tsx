@@ -43,7 +43,7 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName }) => {
 
   return (
     <div className="fixed top-8 flex flex-row w-screen px-5 py-2 justify-between z-50">
-      <div className='w-1/3 flex flex-row gap-0'>
+      <div className='w-1/3 md:w-1/2 flex flex-row gap-0'>
         <div className='w-full'>
           <motion.div 
             key={pageName}

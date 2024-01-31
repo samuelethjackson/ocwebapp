@@ -14,7 +14,7 @@ const TopBand: React.FC<TopBandProps> = ({ pageName }) => {
           className="w-full text-base font-normal leading-tight"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
-          transition={{ ease: "backIn", duration: 1 }}
+          transition={{ ease: "easeInOut", duration: 1 }}
         >
           {pageName}
         </motion.div>

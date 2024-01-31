@@ -27,11 +27,23 @@ body {
 }
 
 .about p {
-  @apply text-[21px] text-white dark:text-black font-normal leading-7 cloud-shadow-white;
+  @apply text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 max-w-[720px];
+}
+
+.about ul {
+  @apply text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
+}
+
+.about li {
+  @apply pt-1;
 }
 
 .paragraph-title {
-  @apply text-xs font-normal uppercase leading-tight tracking-wide;
+  @apply text-base font-normal dark:text-white text-black uppercase leading-tight tracking-wide col-start-2 col-end-10 pt-8;
+}
+
+.about h2 {
+  @apply dark:text-black cloud-shadow-white text-[21px] font-normal leading-normal;
 }
 
 .cloud-shadow-white {
