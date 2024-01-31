@@ -27,4 +27,6 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, tex
   );
 });
 
+StorySection.displayName = "StorySection";
+
 export default StorySection;

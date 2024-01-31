@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface AboutTopBandProps {
   pageName: string;
@@ -8,7 +8,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [isScrolledUp, setIsScrolledUp] = useState(true);
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     if (window.scrollY > 0 && !isScrolledDown) {
       setIsScrolledDown(true);
       setIsScrolledUp(false);
@@ -16,14 +16,14 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
       setIsScrolledUp(true);
       setIsScrolledDown(false);
     }
-  };
+  }, [isScrolledDown, isScrolledUp]);
 
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
     return () => {
       window.removeEventListener('scroll', checkScroll);
     };
-  }, [isScrolledDown, isScrolledUp]);
+  }, [isScrolledDown, isScrolledUp, checkScroll]);
 
   return (
     <div className={`fixed top-0 flex flex-row w-screen px-5 py-2 justify-between z-50 transition-opacity ${isScrolledDown ? 'delay-1000 duration-1000 ease-in-out opacity-100 visibility-visible' : isScrolledUp ? 'duration-1000 ease-in-out opacity-0 visibility-hidden' : 'opacity-0 visibility-hidden'}`}>

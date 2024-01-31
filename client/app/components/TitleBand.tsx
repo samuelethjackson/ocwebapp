@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import CloseIcon from './icons/closeIcon';
 import InvertIcon from './icons/InvertIcon';
@@ -19,7 +19,7 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName }) => {
   const pageTitle = "Oceanic Refractions"
   const isAboutPage = pathname === '/about';
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     if (window.scrollY > 0 && !isScrolledDown) {
       setIsScrolledDown(true);
       setIsScrolledUp(false);
@@ -27,14 +27,21 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName }) => {
       setIsScrolledUp(true);
       setIsScrolledDown(false);
     }
-  };
+  }, [isScrolledDown, isScrolledUp]);
+  
+  useEffect(() => {
+    window.addEventListener('scroll', checkScroll);
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, [checkScroll]);
 
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
     return () => {
       window.removeEventListener('scroll', checkScroll);
     };
-  }, [isScrolledDown, isScrolledUp]);
+  }, [isScrolledDown, isScrolledUp, checkScroll]);
 
   const variants = {
     hidden: { opacity: 0 },

@@ -161,7 +161,7 @@ const AboutPage: React.FC = () => {
               <p>
                 The foundation of our artistic and professional collaboration
                 lies in our friendship, which has flourished through the time
-                we've dedicated—both individually and together—to contemplating
+                we`ve dedicated—both individually and together—to contemplating
                 the integrity of our work and its purpose. As a white creator,
                 Amer knows there is no truly ethical way for them to do this
                 work, and we are continuously reflecting on how to navigate as
@@ -316,7 +316,7 @@ const AboutPage: React.FC = () => {
               </h3>
               <ul>
                 <li>
-                  We defer to Indigenous partners' perspectives and approaches.
+                  We defer to Indigenous partners` perspectives and approaches.
                   We consult with and inform ourselves how best to work with the
                   materials we have. This involves ongoing conversations with
                   community members. If this is in conflict with Western
