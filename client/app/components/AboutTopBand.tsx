@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 interface AboutTopBandProps {
   pageName: string;
@@ -25,10 +26,24 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
     };
   }, [isScrolledDown, isScrolledUp, checkScroll]);
 
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
-    <div className={`fixed top-0 flex flex-row w-screen px-5 py-2 justify-between z-50 transition-opacity ${isScrolledDown ? 'delay-1000 duration-1000 ease-in-out opacity-100 visibility-visible' : isScrolledUp ? 'duration-1000 ease-in-out opacity-0 visibility-hidden' : 'opacity-0 visibility-hidden'}`}>
+    <div className={`fixed top-0 flex flex-row w-screen px-5 py-2 justify-between z-50'}`}>
       <div className='w-1/3 flex flex-row gap-0'>
-        <div className="w-full text-base font-normal leading-tight">{pageName}</div>
+        <motion.div
+          key={pageName}
+          className="w-full text-base font-normal leading-tight"
+          variants={variants}
+          initial="hidden"
+          animate={isScrolledDown ? "visible" : "hidden"}
+          transition={{ duration: 1, ease: "easeInOut", delay: isScrolledDown ? 0.5 : 0 }}
+        >
+          {pageName}
+        </motion.div>
       </div>
     </div>
   );
