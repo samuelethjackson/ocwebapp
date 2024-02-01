@@ -6,6 +6,7 @@ import TopBand from "../components/AboutTopBand";
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
+  const [highRes, setHighRes] = useState(false);
 
   let observer: IntersectionObserver | null = null;
 
@@ -52,7 +53,9 @@ const AboutPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <TopBand pageName="About" />
-      <TitleBand pageName="About" />
+      <TitleBand pageName="About"
+        highRes={highRes}
+        setHighRes={setHighRes}/>
       <main className="w-screen h-screen grid grid-cols-24 px-5">
         <div className="col-start-4 col-end-13 about flex flex-col gap-20 pt-36 pb-40">
           <div id="about" className="grid grid-cols-10 gap-8">
