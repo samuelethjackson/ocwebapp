@@ -119,6 +119,12 @@ if (activeMobileSection === 1) {
     mobileText = Text3;
   }
 
+  useEffect(() => {
+    if (ref2.current) {
+      ref2.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+  }, []);
+
   return (
     <Layout pageName={titleBandText} highRes={highRes} setHighRes={setHighRes}>
     <main className="w-screen h-screen">

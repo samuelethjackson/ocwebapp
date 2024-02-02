@@ -934,7 +934,7 @@ body::-webkit-scrollbar {
 }
 
 a {
-  @apply hover:opacity-80;
+  @apply hover:opacity-80 transition-opacity duration-500 ease-in-out;
 }
 
 .about a {
