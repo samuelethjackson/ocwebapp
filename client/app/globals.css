@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-1000;
+  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-200;
 }
 
 @layer utilities {

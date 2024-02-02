@@ -61,7 +61,7 @@ export default function Home() {
         highRes={highRes}
         setHighRes={setHighRes}
       />
-      <div className="absolute top-0 left-0 w-[300vw] h-screen md:snap-y md:overflow-y-scroll md:snap-always md:snap-mandatory flex flex-row md:inline-block">
+      <div className="absolute top-0 left-0 w-[300vw] md:w-screen h-screen md:snap-y md:overflow-y-scroll md:snap-always md:snap-mandatory flex flex-row md:inline-block">
         <StorySection
           ref={ref1}
           id={1}
