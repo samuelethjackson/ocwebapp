@@ -122,7 +122,7 @@ if (activeMobileSection === 1) {
   return (
     <Layout pageName={titleBandText} highRes={highRes} setHighRes={setHighRes}>
     <main className="w-screen h-screen">
-    <TopBand pageName={window.innerWidth <= 680 ? mobileTopBandText : topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
+    <TopBand pageName={typeof window !== 'undefined' && window.innerWidth <= 680 ? mobileTopBandText : topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
       <div className="hidden absolute no-scrollbar top-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:flex flex-col snap-always snap-mandatory">
         <StorySection
           ref={ref1}
