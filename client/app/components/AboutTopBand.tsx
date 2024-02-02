@@ -32,7 +32,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
   };
 
   return (
-    <div className={`fixed top-0 flex flex-row w-full px-5 py-2 justify-between z-50'}`}>
+    <div className={`fixed top-0 flex flex-row w-full px-5 pt-0 pb-2 md:py-2 justify-between z-50'}`}>
       <div className='w-1/3 hidden md:flex flex-row gap-0'>
         <motion.div
           key={pageName}
@@ -45,7 +45,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
           {pageName}
         </motion.div>
       </div>
-      <div className='md:w-1/3 w-full bg-black absolute pl-8 md:hidden flex flex-row gap-0 pb-8'>
+      <div className='md:w-1/3 w-full bg-white dark:bg-black absolute pl-8 md:hidden flex flex-row gap-0 pt-2 pb-8'>
         <div
           key={pageName}
           className="w-full text-base font-normal leading-tight"
@@ -53,7 +53,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
           {pageName}
         </div>
       </div>
-      <div className=' w-1/2 absolute pl-8 pt-6 md:hidden pb-1'>
+      <div className='w-1/2 absolute pl-8 pt-8 md:hidden pb-1'>
         Oceanic Refractions
       </div>
     </div>
