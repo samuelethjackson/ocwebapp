@@ -5,14 +5,54 @@ import BottomBand from "./components/BottomBand";
 import StorySection from "./components/StorySection";
 import TitleBand from "./components/TitleBand";
 import TopBand from "./components/TopBand";
+import Layout from "./components/Layout";
 
 export default function Home() {
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
+  const ref1 = useRef<HTMLDivElement>(null);
+  const ref2 = useRef<HTMLDivElement>(null);
+  const ref3 = useRef<HTMLDivElement>(null);
+  const ref4 = useRef<HTMLDivElement>(null);
 
   const [activeSection, setActiveSection] = useState(1);
   const [highRes, setHighRes] = useState(false);
+  const [activeMobileSection, setActiveMobileSection] = useState(2);
+
+  const handleBottomBandClick = () => {
+    if (activeSection === 1 && ref2.current) {
+      ref2.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (activeSection === 2 && ref3.current) {
+      ref3.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (activeSection === 3 && ref1.current) {
+      ref1.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleTopBandClick = () => {
+    if (activeSection === 1 && ref3.current) {
+      ref3.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (activeSection === 2 && ref1.current) {
+      ref1.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (activeSection === 3 && ref2.current) {
+      ref2.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleArrowClick = (direction: 'next' | 'back') => {
+    setActiveMobileSection(prev => {
+      let newSection;
+      if (direction === 'next') {
+        newSection = prev === 3 ? 1 : prev + 1;
+      } else {
+        newSection = prev === 1 ? 3 : prev - 1;
+      }
+      console.log('Current activeMobileSection:', newSection);
+      return newSection;
+    });
+  };
+
+  useEffect(() => {
+    console.log('activeMobileSection:', activeMobileSection);
+  }, [activeMobileSection]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,6 +79,10 @@ export default function Home() {
   let titleBandText = "";
   let bottomBandText = "";
 
+  let Text1 = "First Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+  let Text2 = "Second Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+  let Text3 = "Third Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+
   if (activeSection === 1) {
     topBandText = "Responding to";
     titleBandText = "Precedents of";
@@ -53,35 +97,57 @@ export default function Home() {
     bottomBandText = "Precedents of";
   }
 
+  let mobileVideo = "";
+  let mobileText = "";
+
+  if (activeMobileSection === 1) {
+    mobileVideo = highRes ? "precedents.gif" : "precedents.mp4";
+    mobileText = Text1;
+  } else if (activeMobileSection === 2) {
+    mobileVideo = highRes ? "witnessing.gif" : "witnessing.mp4";
+    mobileText = Text2;
+  } else if (activeMobileSection === 3) {
+    mobileVideo = highRes ? "responding.gif" : "responding.mp4";
+    mobileText = Text3;
+  }
+
   return (
+    <Layout pageName={titleBandText} highRes={highRes} setHighRes={setHighRes}>
     <main className="w-screen h-screen">
-      <TopBand pageName={topBandText} />
-      <TitleBand
-        pageName={titleBandText}
-        highRes={highRes}
-        setHighRes={setHighRes}
-      />
-      <div className="absolute top-0 left-0 w-[300vw] md:w-screen h-screen md:snap-y md:overflow-y-scroll md:snap-always md:snap-mandatory flex flex-row md:inline-block">
+      <TopBand pageName={topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
+      <div className="hidden absolute no-scrollbar top-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:flex flex-col snap-always snap-mandatory">
         <StorySection
           ref={ref1}
           id={1}
           video={highRes ? "precedents.gif" : "precedents.mp4"}
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          text={Text1}
         />
         <StorySection
           ref={ref2}
           id={2}
           video={highRes ? "witnessing.gif" : "witnessing.mp4"}
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          text={Text2}
         />
         <StorySection
           ref={ref3}
           id={3}
           video={highRes ? "responding.gif" : "responding.mp4"}
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          text={Text3}
         />
       </div>
-      <BottomBand pageName={bottomBandText} />
+      <div
+        id="mobile"
+        className="md:hidden absolute no-scrollbar top-0 left-0 w-full h-full"
+      >
+        <StorySection
+          ref={ref4}
+          id={activeMobileSection}
+          video={mobileVideo}
+          text={mobileText}
+        />
+      </div>
+      <BottomBand pageName={bottomBandText} onBottomBandClick={handleBottomBandClick} />
     </main>
+    </Layout>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import TitleBand from "../components/TitleBand";
 import TopBand from "../components/AboutTopBand";
+import Layout from "../components/Layout";
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -51,13 +51,11 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
+    <Layout pageName="About" highRes={highRes} setHighRes={setHighRes}>
     <div className="flex flex-col items-center justify-center min-h-screen">
       <TopBand pageName="About" />
-      <TitleBand pageName="About"
-        highRes={highRes}
-        setHighRes={setHighRes}/>
-      <main className="w-screen h-screen grid grid-cols-24 px-5">
-        <div className="col-start-4 col-end-13 about flex flex-col gap-20 pt-36 pb-40">
+      <main className="w-full h-screen gridParent px-5">
+        <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 about flex flex-col gap-20 pt-36 pb-40">
           <div id="about" className="grid grid-cols-10 gap-8">
             <h2 className="col-start-2 col-end-10">Who we are</h2>
             <div className="flex flex-col w-full col-span-10 gap-8">
@@ -427,7 +425,7 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="fixed top-0 w-screen h-screen grid grid-cols-24 px-5">
+        <div className="fixed hidden top-0 w-screen h-screen lg:grid grid-cols-24 px-5">
           <div className="h-screen col-start-15 col-end-24 flex items-start py-8 pt-36">
             <div className="flex flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-1 uppercase">
               <a
@@ -484,6 +482,7 @@ const AboutPage: React.FC = () => {
         </div>
       </main>
     </div>
+    </Layout>
   );
 };
 

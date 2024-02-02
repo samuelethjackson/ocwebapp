@@ -51,8 +51,8 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName, highRes, setHighRes }) 
   };
 
   return (
-    <div className="fixed top-8 flex flex-row w-screen px-5 py-2 justify-between z-50">
-      <div className='w-full md:w-1/3 flex flex-row-reverse md:flex-row gap-0'>
+    <div className="fixed top-8 flex flex-row w-full px-5 py-2 justify-between z-50">
+      <div className='opacity-0 md:opacity-100 w-full md:w-1/3 flex flex-row-reverse md:flex-row gap-0'>
         <div className='w-full hidden md:flex'>
           <motion.div 
             key={pageName}
@@ -75,7 +75,7 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName, highRes, setHighRes }) 
           </motion.div>
         </div>
         <motion.div 
-          className={`w-full text-base font-normal leading-tight pl-8`}
+          className={`w-full text-base font-normal leading-tight pl-8 md:pl-0`}
           variants={variants}
           initial="hidden"
           animate={isScrolledDown ? "hidden" : "visible"}
