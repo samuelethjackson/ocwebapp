@@ -90,7 +90,7 @@ const TitleBand: React.FC<TitleBandProps> = ({ pageName, highRes, setHighRes }) 
             <CloseIcon/>
           </Link >
         </div> : <a href="/about" className="w-full text-base text-right md:text-left font-normal leading-tight">About</a>}
-        <div className='flex flex-col md:flex-row gap-3 center md:opacity-100 opacity-50 hover:opacity-100'>
+        <div className='flex flex-col md:flex-row gap-3 center'>
           <ResolutionIcon highRes={highRes} setHighRes={setHighRes}/>
           <InvertIcon/>
         </div>

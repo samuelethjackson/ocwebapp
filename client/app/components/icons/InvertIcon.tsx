@@ -22,7 +22,7 @@ const InvertIcon: React.FC = () => {
     }, [darkMode])
 
     return (
-        <div className='cursor-pointer' onClick={() => setdarkMode(!darkMode)}>
+        <div className='cursor-pointer opacity-50 hover:opacity-100' onClick={() => setdarkMode(!darkMode)}>
             {darkMode ? (
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle className='text-black dark:text-white fill-current' cx="12.602" cy="12.6" r="5.6" />

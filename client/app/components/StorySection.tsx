@@ -20,7 +20,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, tex
     >
       {isGif ? (
         // Use the Image component for optimized loading
-        <div className="absolute top-0 left-0 h-full w-full object-cover opacity-50">
+        <div className="absolute top-0 left-0 h-full w-full object-cover opacity-70">
           <Image
             src={videoPath}
             alt={text}
@@ -35,11 +35,11 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, tex
           muted
           playsInline
           loop
-          className="absolute top-0 left-0 h-screen w-screen object-cover opacity-50"
+          className="absolute top-0 left-0 h-screen w-screen object-cover opacity-70"
         />
       )}
-      <div className="relative z-10 grid place-items-center h-screen col-start-1 col-end-6 md:col-end-10 max-w-[700px] md:min-w-[400px]">
-        <p className="text-black dark:text-white text-base text-left font-normal leading-normal">{text}</p>
+      <div className="relative z-10 grid place-items-start h-screen col-start-1 col-end-6 md:col-end-10 max-w-[700px] md:min-w-[400px]">
+        <p className="text-black dark:text-white text-base text-left font-normal leading-normal mt-20">{text}</p>
       </div>
     </section>
   );

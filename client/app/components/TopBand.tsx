@@ -23,7 +23,7 @@ const TopBand: React.FC<TopBandProps> = ({
         <div className="md:hidden flex justify-end w-12 px-4">
           <ArrowBackIcon onClick={() => onArrowClick?.("back")} />
         </div>
-        <div className="md:w-1/3 flex flex-row w-full gap-0">
+        <div className="md:w-1/3 flex flex-row w-full gap-0 z-30">
           <motion.div
             key={pageName}
             className="w-full text-base font-normal leading-tight"
@@ -38,7 +38,7 @@ const TopBand: React.FC<TopBandProps> = ({
           <ArrowNextIcon onClick={() => onArrowClick?.("next")} />
         </div>
       </div>
-      <div className="fixed top-9 pl-[52px] z-40 md:hidden">Oceanic Refractions</div>
+      <div className="w-full fixed top-9 pl-[52px] z-40 md:hidden">Oceanic Refractions</div>
     </div>
   );
 };

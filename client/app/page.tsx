@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import BottomBand from "./components/BottomBand";
 import StorySection from "./components/StorySection";
-import TitleBand from "./components/TitleBand";
 import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 
@@ -79,23 +78,32 @@ export default function Home() {
   let titleBandText = "";
   let bottomBandText = "";
 
-  let Text1 = "First Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-  let Text2 = "Second Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-  let Text3 = "Third Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+  let Text1 = "featuring the words of Craig Santos-Perez, Julian Aguon, Kathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
+  let Text2 = "featuring newly commissioned words from Christina Sharpe, Nabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
+  let Text3 = "featuring newly commissioned words from Elise Misao Hunchuck and Sinthujan Varatharajah.";
 
   if (activeSection === 1) {
     topBandText = "Responding to";
     titleBandText = "Precedents of";
-    bottomBandText = "Whitnessing via";
+    bottomBandText = "Witnessing via";
   } else if (activeSection === 2) {
     topBandText = "Precedents of";
-    titleBandText = "Whitnessing via";
+    titleBandText = "Witnessing via";
     bottomBandText = "Responding to";
   } else if (activeSection === 3) {
-    topBandText = "Whitnessing via";
+    topBandText = "Witnessing via";
     titleBandText = "Responding to";
     bottomBandText = "Precedents of";
   }
+
+  let mobileTopBandText = "";
+if (activeMobileSection === 1) {
+  mobileTopBandText = "Precedents of";
+} else if (activeMobileSection === 2) {
+  mobileTopBandText = "Witnessing via";
+} else if (activeMobileSection === 3) {
+  mobileTopBandText = "Responding to";
+}
 
   let mobileVideo = "";
   let mobileText = "";
@@ -114,7 +122,7 @@ export default function Home() {
   return (
     <Layout pageName={titleBandText} highRes={highRes} setHighRes={setHighRes}>
     <main className="w-screen h-screen">
-      <TopBand pageName={topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
+    <TopBand pageName={window.innerWidth <= 680 ? mobileTopBandText : topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
       <div className="hidden absolute no-scrollbar top-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:flex flex-col snap-always snap-mandatory">
         <StorySection
           ref={ref1}

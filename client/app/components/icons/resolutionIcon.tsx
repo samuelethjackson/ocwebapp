@@ -14,7 +14,7 @@ const ResolutionIcon: React.FC<ResolutionIconProps> = ({ highRes, setHighRes }) 
     };
 
     return (
-        <div className='cursor-pointer' onClick={handleClick}>
+        <div className='cursor-pointer opacity-50 hover:opacity-100' onClick={handleClick}>
             {highRes ? (
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect className='text-black dark:text-white stroke-current' x="5.20078" y="7.4" width="11.2" height="11.2" rx="1.2" strokeWidth="0.8" />
