@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
   const [highRes, setHighRes] = useState(false);
+  const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   let observer: IntersectionObserver | null = null;
 
@@ -51,7 +52,8 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <Layout pageName="About" highRes={highRes} setHighRes={setHighRes}>
+    <Layout pageName="About" highRes={highRes} setHighRes={setHighRes} isAboutHovered={isAboutHovered}
+    setIsAboutHovered={setIsAboutHovered}>
       <div className="flex flex-col items-center justify-center min-h-screen">
         <TopBand pageName="About" />
         <main className="w-full h-screen gridParent px-5">

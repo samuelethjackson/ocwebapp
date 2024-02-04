@@ -17,7 +17,7 @@ export default function Home() {
   const [highRes, setHighRes] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
-  const [isAboutHovered, setIsAboutHovered] = useState(false); // Add this line
+  const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
