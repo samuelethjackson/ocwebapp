@@ -1,46 +1,79 @@
 import React, { forwardRef } from "react";
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface StorySectionProps {
   text: string;
   video: string;
   id: number;
+  isAboutHovered: boolean; // Add this line
 }
 
-const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, text, id }, ref) => {
+const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(({ video, text, id, isAboutHovered }, ref,) => {
   // Check the file extension to determine if it's a GIF
   const isGif = video.endsWith('.gif');
   const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
+
+  const videoVariants = {
+    zoomIn: { scale: 1.1 },
+    zoomOut: { scale: 1 }
+  };
+
+  const textVariants = {
+    fadeIn: { opacity: 1 },
+    fadeOut: { opacity: 0 }
+  }
 
   return (
     <section
       id={id.toString()}
       ref={ref}
-      className={`relative w-full h-full bg-white dark:bg-black snap-start grid grid-cols-6 md:grid-cols-24 px-5`}
+      className={`relative w-full h-screen bg-white dark:bg-black snap-start grid grid-cols-6 md:grid-cols-24 px-5 overflow-hidden`}
     >
       {isGif ? (
-        // Use the Image component for optimized loading
-        <div className="absolute top-0 left-0 h-full w-full object-cover opacity-70">
+        <motion.div
+          className="absolute top-0 left-0 h-full w-full object-cover opacity-70"
+          animate={isAboutHovered ? "zoomIn" : "zoomOut"}
+          variants={videoVariants}
+          transition={{ ease: "easeInOut", duration: 1 }}
+        >
           <Image
             src={videoPath}
             alt={text}
             layout="fill"
             objectFit="cover"
           />
-        </div>
+        </motion.div>
       ) : (
-        <video
+        <motion.video
           src={videoPath}
           autoPlay
           muted
           playsInline
           loop
           className="absolute top-0 left-0 h-screen w-screen object-cover opacity-70"
+          animate={isAboutHovered ? "zoomIn" : "zoomOut"}
+          variants={videoVariants}
+          transition={{ ease: "easeInOut", duration: 1 }}
         />
       )}
-      <div className="relative z-10 grid place-items-start h-screen col-start-1 col-end-6 md:col-end-10 max-w-[700px] md:min-w-[400px]">
-        <p className="text-black dark:text-white text-base text-left font-normal leading-normal mt-20">{text}</p>
-      </div>
+        <motion.p 
+          className={`text-black dark:text-white text-base text-left col-start-1 col-end-6 md:col-end-10 max-w-[700px] md:min-w-[400px] font-normal leading-normal mt-28 z-10`}
+          animate={isAboutHovered ? "fadeOut" : "fadeIn"}
+          variants={textVariants}
+          transition={{ ease: "easeInOut", duration: 1 }}
+        >
+          {text}
+        </motion.p>
+        <motion.p 
+          id="aboutText" 
+          className={`text-black dark:text-white text-base col-start-1 col-end-6 md:col-start-5 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
+          animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
+          variants={textVariants}
+          transition={{ ease: "easeInOut", duration: 1 }}
+        >
+          Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki
+        </motion.p>
     </section>
   );
 });

@@ -5,6 +5,7 @@ import BottomBand from "./components/BottomBand";
 import StorySection from "./components/StorySection";
 import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -16,41 +17,36 @@ export default function Home() {
   const [highRes, setHighRes] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
+  const [isAboutHovered, setIsAboutHovered] = useState(false); // Add this line
+
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
-      ref2.current.scrollIntoView({ behavior: 'smooth' });
+      ref2.current.scrollIntoView({ behavior: "smooth" });
     } else if (activeSection === 2 && ref3.current) {
-      ref3.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (activeSection === 3 && ref1.current) {
-      ref1.current.scrollIntoView({ behavior: 'smooth' });
+      ref3.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleTopBandClick = () => {
-    if (activeSection === 1 && ref3.current) {
-      ref3.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (activeSection === 2 && ref1.current) {
-      ref1.current.scrollIntoView({ behavior: 'smooth' });
+    if (activeSection === 2 && ref1.current) {
+      ref1.current.scrollIntoView({ behavior: "smooth" });
     } else if (activeSection === 3 && ref2.current) {
-      ref2.current.scrollIntoView({ behavior: 'smooth' });
+      ref2.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  const handleArrowClick = (direction: 'next' | 'back') => {
-    setActiveMobileSection(prev => {
-      let newSection;
-      if (direction === 'next') {
-        newSection = prev === 3 ? 1 : prev + 1;
+  const handleArrowClick = (direction: "next" | "back") => {
+    setActiveMobileSection((prev) => {
+      if (direction === "next") {
+        return prev < 3 ? prev + 1 : 3;
       } else {
-        newSection = prev === 1 ? 3 : prev - 1;
+        return prev > 1 ? prev - 1 : 1;
       }
-      console.log('Current activeMobileSection:', newSection);
-      return newSection;
     });
   };
 
   useEffect(() => {
-    console.log('activeMobileSection:', activeMobileSection);
+    console.log("activeMobileSection:", activeMobileSection);
   }, [activeMobileSection]);
 
   useEffect(() => {
@@ -78,12 +74,15 @@ export default function Home() {
   let titleBandText = "";
   let bottomBandText = "";
 
-  let Text1 = "featuring the words of Craig Santos-Perez, Julian Aguon, Kathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
-  let Text2 = "featuring newly commissioned words from Christina Sharpe, Nabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
-  let Text3 = "featuring newly commissioned words from Elise Misao Hunchuck and Sinthujan Varatharajah.";
+  let Text1 =
+    "featuring the words of Craig Santos-Perez, Julian Aguon, Kathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
+  let Text2 =
+    "featuring newly commissioned words from Christina Sharpe, Nabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
+  let Text3 =
+    "featuring newly commissioned words from Elise Misao Hunchuck and Sinthujan Varatharajah.";
 
   if (activeSection === 1) {
-    topBandText = "Responding to";
+    topBandText = "";
     titleBandText = "Precedents of";
     bottomBandText = "Witnessing via";
   } else if (activeSection === 2) {
@@ -93,17 +92,17 @@ export default function Home() {
   } else if (activeSection === 3) {
     topBandText = "Witnessing via";
     titleBandText = "Responding to";
-    bottomBandText = "Precedents of";
+    bottomBandText = "";
   }
 
   let mobileTopBandText = "";
-if (activeMobileSection === 1) {
-  mobileTopBandText = "Precedents of";
-} else if (activeMobileSection === 2) {
-  mobileTopBandText = "Witnessing via";
-} else if (activeMobileSection === 3) {
-  mobileTopBandText = "Responding to";
-}
+  if (activeMobileSection === 1) {
+    mobileTopBandText = "Precedents of";
+  } else if (activeMobileSection === 2) {
+    mobileTopBandText = "Witnessing via";
+  } else if (activeMobileSection === 3) {
+    mobileTopBandText = "Responding to";
+  }
 
   let mobileVideo = "";
   let mobileText = "";
@@ -121,47 +120,87 @@ if (activeMobileSection === 1) {
 
   useEffect(() => {
     if (ref2.current) {
-      ref2.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+      ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
     }
   }, []);
 
+  const bandVariants = {
+    fadeIn: { opacity: 1 },
+    fadeOut: { opacity: 0 },
+  };
+
   return (
-    <Layout pageName={titleBandText} highRes={highRes} setHighRes={setHighRes}>
-    <main className="w-screen h-screen">
-    <TopBand pageName={typeof window !== 'undefined' && window.innerWidth <= 680 ? mobileTopBandText : topBandText} onArrowClick={handleArrowClick} onTopBandClick={handleTopBandClick}/>
-      <div className="hidden absolute no-scrollbar top-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:flex flex-col snap-always snap-mandatory">
-        <StorySection
-          ref={ref1}
-          id={1}
-          video={highRes ? "precedents.gif" : "precedents.mp4"}
-          text={Text1}
+    <Layout
+      pageName={titleBandText}
+      highRes={highRes}
+      setHighRes={setHighRes}
+      isAboutHovered={isAboutHovered}
+      setIsAboutHovered={setIsAboutHovered}
+    >
+      <main className="w-screen h-screen">
+        <TopBand
+          pageName={
+            typeof window !== "undefined" && window.innerWidth <= 680
+              ? mobileTopBandText
+              : topBandText
+          }
+          onArrowClick={handleArrowClick}
+          onTopBandClick={handleTopBandClick}
+          isAboutHovered={isAboutHovered}
         />
-        <StorySection
-          ref={ref2}
-          id={2}
-          video={highRes ? "witnessing.gif" : "witnessing.mp4"}
-          text={Text2}
-        />
-        <StorySection
-          ref={ref3}
-          id={3}
-          video={highRes ? "responding.gif" : "responding.mp4"}
-          text={Text3}
-        />
-      </div>
-      <div
-        id="mobile"
-        className="md:hidden absolute no-scrollbar top-0 left-0 w-full h-full"
-      >
-        <StorySection
-          ref={ref4}
-          id={activeMobileSection}
-          video={mobileVideo}
-          text={mobileText}
-        />
-      </div>
-      <BottomBand pageName={bottomBandText} onBottomBandClick={handleBottomBandClick} />
-    </main>
+        <div className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory">
+          <StorySection
+            ref={ref1}
+            id={1}
+            video={highRes ? "precedents.gif" : "precedents.mp4"}
+            text={Text1}
+            isAboutHovered={isAboutHovered} // Add this line
+          />
+          <StorySection
+            ref={ref2}
+            id={2}
+            video={highRes ? "witnessing.gif" : "witnessing.mp4"}
+            text={Text2}
+            isAboutHovered={isAboutHovered} // Add this line
+          />
+          <StorySection
+            ref={ref3}
+            id={3}
+            video={highRes ? "responding.gif" : "responding.mp4"}
+            text={Text3}
+            isAboutHovered={isAboutHovered} // Add this line
+          />
+        </div>
+        <div
+          id="mobile"
+          className="md:hidden absolute no-scrollbar top-0 left-0 w-full h-full"
+        >
+          <StorySection
+            ref={ref4}
+            id={activeMobileSection}
+            video={mobileVideo}
+            text={mobileText}
+            isAboutHovered={isAboutHovered} // Add this line
+          />
+        </div>
+        <AnimatePresence>
+          {!isAboutHovered && (
+            <motion.div
+              key="bottomBand"
+              variants={bandVariants}
+              initial="fadeOut" // Add this line
+              animate="fadeIn"
+              exit="fadeOut" // Add this line
+              transition={{ ease: "easeInOut", duration: 1 }}
+            >
+              <BottomBand
+                pageName={bottomBandText}
+                onBottomBandClick={handleBottomBandClick}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
     </Layout>
   );
 }
