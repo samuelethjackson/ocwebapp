@@ -476,11 +476,11 @@ body::-webkit-scrollbar {
 }
 
 .about p {
-  @apply text-base md:text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 max-w-[720px];
+  @apply text-base indent-8 md:text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 max-w-[720px];
 }
 
 .about ul {
-  @apply text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
+  @apply text-base pl-4 md:text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
 }
 
 .about li {

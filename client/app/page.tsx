@@ -6,6 +6,7 @@ import StorySection from "./components/StorySection";
 import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -70,16 +71,18 @@ export default function Home() {
     };
   }, []);
 
+  
   let topBandText = "";
   let titleBandText = "";
   let bottomBandText = "";
 
   let Text1 =
-    "featuring the words of Craig Santos-Perez, Julian Aguon, Kathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
+    "featuring the words of Craig Santos-Perez, Julian Aguon, \nKathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
   let Text2 =
-    "featuring newly commissioned words from Christina Sharpe, Nabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
+    "featuring newly commissioned words from Christina Sharpe, \nNabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
   let Text3 =
-    "featuring newly commissioned words from Elise Misao Hunchuck and Sinthujan Varatharajah.";
+    "featuring newly commissioned words \nfrom Elise Misao Hunchuck and Sinthujan Varatharajah.";
+
 
   if (activeSection === 1) {
     topBandText = "";

@@ -52,12 +52,24 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <Layout pageName="About" highRes={highRes} setHighRes={setHighRes} isAboutHovered={isAboutHovered}
-    setIsAboutHovered={setIsAboutHovered}>
+    <Layout
+      pageName="About"
+      highRes={highRes}
+      setHighRes={setHighRes}
+      isAboutHovered={isAboutHovered}
+      setIsAboutHovered={setIsAboutHovered}
+    >
       <div className="flex flex-col items-center justify-center min-h-screen">
         <TopBand pageName="About" />
         <main className="w-full h-screen gridParent px-5">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 about flex flex-col gap-20 pt-40 pb-40">
+            <div id="connect" className="grid md:hidden grid-cols-10 gap-8">
+              <h2 className="col-start-2 col-end-10">Connect with us</h2>
+              <div className="flex flex-col w-full col-span-10 gap-8">
+                <p className="flex flex-col gap-0"><a className="!no-underline" href="mailto:oceanicrefractions@gmail.com">oceanicrefractions@gmail.com</a>
+                <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/">Instagram</a></p>
+              </div>
+            </div>
             <div id="about" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Who we are</h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
@@ -96,7 +108,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="background" className="grid grid-cols-10 gap-8">
-              <h2 className="col-start-2 col-end-10 paragraph-title">
+              <h2 className="col-start-2 col-end-10">
                 Our background and approach
               </h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
@@ -164,7 +176,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="relationship" className="grid grid-cols-10 gap-8">
-              <h2 className="col-start-2 col-end-10 paragraph-title">
+              <h2 className="col-start-2 col-end-10">
                 Relationships and circulation
               </h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
@@ -253,9 +265,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="community" className="grid grid-cols-10 gap-8">
-              <h2 className="col-start-2 col-end-10 paragraph-title">
-                Community
-              </h2>
+              <h2 className="col-start-2 col-end-10">Community</h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
                 <p>
                   We acknowledge the many generous individuals, communities and
@@ -441,9 +451,15 @@ const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            <a
+              className="!no-underline opacity-50"
+              href="https://www.studiofolder.it"
+            >
+              Design: Studio Folder
+            </a>
           </div>
           <div className="hidden h-screen col-start-15 col-end-24 md:flex items-start py-8 pt-36">
-            <div className="flex flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
+            <div className="flex fixed flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
               <a
                 href="#about"
                 onClick={(e) => handleScroll(e, "about")}
@@ -493,6 +509,13 @@ const AboutPage: React.FC = () => {
               >
                 Collective philosophies, values and ethics
               </a>
+            </div>
+            <div id="connect" className="fixed self-end	flex flex-col w-full gap-2">
+              <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">Connect with us</h2>
+              <div className="flex flex-col w-full col-span-10 gap-8">
+                <p className="flex flex-col gap-0 opacity-50"><a className="!no-underline" href="mailto:oceanicrefractions@gmail.com">oceanicrefractions@gmail.com</a>
+                <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/">Instagram</a></p>
+              </div>
             </div>
           </div>
         </main>
