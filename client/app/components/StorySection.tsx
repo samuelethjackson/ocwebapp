@@ -33,7 +33,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       >
         {isGif ? (
           <motion.div
-            className="absolute top-0 left-0 h-full w-full object-cover opacity-70"
+            className="absolute top-0 left-0 h-full w-full object-cover opacity-50"
             animate={isAboutHovered ? "zoomIn" : "zoomOut"}
             variants={videoVariants}
             transition={{ ease: "easeInOut", duration: 1 }}
