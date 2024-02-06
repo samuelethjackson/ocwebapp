@@ -116,7 +116,7 @@ const AboutPage: React.FC = () => {
                   Oceanic Refractions has been created to convey testimonies of
                   the everyday lives, practices and world views of Pacific
                   people and their environments, bearing witness to ongoing and
-                  accelerating ecocide. 
+                  accelerating ecocide.
                 </p>
                 <p>
                   With backgrounds in communication, public policy and
@@ -129,7 +129,7 @@ const AboutPage: React.FC = () => {
                   the privilege of working. In embracing their complexity, we
                   move away from universalised and dehumanising descriptions of
                   Indigeneity that seek to depict communities as ‘heroes’ or
-                  ‘victims’ of the climate crisis. 
+                  ‘victims’ of the climate crisis.
                 </p>
                 <p>
                   The catastrophic ecosystemic changes experienced across the

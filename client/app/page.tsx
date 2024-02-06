@@ -7,6 +7,20 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import { client } from "./lib/sanity";
+import { simpleBlogCard } from "./lib/interface";
+import Link from "next/link";
+
+async function getData () {
+  const query = `*[_type == 'blog'] | order(_createdAt desc){
+    title,
+    "currentSlug": slug.current,
+    author,
+  }`;
+
+  const data = await client.fetch(query)
+  return data;
+}
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -14,11 +28,22 @@ export default function Home() {
   const ref3 = useRef<HTMLDivElement>(null);
   const ref4 = useRef<HTMLDivElement>(null);
 
+  const [data, setData] = useState<simpleBlogCard[] | null>(null);
+
   const [activeSection, setActiveSection] = useState(1);
   const [highRes, setHighRes] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
   const [isAboutHovered, setIsAboutHovered] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result: simpleBlogCard[] = await getData();
+      setData(result);
+    };
+
+    fetchData();
+  }, []);
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -151,6 +176,16 @@ export default function Home() {
           onTopBandClick={handleTopBandClick}
           isAboutHovered={isAboutHovered}
         />
+        <div className="absolute z-50 top-1/2 ml-2">
+          {data?.map((post, idx) => (
+            <div key={idx}>
+              <Link href={`/blog/${post.currentSlug}`}>
+                <h3>{post.title}</h3>
+                <p>{post.author}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
         <div className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory">
           <StorySection
             ref={ref1}
