@@ -4,7 +4,7 @@ import local from 'next/font/local';
 import React, { useEffect, useState } from 'react';
 
 const InvertIcon: React.FC = () => {
-    const [darkMode, setdarkMode] = useState(true);
+    const [darkMode, setdarkMode] = useState(false);
 
     useEffect(() => {
         const theme = localStorage.getItem("theme")
