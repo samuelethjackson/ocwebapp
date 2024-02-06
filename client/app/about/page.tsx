@@ -280,7 +280,7 @@ const AboutPage: React.FC = () => {
                     New Guinea), Teweiariki Teaero (Kiribati), Simione
                     Sevudredre and Unaisi Nabobo-Baba (Fiji)
                   </li>
-                  <li>Eliki Reade - early collaborator</li>
+                  <li>Eliki Reade (early collaborator)</li>
                   <li>Joseph Kamaru</li>
                   <li>Tumeli Tuqota and Dave Lavaki</li>
                   <li>Sara Murphy and Frank Pendergast </li>
