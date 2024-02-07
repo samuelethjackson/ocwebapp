@@ -59,9 +59,9 @@ const AboutPage: React.FC = () => {
       isAboutHovered={isAboutHovered}
       setIsAboutHovered={setIsAboutHovered}
     >
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
         <TopBand pageName="About" />
-        <main className="w-full h-screen gridParent px-5">
+        <main className="w-full h-dvh md:h-screen gridParent px-5">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 about flex flex-col gap-20 pt-40 pb-40">
             <div id="connect" className="grid md:hidden grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Connect with us</h2>
