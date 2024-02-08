@@ -13,6 +13,7 @@ async function getData() {
     "currentSlug": slug.current,
     author,
     category,
+    type,
   }`;
 
   const data = await client.fetch(query);
@@ -53,19 +54,52 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       fadeOut: { opacity: 0 },
     };
 
-    const randomPosition = (maxHeight: number, maxWidth: number) => {
-      const x = Math.floor(Math.random() * maxWidth);
-      const y = Math.floor(Math.random() * maxHeight);
-      return { top: `${y}px`, left: `${x}px` };
+    const randomPosition = (
+      maxHeight: number,
+      maxWidth: number,
+      existingPositions: { top: number; left: number }[]
+    ) => {
+      const boundaryTop = 0.15 * maxHeight;
+      const boundaryBottom = 0.1 * maxHeight;
+      const boundaryLeft = 0.1 * maxWidth;
+      const boundaryRight = 0.1 * maxWidth;
+
+      let x, y, overlap;
+
+      do {
+        overlap = false;
+        x = Math.floor(
+          Math.random() * (maxWidth - boundaryLeft - boundaryRight) +
+            boundaryLeft
+        );
+        y = Math.floor(
+          Math.random() * (maxHeight - boundaryTop - boundaryBottom) +
+            boundaryTop
+        );
+
+        // Check if the new position overlaps with any existing position
+        for (let pos of existingPositions) {
+          if (Math.abs(pos.left - x) < 50 && Math.abs(pos.top - y) < 50) {
+            // 50 is the minimum distance between elements
+            overlap = true;
+            break;
+          }
+        }
+      } while (overlap);
+
+      return { top: y, left: x };
     };
 
     const [windowWidth, setWindowWidth] = useState(0);
     const [windowHeight, setWindowHeight] = useState(0);
+    const [positions, setPositions] = useState<{ top: number; left: number }[]>(
+      []
+    );
 
     useEffect(() => {
       const updateWindowDimensions = () => {
-        setWindowWidth(window.innerWidth - 500);
-        setWindowHeight(window.innerHeight - 256);
+        setWindowWidth(window.innerWidth);
+        setWindowHeight(window.innerHeight);
       };
 
       window.addEventListener("resize", updateWindowDimensions);
@@ -77,7 +111,27 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       return () => window.removeEventListener("resize", updateWindowDimensions);
     }, []);
 
-    const positions = data?.map(() => randomPosition(windowHeight, windowWidth));
+    useEffect(() => {
+      if (data) {
+        const newPositions = data.map(() =>
+          randomPosition(windowHeight, windowWidth, positions)
+        );
+        setPositions((prevPositions) => [...prevPositions, ...newPositions]);
+      }
+    }, [data, windowHeight, windowWidth]);
+
+    // Create a mapping between id and category
+    const idCategoryMapping: { [key: number]: string } = {
+      1: "Precedents of",
+      2: "Witnessing via",
+      3: "Responding to",
+    };
+
+    const filteredData = data?.filter(
+      (post) => post.category === idCategoryMapping[id]
+    );
+
+    const [videoAnimation, setVideoAnimation] = useState({ scale: 1, x: 0 });
 
     return (
       <section
@@ -102,8 +156,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             playsInline
             loop
             className="absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover opacity-60"
-            animate={isAboutHovered ? "zoomIn" : "zoomOut"}
-            variants={videoVariants}
+            animate={videoAnimation}
             transition={{ ease: "easeInOut", duration: 1 }}
           />
         )}
@@ -111,21 +164,37 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           className={``}
           animate={isAboutHovered ? "fadeOut" : "fadeIn"}
           initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ ease: "easeInOut", duration: 4 }}
+          exit={{ opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 4, delay: 1 }}
           variants={textVariants}
         >
-          <div className="absolute top-0 left-0 center w-screen h-dvh md:h-screen flex flex-col gap-16 p-32">
-            {data?.map((post, idx) => (
+          <div className="absolute top-0 left-0 center w-screen h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute">
+            {filteredData?.map((post, idx) => (
               <div
-                className="text-base font-normal leading-[26px] absolute"
+                className="text-base font-normal leading-[26px] static md:absolute"
                 key={idx}
                 style={positions ? positions[idx] : {}}
               >
                 <Link
-                  className="flex flex-col gap-1 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
+                  id="storyCloud"
+                  className="flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
                   href={`/blog/${post.currentSlug}`}
+                  onMouseEnter={(e) => {
+                    const element = e.currentTarget.getBoundingClientRect();
+                    const middleOfScreen = window.innerWidth / 2;
+                    if (element.left < middleOfScreen) {
+                      setVideoAnimation({ scale: 0.95, x: window.innerWidth * 0.05 });
+                    } else {
+                      setVideoAnimation({ scale: 0.95, x: -window.innerWidth * 0.05 });
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    setVideoAnimation({ scale: 1, x: 0 });
+                  }}
                 >
+                  <p className="text-opacity-70 text-xs font-normal uppercase leading-tight tracking-wide mb-1">
+                    {post?.type}
+                  </p>
                   <h3 className="cloud-shadow-white text-black max-w-[300px] z-20">
                     {post?.title}
                   </h3>

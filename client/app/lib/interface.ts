@@ -3,6 +3,7 @@ export interface storyOverview {
     "author": string;
     "currentSlug": string;
     "category": string;
+    "type": string;
 }
 
 export interface fullBlog {

@@ -20,9 +20,11 @@ export default {
             name: "category",
             type: "string",
             title: "Category",
-            options: {
-                source: "title"
-            }
+        },
+        {
+            name: "type",
+            type: "string",
+            title: "Article type",
         },
         {
             name: "author",
