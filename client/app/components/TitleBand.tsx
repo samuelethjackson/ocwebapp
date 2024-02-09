@@ -112,7 +112,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
             </Link>
           </div>
         ) : (
-          <a
+          <Link
             href="/about"
             onMouseEnter={() => {
               onAboutHover(true);
@@ -125,7 +125,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
             className="w-full text-base text-right md:text-left font-normal leading-tight"
           >
             About
-          </a>
+          </Link>
         )}
         <div className="flex flex-col md:flex-row gap-3 center">
           <ResolutionIcon highRes={highRes} setHighRes={setHighRes} />

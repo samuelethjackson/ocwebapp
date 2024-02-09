@@ -1,30 +1,15 @@
-"use client";
-
 import React, { forwardRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { storyOverview } from "../lib/interface";
-import { client } from "../lib/sanity";
 import Link from "next/link";
-
-async function getData() {
-  const query = `*[_type == 'blog'] | order(_createdAt desc){
-    title,
-    "currentSlug": slug.current,
-    author,
-    category,
-    type,
-  }`;
-
-  const data = await client.fetch(query);
-  return data;
-}
+import { getData, randomPosition, useWindowDimensions, useData } from './StorySectionHelper';
 
 interface StorySectionProps {
   text: string;
   video: string;
   id: number;
-  isAboutHovered: boolean; // Add this line
+  isAboutHovered: boolean;
 }
 
 const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
@@ -33,16 +18,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
 
-    const [data, setData] = useState<storyOverview[] | null>(null);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const result: storyOverview[] = await getData();
-        setData(result);
-      };
-
-      fetchData();
-    }, []);
+    const data = useData();
 
     const videoVariants = {
       zoomIn: { scale: 1.1 },
@@ -54,62 +30,10 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       fadeOut: { opacity: 0 },
     };
 
-    const randomPosition = (
-      maxHeight: number,
-      maxWidth: number,
-      existingPositions: { top: number; left: number }[]
-    ) => {
-      const boundaryTop = 0.15 * maxHeight;
-      const boundaryBottom = 0.1 * maxHeight;
-      const boundaryLeft = 0.1 * maxWidth;
-      const boundaryRight = 0.1 * maxWidth;
-
-      let x, y, overlap;
-
-      do {
-        overlap = false;
-        x = Math.floor(
-          Math.random() * (maxWidth - boundaryLeft - boundaryRight) +
-            boundaryLeft
-        );
-        y = Math.floor(
-          Math.random() * (maxHeight - boundaryTop - boundaryBottom) +
-            boundaryTop
-        );
-
-        // Check if the new position overlaps with any existing position
-        for (let pos of existingPositions) {
-          if (Math.abs(pos.left - x) < 50 && Math.abs(pos.top - y) < 50) {
-            // 50 is the minimum distance between elements
-            overlap = true;
-            break;
-          }
-        }
-      } while (overlap);
-
-      return { top: y, left: x };
-    };
-
-    const [windowWidth, setWindowWidth] = useState(0);
-    const [windowHeight, setWindowHeight] = useState(0);
+    const { windowWidth, windowHeight } = useWindowDimensions();
     const [positions, setPositions] = useState<{ top: number; left: number }[]>(
       []
     );
-
-    useEffect(() => {
-      const updateWindowDimensions = () => {
-        setWindowWidth(window.innerWidth);
-        setWindowHeight(window.innerHeight);
-      };
-
-      window.addEventListener("resize", updateWindowDimensions);
-
-      // Call the function initially to set the dimensions
-      updateWindowDimensions();
-
-      // Cleanup function to remove the event listener
-      return () => window.removeEventListener("resize", updateWindowDimensions);
-    }, []);
 
     useEffect(() => {
       if (data) {
@@ -131,7 +55,19 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       (post) => post.category === idCategoryMapping[id]
     );
 
-    const [videoAnimation, setVideoAnimation] = useState({ scale: 1, x: 0 });
+    const [videoAnimation, setVideoAnimation] = useState({
+      scale: 1,
+      x: 0,
+      y: 0,
+    });
+
+    const [isLinkHovered, setIsLinkHovered] = useState<boolean[]>([]);
+
+    useEffect(() => {
+      if (data) {
+        setIsLinkHovered(new Array(data.length).fill(false));
+      }
+    }, [data]);
 
     return (
       <section
@@ -180,19 +116,40 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                   className="flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
                   href={`/blog/${post.currentSlug}`}
                   onMouseEnter={(e) => {
+                    setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
                     const element = e.currentTarget.getBoundingClientRect();
-                    const middleOfScreen = window.innerWidth / 2;
-                    if (element.left < middleOfScreen) {
-                      setVideoAnimation({ scale: 0.95, x: window.innerWidth * 0.05 });
+                    const middleOfScreenX = window.innerWidth / 2;
+                    const middleOfScreenY = window.innerHeight / 2;
+                    if (element.left < middleOfScreenX) {
+                      setVideoAnimation({
+                        scale: 0.98,
+                        x: window.innerWidth * 0.025,
+                        y:
+                          element.top < middleOfScreenY
+                            ? window.innerHeight * 0.025
+                            : window.innerHeight * -0.015,
+                      });
                     } else {
-                      setVideoAnimation({ scale: 0.95, x: -window.innerWidth * 0.05 });
+                      setVideoAnimation({
+                        scale: 0.98,
+                        x: window.innerWidth * -0.025,
+                        y:
+                          element.top < middleOfScreenY
+                            ? window.innerHeight * 0.025
+                            : window.innerHeight * -0.015,
+                      });
                     }
                   }}
                   onMouseLeave={() => {
-                    setVideoAnimation({ scale: 1, x: 0 });
+                    setVideoAnimation({ scale: 1, x: 0, y: 0 });
+                    setIsLinkHovered(isLinkHovered.map((v, i) => false));
                   }}
                 >
-                  <p className="text-opacity-70 text-xs font-normal uppercase leading-tight tracking-wide mb-1">
+                  <p
+                    className={`text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
+                      ${isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
+                    }`}
+                  >
                     {post?.type}
                   </p>
                   <h3 className="cloud-shadow-white text-black max-w-[300px] z-20">
