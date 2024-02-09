@@ -22,9 +22,13 @@
     "next-sanity": "^7.0.17",
     "next-videos": "^1.4.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sanity": "^3.0.0",
+    "styled-components": "^5.2.0",
+    "@sanity/vision": "^3.5.0"
   },
   "devDependencies": {
+    "@sanity/eslint-config-studio": "^2.0.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
