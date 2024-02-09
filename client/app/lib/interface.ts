@@ -5,11 +5,11 @@ export interface storyOverview {
     "category": string;
     "type": string;
 }
-
-export interface fullBlog {
+  
+  export interface fullBlog {
     "title": string;
     "author": string;
     "currentSlug": string;
     "category": string;
     "content": any;
-}
+  }
