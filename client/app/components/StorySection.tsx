@@ -37,10 +37,12 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
     useEffect(() => {
       if (data) {
-        const newPositions = data.map(() =>
-          randomPosition(windowHeight, windowWidth, positions)
-        );
-        setPositions((prevPositions) => [...prevPositions, ...newPositions]);
+        setPositions((prevPositions) => {
+          const newPositions = data.map(() =>
+            randomPosition(windowHeight, windowWidth, prevPositions)
+          );
+          return [...prevPositions, ...newPositions];
+        });
       }
     }, [data, windowHeight, windowWidth]);
 

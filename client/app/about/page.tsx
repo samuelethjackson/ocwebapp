@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import TopBand from "../components/AboutTopBand";
 import Layout from "../components/Layout";
 
@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
-  let observer: IntersectionObserver | null = null;
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const handleScroll = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -25,8 +25,8 @@ const AboutPage: React.FC = () => {
     }
   };
 
-  const observeSections = () => {
-    observer = new IntersectionObserver(
+  const observeSections = useCallback(() => {
+    observer.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           console.log(entry); // Log the entry to see what's being returned
@@ -39,17 +39,17 @@ const AboutPage: React.FC = () => {
     );
 
     const sections = document.querySelectorAll("div[id]");
-    sections.forEach((section) => observer!.observe(section));
-  };
+    sections.forEach((section) => observer.current!.observe(section));
+  }, []);
 
   useEffect(() => {
     observeSections();
     return () => {
       // Cleanup observer on component unmount
       const sections = document.querySelectorAll("div[id]");
-      sections.forEach((section) => observer!.unobserve(section));
+      sections.forEach((section) => observer.current!.unobserve(section));
     };
-  }, []);
+  }, [observeSections]);
 
   return (
     <Layout
