@@ -12,4 +12,8 @@ export interface storyOverview {
     "currentSlug": string;
     "category": string;
     "content": any;
+    "biographyText": any;
+    "date": string;
+    "citation": string;
+    "language": string;
   }
