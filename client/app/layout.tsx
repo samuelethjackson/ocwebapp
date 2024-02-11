@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
+import { motion } from "framer-motion";
 import { fullBlog } from "./lib/interface";
 import TitleBand from "./components/TitleBand";
 const EduDiatype = localFont({ 
@@ -23,8 +24,9 @@ export default async function RootLayout({
   
   return (
     <html lang="en">
-      <body className={EduDiatype.className}>
-        {children}
+      <body
+      className={EduDiatype.className}>
+        <div className="app">{children}</div>
         </body>
     </html>
   );

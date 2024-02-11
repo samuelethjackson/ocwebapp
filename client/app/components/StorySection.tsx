@@ -1,9 +1,14 @@
 import React, { forwardRef, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { storyOverview } from "../lib/interface";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { getData, randomPosition, useWindowDimensions, useData } from './StorySectionHelper';
+import {
+  getData,
+  randomPosition,
+  useWindowDimensions,
+  useData,
+} from "./StorySectionHelper";
 
 interface StorySectionProps {
   text: string;
@@ -20,6 +25,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
     const data = useData();
 
+    const router = useRouter();
+
     const videoVariants = {
       zoomIn: { scale: 1.1 },
       zoomOut: { scale: 1 },
@@ -28,6 +35,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     const textVariants = {
       fadeIn: { opacity: 1 },
       fadeOut: { opacity: 0 },
+      fadeOutSlow: { opacity: 0, transition: { duration: 2 } }, // New variant
     };
 
     const { windowWidth, windowHeight } = useWindowDimensions();
@@ -71,18 +79,29 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       }
     }, [data]);
 
+    const handleMouseLeave = () => {
+      setVideoAnimation({ scale: 1, x: 0, y: 0 });
+      setIsLinkHovered(isLinkHovered.map((v, i) => false));
+    };
+
+    const [isAnimateClicked, setIsAnimateClicked] = useState(false);
+
     return (
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start grid grid-cols-6 md:grid-cols-24 px-5 overflow-hidden`}
+        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent overflow-hidden`}
       >
         {isGif ? (
           <motion.div
+            layout
             className="absolute top-0 left-0 h-full w-full object-cover opacity-50"
             animate={isAboutHovered ? "zoomIn" : "zoomOut"}
             variants={videoVariants}
-            transition={{ ease: "easeInOut", duration: 1 }}
+            transition={{
+              animate: { ease: "easeInOut", duration: 1 },
+              layout: { duration: 4 },
+            }}
           >
             <Image src={videoPath} alt={text} layout="fill" objectFit="cover" />
           </motion.div>
@@ -90,20 +109,35 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           <motion.video
             src={videoPath}
             autoPlay
+            layout
             muted
             playsInline
             loop
-            className="absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover opacity-60"
+            className={`${
+              !isAnimateClicked
+                ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover md:object-fill md:aspect-video opacity-60"
+                : "sticky place-self-start top-40 lg:col-start-15 col-end-25 flex flex-col w-full center object-cover md:object-fill md:aspect-video opacity-60"
+            }`}
             animate={videoAnimation}
-            transition={{ ease: "easeInOut", duration: 1 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 2,
+              layout: { duration: 3, ease: "easeInOut" },
+            }}
           />
         )}
         <motion.div
           className={``}
-          animate={isAboutHovered ? "fadeOut" : "fadeIn"}
+          animate={
+            isAnimateClicked
+              ? "fadeOutSlow"
+              : isAboutHovered
+              ? "fadeOut"
+              : "fadeIn"
+          }
           initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ ease: "easeInOut", duration: 4, delay: 1 }}
+          transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
           variants={textVariants}
         >
           <div className="absolute top-0 left-0 center w-screen h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute">
@@ -117,6 +151,15 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                   id="storyCloud"
                   className="flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
                   href={`/blog/${post.currentSlug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.prefetch(`/blog/${post.currentSlug}`);
+                    setIsAnimateClicked(true);
+                    setTimeout(() => {
+                      router.push(`/blog/${post.currentSlug}`);
+                    }, 3000);
+                    handleMouseLeave(); // Call the function here
+                  }}
                   onMouseEnter={(e) => {
                     setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
                     const element = e.currentTarget.getBoundingClientRect();
@@ -134,7 +177,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     } else {
                       setVideoAnimation({
                         scale: 0.98,
-                        x: window.innerWidth * -0.025,
+                        x: window.innerWidth * 0.015,
                         y:
                           element.top < middleOfScreenY
                             ? window.innerHeight * 0.025
@@ -142,15 +185,13 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                       });
                     }
                   }}
-                  onMouseLeave={() => {
-                    setVideoAnimation({ scale: 1, x: 0, y: 0 });
-                    setIsLinkHovered(isLinkHovered.map((v, i) => false));
-                  }}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <p
                     className={`text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
-                      ${isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
-                    }`}
+                      ${
+                        isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
+                      }`}
                   >
                     {post?.type}
                   </p>

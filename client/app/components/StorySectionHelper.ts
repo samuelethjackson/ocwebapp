@@ -21,7 +21,7 @@ export const randomPosition = (
   existingPositions: { top: number; left: number }[]
 ) => {
   const boundaryTop = 0.15 * maxHeight;
-  const boundaryBottom = 0.1 * maxHeight;
+  const boundaryBottom = 0.15 * maxHeight;
   const boundaryLeft = 0.1 * maxWidth;
   const boundaryRight = 0.1 * maxWidth;
 
