@@ -115,8 +115,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             loop
             className={`${
               !isAnimateClicked
-                ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover md:object-fill md:aspect-video opacity-60"
-                : "sticky place-self-start top-40 lg:col-start-15 col-end-25 flex flex-col w-full center object-cover md:object-fill md:aspect-video opacity-60"
+                ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover aspect-[9/16] md:object-fill md:aspect-video opacity-60"
+                : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-60"
             }`}
             animate={videoAnimation}
             transition={{
