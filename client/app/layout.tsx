@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { motion } from "framer-motion";
 import { fullBlog } from "./lib/interface";
 import TitleBand from "./components/TitleBand";
+import { Suspense } from "react";
 const EduDiatype = localFont({ 
   src: './EduDiatype-Regular.woff2',
   display: 'swap',
@@ -26,7 +27,9 @@ export default async function RootLayout({
     <html lang="en">
       <body
       className={EduDiatype.className}>
+        <Suspense fallback={<div>Loading...</div>}>
         <div className="app">{children}</div>
+        </Suspense>
         </body>
     </html>
   );
