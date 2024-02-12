@@ -30,6 +30,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
         className="text-xs cursor-pointer dark:cloud-shadow-white-small dark:text-black text-white cloud-shadow-black-small pl-1 pr-2"
         onMouseEnter={() => setHoveredFootnote(markKey || null)}
         onMouseLeave={() => setHoveredFootnote(null)}
+        onClick={() => setHoveredFootnote(markKey || null)} // Add this line
       >
         {children}
       </sup>
@@ -69,8 +70,6 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
 
     getData();
   }, [params.slug]);
-
-  console.log(data);
 
   // Define the types for your content blocks and mark definitions
   type MarkDef = {
@@ -130,9 +129,26 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
     >
       <div className="flex flex-col items-center justify-center min-h-screen">
         <AboutTopBand pageName={data?.category || "default"} />
-        <div className="fixed md:hidden top-0 left-0 pl-12 pt-2 z-50">{data?.category}</div>
-        <div className="fixed md:hidden top-0 left-0 pl-12 pt-9 z-50">Oceanic Refractions</div>
-        <main className="w-full h-dvh md:h-screen gridParent px-5 z-10">
+        <div className="fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50">
+          <div className="w-full flex flex-row justify-between">
+            <div className="">{data?.category}</div>
+            <Link
+                  href={"/"}
+                  className="absolute md:hidden top-0 right-0 pr-2 pt-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsAnimateClicked(true);
+                    setTimeout(() => {
+                      router.push(`/`);
+                    }, 3000);
+                  }}
+                >
+                    <CloseIcon/>
+                  </Link>
+          </div>
+          <div className="">Oceanic Refractions</div>
+        </div>
+        <main className="w-full md:h-screen gridParent px-5">
           <AnimatePresence>
             {!isAnimateClicked && (
               <motion.article
@@ -143,17 +159,17 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   animate: { duration: 2, ease: "easeInOut", delay: 1 },
                   exit: { duration: 2, ease: "easeInOut", delay: 0 },
                 }}
-                className={`col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-52 md:pt-40 pb-40`}
+                className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-52 md:pt-40 pb-40`}
               >
-                <div className="fixed md:relative md:flex flex-col gap-0.5 z-30">
-                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal z-10 max-w-[400px]">
+                <div className="fixed md:relative md:flex flex-col gap-0.5 z-30 px-2">
+                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal max-w-[400px]">
                     {data?.title}
                   </h1>
                   <p className="cloud-shadow-grey !text-white inset-8">
                     {data?.author}
                   </p>
                 </div>
-                <div className="prose dark:text-white prose-headings:indent-8 -z-10 md:z-30 pt-32 md:pt-0">
+                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-32 md:pt-0">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -204,7 +220,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               </motion.article>
             )}
           </AnimatePresence>
-          <div className="fixed top-0 left-0 w-full h-dvh md:h-screen gridParent px-5 -z-5">
+          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5">
             <motion.div
               layout
               transition={{
@@ -212,8 +228,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               }}
               className={`${
                 isAnimateClicked
-                  ? "absolute top-0 left-0 h-dvh !md:h-screen w-screen object-cover md:object-fill md:aspect-video md:opacity-60"
-                  : "absolute place-self-start -top-[28vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video md:opacity-60"
+                  ? "absolute top-0 left-0 h-dvh !md:h-screen w-screen object-cover md:object-fill md:aspect-video"
+                  : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
               }`}
             >
               <Link
@@ -231,7 +247,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <Image
                     src={videoPath}
                     alt={"Moving Background video"}
-                    className="opacity-60"
+                    className="opacity-50"
                     layout="fill"
                     objectFit="cover"
                   />
@@ -243,14 +259,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     playsInline
                     className={`md:opacity-60 ${
                       isAnimateClicked
-                        ? "w-full h-full object-cover md:object-fill md:aspect-video"
-                        : "object-cover md:object-fill md:aspect-video"
+                        ? "w-full h-full object-cover aspect-[9/16] md:object-fill md:aspect-video"
+                        : "object-cover aspect-[9/16] md:object-fill md:aspect-video"
                     }`}
                     loop
                   />
                 )}
-                <div className="md:hidden absolute top-0 w-full h-full bg-gradient-to-b from-black to-transparent opacity-20 z-10">
-                </div>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -263,20 +277,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 </motion.div>
               </Link>
             </motion.div>
-            <Link
-                href={"/"}
-                className="absolute md:hidden top-0 right-0 pr-2 pt-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsAnimateClicked(true);
-                  setTimeout(() => {
-                    router.push(`/`);
-                  }, 3000);
-                }}
-              >
-                  <CloseIcon/>
-                </Link>
-            <footer className="sticky text-xs leading-6 place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col">
+            <footer className="absolute bottom-0 text-xs leading-6 place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col">
               {data && (
                 <div>
                   <AnimatePresence>
@@ -291,7 +292,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           exit={{ opacity: 0 }}
                           transition={{ ease: "easeInOut", duration: 1 }}
                           key={footnote._key}
-                          className="w-full flex flex-row gap-2"
+                          className="w-full flex flex-row gap-3"
                         >
                           <span>{footnote.number}</span>
                           <span>{footnote.text}</span>
@@ -301,6 +302,36 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 </div>
               )}
             </footer>
+            <div className="">
+            {data && (
+                <div>
+                  <AnimatePresence>
+                    {extractFootnotes(data.content)
+                      .filter(
+                        (footnote) => footnote.markKey === hoveredFootnote
+                      )
+                      .map((footnote, index) => (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ ease: "easeInOut", duration: 1 }}
+                          key={footnote._key}
+                          className="fixed w-screen left-0 p-4 bottom-0 mb-2  text-white dark:text-black md:hidden text-xs flex flex-row gap-2"
+                        >
+                          <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start">
+                            <span>{footnote.number}</span>
+                            <span>{footnote.text}</span>
+                            <div className="w-6 h-6" onClick={() => setHoveredFootnote(null)}>
+                              <CloseIcon className="dark:!text-black" />
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                  </AnimatePresence>
+                </div>
+              )}
+            </div>
           </div>
         </main>
       </div>

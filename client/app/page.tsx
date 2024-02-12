@@ -7,9 +7,8 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-import { client } from "./lib/sanity";
-import { storyOverview } from "./lib/interface";
-import Link from "next/link";
+
+
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);

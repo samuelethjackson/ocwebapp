@@ -95,12 +95,16 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
         {isGif ? (
           <motion.div
             layout
-            className="absolute top-0 left-0 h-full w-full object-cover opacity-50"
-            animate={isAboutHovered ? "zoomIn" : "zoomOut"}
-            variants={videoVariants}
+            className={`${
+              !isAnimateClicked
+                ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover aspect-[9/16] md:object-fill md:aspect-video opacity-50"
+                : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-50"
+            }`}
+            animate={videoAnimation}
             transition={{
-              animate: { ease: "easeInOut", duration: 1 },
-              layout: { duration: 4 },
+              ease: "easeInOut",
+              duration: 2,
+              layout: { duration: 3, ease: "easeInOut" },
             }}
           >
             <Image src={videoPath} alt={text} layout="fill" objectFit="cover" />
