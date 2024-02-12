@@ -107,6 +107,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
     backVideo = highRes ? "responding.gif" : "responding.mp4";
   }
 
+  const categoryMapping = {
+    "Precedents of": 1,
+    "Witnessing via": 2,
+    "Responding to": 3,
+  };
+
   const isGif = backVideo.endsWith(".gif");
   const videoPath = `/videos/${backVideo}`;
 
@@ -139,7 +145,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     e.preventDefault();
                     setIsAnimateClicked(true);
                     setTimeout(() => {
-                      router.push(`/`);
+                      router.push(`/?param=${categoryMapping[data?.category as keyof typeof categoryMapping] ?? ''}`);
                     }, 3000);
                   }}
                 >
@@ -233,13 +239,13 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               }`}
             >
               <Link
-                href={"/"}
+                href={`/`}
                 className=""
                 onClick={(e) => {
                   e.preventDefault();
                   setIsAnimateClicked(true);
                   setTimeout(() => {
-                    router.push(`/`);
+                    router.push(`/?param=${categoryMapping[data?.category as keyof typeof categoryMapping] ?? ''}`);
                   }, 3000);
                 }}
               >

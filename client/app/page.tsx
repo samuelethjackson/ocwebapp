@@ -7,8 +7,7 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-
-
+import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -21,6 +20,11 @@ export default function Home() {
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
   const [isAboutHovered, setIsAboutHovered] = useState(false);
+
+  const searchParams = useSearchParams();
+  const param = searchParams.get('param');
+
+  console.log(param);
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -124,10 +128,36 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (ref2.current) {
-      ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+    if (param) {
+      switch (param) {
+        case '1':
+          setActiveMobileSection(1);
+          if (ref1.current) {
+            ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        case '2':
+          setActiveMobileSection(2);
+          if (ref2.current) {
+            ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        case '3':
+          setActiveMobileSection(3);
+          if (ref3.current) {
+            ref3.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      setActiveMobileSection(2);
+      if (ref2.current) {
+        ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+      }
     }
-  }, []);
+  }, [param]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },

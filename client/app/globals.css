@@ -103,7 +103,7 @@ body::-webkit-scrollbar {
 }
 
 .article p {
-  @apply text-base indent-8 text-black dark:text-white font-normal col-span-10 max-w-[720px] mb-0;
+  @apply text-base md:text-[18px] indent-8 text-black dark:text-white font-normal col-span-10 max-w-[720px] mb-0;
 }
 
 .prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
