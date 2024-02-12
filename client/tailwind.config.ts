@@ -45,6 +45,7 @@ const config: Config = {
         '22': '22',
         '23': '23',
         '24': '24',
+        '25': '25'
       },
       gridColumnEnd: {
         '13': '13',
@@ -59,9 +60,12 @@ const config: Config = {
         '22': '22',
         '23': '23',
         '24': '24',
+        '25': '25'
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 };
 export default config;

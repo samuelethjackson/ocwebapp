@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import TitleBand from './TitleBand';
 
 interface LayoutProps {
@@ -13,12 +12,10 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ pageName, highRes, setHighRes, isAboutHovered, setIsAboutHovered, children }) => {
 
   return (
-    <>
-      <div className='fade-in dark:bg-black bg-white'>
+      <div className='dark:bg-black bg-white'>
         <TitleBand pageName={pageName} highRes={highRes} setHighRes={setHighRes} onAboutHover={setIsAboutHovered} />
-        {children}
+        <div className='fade-in'>{children}</div>
       </div>
-    </>
   );
 };
 

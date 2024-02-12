@@ -7,6 +7,7 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -19,6 +20,11 @@ export default function Home() {
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
   const [isAboutHovered, setIsAboutHovered] = useState(false);
+
+  const searchParams = useSearchParams();
+  const param = searchParams.get('param');
+
+  console.log(param);
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -122,10 +128,36 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (ref2.current) {
-      ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+    if (param) {
+      switch (param) {
+        case '1':
+          setActiveMobileSection(1);
+          if (ref1.current) {
+            ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        case '2':
+          setActiveMobileSection(2);
+          if (ref2.current) {
+            ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        case '3':
+          setActiveMobileSection(3);
+          if (ref3.current) {
+            ref3.current.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+          break;
+        default:
+          break;
+      }
+    } else {
+      setActiveMobileSection(2);
+      if (ref2.current) {
+        ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+      }
     }
-  }, []);
+  }, [param]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },
@@ -140,7 +172,7 @@ export default function Home() {
       isAboutHovered={isAboutHovered}
       setIsAboutHovered={setIsAboutHovered}
     >
-      <main className="w-screen h-screen">
+      <main className="w-screen h-dvh md:h-screen">
         <TopBand
           pageName={
             typeof window !== "undefined" && window.innerWidth <= 680
@@ -151,7 +183,13 @@ export default function Home() {
           onTopBandClick={handleTopBandClick}
           isAboutHovered={isAboutHovered}
         />
-        <div className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory">
+        <motion.div
+        variants={bandVariants}
+        initial="fadeOut" // Add this line
+        animate="fadeIn"
+        exit="fadeOut" // Add this line
+        transition={{ ease: "easeInOut", duration: 1 }}
+        className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory">
           <StorySection
             ref={ref1}
             id={1}
@@ -173,10 +211,10 @@ export default function Home() {
             text={Text3}
             isAboutHovered={isAboutHovered} // Add this line
           />
-        </div>
+        </motion.div>
         <div
           id="mobile"
-          className="md:hidden absolute no-scrollbar top-0 left-0 w-full h-full"
+          className="md:hidden absolute no-scrollbar top-0 left-0 w-full"
         >
           <StorySection
             ref={ref4}

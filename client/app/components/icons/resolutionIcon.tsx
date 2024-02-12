@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ResolutionIconProps {
     highRes: boolean;
@@ -12,6 +12,15 @@ const ResolutionIcon: React.FC<ResolutionIconProps> = ({ highRes, setHighRes }) 
     const handleClick = () => {
         setHighRes(!highRes);
     };
+
+    useEffect(() => {
+        const highRes = localStorage.getItem("highRes")
+        if (highRes === "true") setHighRes(true)
+    }, [])
+    
+    useEffect(() => {
+        localStorage.setItem("highRes", highRes.toString())
+    }, [highRes])
 
     return (
         <div className='cursor-pointer transition-opacity duration-500 ease-in-out opacity-50 hover:opacity-100' onClick={handleClick}>

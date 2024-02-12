@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import TopBand from "../components/AboutTopBand";
 import Layout from "../components/Layout";
 
@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
-  let observer: IntersectionObserver | null = null;
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const handleScroll = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
@@ -25,8 +25,8 @@ const AboutPage: React.FC = () => {
     }
   };
 
-  const observeSections = () => {
-    observer = new IntersectionObserver(
+  const observeSections = useCallback(() => {
+    observer.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           console.log(entry); // Log the entry to see what's being returned
@@ -39,17 +39,17 @@ const AboutPage: React.FC = () => {
     );
 
     const sections = document.querySelectorAll("div[id]");
-    sections.forEach((section) => observer!.observe(section));
-  };
+    sections.forEach((section) => observer.current!.observe(section));
+  }, []);
 
   useEffect(() => {
     observeSections();
     return () => {
       // Cleanup observer on component unmount
       const sections = document.querySelectorAll("div[id]");
-      sections.forEach((section) => observer!.unobserve(section));
+      sections.forEach((section) => observer.current!.unobserve(section));
     };
-  }, []);
+  }, [observeSections]);
 
   return (
     <Layout
@@ -59,9 +59,9 @@ const AboutPage: React.FC = () => {
       isAboutHovered={isAboutHovered}
       setIsAboutHovered={setIsAboutHovered}
     >
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
         <TopBand pageName="About" />
-        <main className="w-full h-screen gridParent px-5">
+        <main className="w-full h-dvh md:h-screen gridParent px-5">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 about flex flex-col gap-20 pt-40 pb-40">
             <div id="connect" className="grid md:hidden grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Connect with us</h2>
@@ -116,7 +116,7 @@ const AboutPage: React.FC = () => {
                   Oceanic Refractions has been created to convey testimonies of
                   the everyday lives, practices and world views of Pacific
                   people and their environments, bearing witness to ongoing and
-                  accelerating ecocide. 
+                  accelerating ecocide.
                 </p>
                 <p>
                   With backgrounds in communication, public policy and
@@ -129,7 +129,7 @@ const AboutPage: React.FC = () => {
                   the privilege of working. In embracing their complexity, we
                   move away from universalised and dehumanising descriptions of
                   Indigeneity that seek to depict communities as ‘heroes’ or
-                  ‘victims’ of the climate crisis. 
+                  ‘victims’ of the climate crisis.
                 </p>
                 <p>
                   The catastrophic ecosystemic changes experienced across the
