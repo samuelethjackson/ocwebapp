@@ -21,6 +21,22 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      setIsMobile(window.innerWidth <= 768);
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup function
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
 
     const data = useData();
 
@@ -42,14 +58,29 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       []
     );
 
+    let elementWidth = 300;
+    let elementHeight = 150;
+
     useEffect(() => {
-      if (data) {
-        setPositions((prevPositions) => {
-          const newPositions = data.map(() =>
-            randomPosition(windowHeight, windowWidth, prevPositions)
-          );
-          return [...prevPositions, ...newPositions];
-        });
+      if (!isMobile) {
+        if (data) {
+          setPositions((prevPositions) => {
+            let accumulatedPositions = [...prevPositions]; // Start with previous positions
+            const newPositions = data.map(() => {
+              // Generate a position that doesn't overlap with accumulated positions
+              const newPosition = randomPosition(
+                windowHeight,
+                windowWidth,
+                accumulatedPositions,
+                elementWidth,
+                elementHeight
+              );
+              accumulatedPositions.push(newPosition); // Add the new position for subsequent checks
+              return newPosition;
+            });
+            return accumulatedPositions; // Now contains all previous and new positions
+          });
+        }
       }
     }, [data, windowHeight, windowWidth]);
 
@@ -151,51 +182,53 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                 style={positions ? positions[idx] : {}}
               >
                 <Link
-  id="storyCloud"
-  className="flex flex-col gap-1 md:gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
-  href={`/blog/${post.currentSlug}`}
-  onClick={(e) => {
-    e.preventDefault();
-    router.prefetch(`/blog/${post.currentSlug}`);
-    setIsAnimateClicked(true);
-    setTimeout(() => {
-      router.push(`/blog/${post.currentSlug}`);
-    }, 3000);
-    handleMouseLeave(); // Call the function here
-  }}
-  onMouseEnter={(e) => {
-    if (window.innerWidth > 768) { // Change 768 to whatever breakpoint you're using for mobile
-      setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
-      const element = e.currentTarget.getBoundingClientRect();
-      const middleOfScreenX = window.innerWidth / 2;
-      const middleOfScreenY = window.innerHeight / 2;
-      if (element.left < middleOfScreenX) {
-        setVideoAnimation({
-          scale: 0.98,
-          x: window.innerWidth * 0.025,
-          y:
-            element.top < middleOfScreenY
-              ? window.innerHeight * 0.025
-              : window.innerHeight * -0.015,
-        });
-      } else {
-        setVideoAnimation({
-          scale: 0.98,
-          x: window.innerWidth * 0.015,
-          y:
-            element.top < middleOfScreenY
-              ? window.innerHeight * 0.025
-              : window.innerHeight * -0.015,
-        });
-      }
-    }
-  }}
-  onMouseLeave={() => {
-    if (window.innerWidth > 768) { // Change 768 to whatever breakpoint you're using for mobile
-      handleMouseLeave();
-    }
-  }}
->
+                  id="storyCloud"
+                  className="flex flex-col gap-1 md:gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
+                  href={`/blog/${post.currentSlug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.prefetch(`/blog/${post.currentSlug}`);
+                    setIsAnimateClicked(true);
+                    setTimeout(() => {
+                      router.push(`/blog/${post.currentSlug}`);
+                    }, 3000);
+                    handleMouseLeave(); // Call the function here
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isMobile) {
+                      // Change 768 to whatever breakpoint you're using for mobile
+                      setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
+                      const element = e.currentTarget.getBoundingClientRect();
+                      const middleOfScreenX = window.innerWidth / 2;
+                      const middleOfScreenY = window.innerHeight / 2;
+                      if (element.left < middleOfScreenX) {
+                        setVideoAnimation({
+                          scale: 0.98,
+                          x: window.innerWidth * 0.025,
+                          y:
+                            element.top < middleOfScreenY
+                              ? window.innerHeight * 0.025
+                              : window.innerHeight * -0.015,
+                        });
+                      } else {
+                        setVideoAnimation({
+                          scale: 0.98,
+                          x: window.innerWidth * 0.015,
+                          y:
+                            element.top < middleOfScreenY
+                              ? window.innerHeight * 0.025
+                              : window.innerHeight * -0.015,
+                        });
+                      }
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      // Change 768 to whatever breakpoint you're using for mobile
+                      handleMouseLeave();
+                    }
+                  }}
+                >
                   <p
                     className={`hidden md:block text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
                       ${
@@ -205,9 +238,16 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     {post?.type}
                   </p>
                   <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
-                    {post?.title}
-                  </h3>
-                  <p className="cloud-shadow-grey text-sm md:text-base pl-8">{post?.author}</p>
+  {post?.title.split('\\n').map((line, i) => (
+    <React.Fragment key={i}>
+      <span dangerouslySetInnerHTML={{ __html: line }} />
+      {i !== post.title.split('\\n').length - 1 && <br />}
+    </React.Fragment>
+  ))}
+</h3>
+                  <p className="cloud-shadow-grey text-sm md:text-base pl-8">
+                    {post?.author}
+                  </p>
                 </Link>
               </div>
             ))}
@@ -229,4 +269,4 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
 StorySection.displayName = "StorySection";
 
-export default StorySection;
+export default React.memo(StorySection);

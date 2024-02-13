@@ -18,10 +18,12 @@ export async function getData() {
 export const randomPosition = (
   maxHeight: number,
   maxWidth: number,
-  existingPositions: { top: number; left: number }[]
+  existingPositions: { top: number; left: number }[],
+  elementWidth: number,
+  elementHeight: number
 ) => {
   const boundaryTop = 0.15 * maxHeight;
-  const boundaryBottom = 0.15 * maxHeight;
+  const boundaryBottom = 0.2 * maxHeight;
   const boundaryLeft = 0.1 * maxWidth;
   const boundaryRight = 0.1 * maxWidth;
 
@@ -40,8 +42,12 @@ export const randomPosition = (
 
     // Check if the new position overlaps with any existing position
     for (let pos of existingPositions) {
-      if (Math.abs(pos.left - x) < 50 && Math.abs(pos.top - y) < 50) {
-        // 50 is the minimum distance between elements
+      if (
+        x < pos.left + elementWidth &&
+        x + elementWidth > pos.left &&
+        y < pos.top + elementHeight &&
+        y + elementHeight > pos.top
+      ) {
         overlap = true;
         break;
       }
@@ -61,10 +67,7 @@ export const useWindowDimensions = () => {
       setWindowHeight(window.innerHeight);
     };
 
-    window.addEventListener("resize", updateWindowDimensions);
-    updateWindowDimensions();
-
-    return () => window.removeEventListener("resize", updateWindowDimensions);
+    return updateWindowDimensions;
   }, []);
 
   return { windowWidth, windowHeight };

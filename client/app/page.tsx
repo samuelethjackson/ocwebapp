@@ -7,7 +7,7 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -17,18 +17,18 @@ export default function Home() {
 
   const [activeSection, setActiveSection] = useState(1);
   const [highRes, setHighRes] = useState(false);
-  const [activeMobileSection, setActiveMobileSection] = useState(2);
+  const [activeMobileSection, setActiveMobileSection] = useState(1);
 
   const [windowWidth, setWindowWidth] = useState(0);
 
-useEffect(() => {
-  setWindowWidth(window.innerWidth);
-}, []);
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
 
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   const searchParams = useSearchParams();
-  const param = searchParams.get('param');
+  const param = searchParams.get("param");
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -77,7 +77,6 @@ useEffect(() => {
     };
   }, []);
 
-  
   let topBandText = "";
   let titleBandText = "";
   let bottomBandText = "";
@@ -88,7 +87,6 @@ useEffect(() => {
     "featuring newly commissioned words from Christina Sharpe, \nNabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
   let Text3 =
     "featuring newly commissioned words \nfrom Elise Misao Hunchuck and Sinthujan Varatharajah.";
-
 
   if (activeSection === 1) {
     topBandText = "";
@@ -105,24 +103,19 @@ useEffect(() => {
   }
 
   let mobileTopBandText = "";
-  if (activeMobileSection === 1) {
-    mobileTopBandText = "Precedents of";
-  } else if (activeMobileSection === 2) {
-    mobileTopBandText = "Witnessing via";
-  } else if (activeMobileSection === 3) {
-    mobileTopBandText = "Responding to";
-  }
-
   let mobileVideo = "";
   let mobileText = "";
 
   if (activeMobileSection === 1) {
+    mobileTopBandText = "Precedents of";
     mobileVideo = highRes ? "precedents.gif" : "precedents.mp4";
     mobileText = Text1;
   } else if (activeMobileSection === 2) {
+    mobileTopBandText = "Witnessing via";
     mobileVideo = highRes ? "witnessing.gif" : "witnessing.mp4";
     mobileText = Text2;
   } else if (activeMobileSection === 3) {
+    mobileTopBandText = "Responding to";
     mobileVideo = highRes ? "responding.gif" : "responding.mp4";
     mobileText = Text3;
   }
@@ -130,19 +123,19 @@ useEffect(() => {
   useEffect(() => {
     if (param) {
       switch (param) {
-        case '1':
+        case "1":
           setActiveMobileSection(1);
           if (ref1.current) {
             ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
           }
           break;
-        case '2':
+        case "2":
           setActiveMobileSection(2);
           if (ref2.current) {
             ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
           }
           break;
-        case '3':
+        case "3":
           setActiveMobileSection(3);
           if (ref3.current) {
             ref3.current.scrollIntoView({ behavior: "auto", block: "start" });
@@ -152,9 +145,9 @@ useEffect(() => {
           break;
       }
     } else {
-      setActiveMobileSection(2);
-      if (ref2.current) {
-        ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
+      setActiveMobileSection(1);
+      if (ref1.current) {
+        ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
       }
     }
   }, [param]);
@@ -174,22 +167,19 @@ useEffect(() => {
     >
       <main className="w-screen h-dvh md:h-screen">
         <TopBand
-          pageName={
-            windowWidth <= 680
-              ? mobileTopBandText
-              : topBandText
-          }
+          pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
           onArrowClick={handleArrowClick}
           onTopBandClick={handleTopBandClick}
           isAboutHovered={isAboutHovered}
         />
         <motion.div
-        variants={bandVariants}
-        initial="fadeOut" // Add this line
-        animate="fadeIn"
-        exit="fadeOut" // Add this line
-        transition={{ ease: "easeInOut", duration: 1 }}
-        className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory">
+          variants={bandVariants}
+          initial="fadeOut" // Add this line
+          animate="fadeIn"
+          exit="fadeOut" // Add this line
+          transition={{ ease: "easeInOut", duration: 1 }}
+          className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory"
+        >
           <StorySection
             ref={ref1}
             id={1}

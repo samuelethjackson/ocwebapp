@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PortableTextMarkComponentProps } from "@portabletext/react";
 import CloseIcon from "../../components/icons/closeIcon";
+import React from "react";
 
 export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [data, setData] = useState<fullBlog | null>(null);
@@ -141,18 +142,24 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
           <div className="w-full flex flex-row justify-between">
             <div className="">{data?.category}</div>
             <Link
-                  href={"/"}
-                  className="absolute md:hidden top-0 right-0 pr-2 pt-1"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsAnimateClicked(true);
-                    setTimeout(() => {
-                      router.push(`/?param=${categoryMapping[data?.category as keyof typeof categoryMapping] ?? ''}`);
-                    }, 3000);
-                  }}
-                >
-                    <CloseIcon/>
-                  </Link>
+              href={"/"}
+              className="absolute md:hidden top-0 right-0 pr-2 pt-1"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsAnimateClicked(true);
+                setTimeout(() => {
+                  router.push(
+                    `/?param=${
+                      categoryMapping[
+                        data?.category as keyof typeof categoryMapping
+                      ] ?? ""
+                    }`
+                  );
+                }, 3000);
+              }}
+            >
+              <CloseIcon />
+            </Link>
           </div>
           <div className="">Oceanic Refractions</div>
         </div>
@@ -170,14 +177,19 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-52 md:pt-40 pb-40`}
               >
                 <div className="fixed md:relative md:flex flex-col gap-0.5 z-30 px-2">
-                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal max-w-[400px]">
-                    {data?.title}
+                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal max-w-[400px] z-10">
+                    {data?.title.split("\\n").map((line, i) => (
+                      <React.Fragment key={i}>
+                        <span dangerouslySetInnerHTML={{ __html: line }} />
+                        {i !== data.title.split("\\n").length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
                   </h1>
                   <p className="cloud-shadow-grey !text-white inset-8">
                     {data?.author}
                   </p>
                 </div>
-                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-32 md:pt-0">
+                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-32 md:pt-0 prose-strong:dark:text-white prose-strong:text-white">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -228,7 +240,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               </motion.article>
             )}
           </AnimatePresence>
-          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5">
+          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5 dark:bg-black bg-white">
             <motion.div
               layout
               transition={{
@@ -247,7 +259,13 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   e.preventDefault();
                   setIsAnimateClicked(true);
                   setTimeout(() => {
-                    router.push(`/?param=${categoryMapping[data?.category as keyof typeof categoryMapping] ?? ''}`);
+                    router.push(
+                      `/?param=${
+                        categoryMapping[
+                          data?.category as keyof typeof categoryMapping
+                        ] ?? ""
+                      }`
+                    );
                   }, 3000);
                 }}
               >
@@ -311,7 +329,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               )}
             </footer>
             <div className="">
-            {data && (
+              {data && (
                 <div>
                   <AnimatePresence>
                     {extractFootnotes(data.content)
@@ -330,7 +348,10 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start">
                             <span>{footnote.number}</span>
                             <span>{footnote.text}</span>
-                            <div className="w-6 h-6" onClick={() => setHoveredFootnote(null)}>
+                            <div
+                              className="w-6 h-6"
+                              onClick={() => setHoveredFootnote(null)}
+                            >
                               <CloseIcon className="dark:!text-black" />
                             </div>
                           </div>
