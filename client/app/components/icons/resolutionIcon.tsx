@@ -16,11 +16,11 @@ const ResolutionIcon: React.FC<ResolutionIconProps> = ({ highRes, setHighRes }) 
     useEffect(() => {
         const highRes = localStorage.getItem("highRes")
         if (highRes === "true") setHighRes(true)
-    }, [])
+    }, [setHighRes]) // Add setHighRes here
     
     useEffect(() => {
         localStorage.setItem("highRes", highRes.toString())
-    }, [highRes])
+    }, [highRes, setHighRes]) // And here
 
     return (
         <div className='cursor-pointer transition-opacity duration-500 ease-in-out opacity-50 hover:opacity-100' onClick={handleClick}>

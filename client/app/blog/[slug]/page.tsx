@@ -19,6 +19,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
+  const [windowWidth, setWindowWidth] = useState(0);
+
   const [hoveredFootnote, setHoveredFootnote] = useState<string | null>(null);
 
   const Footnote = ({

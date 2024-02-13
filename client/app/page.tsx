@@ -19,12 +19,16 @@ export default function Home() {
   const [highRes, setHighRes] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(2);
 
+  const [windowWidth, setWindowWidth] = useState(0);
+
+useEffect(() => {
+  setWindowWidth(window.innerWidth);
+}, []);
+
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   const searchParams = useSearchParams();
   const param = searchParams.get('param');
-
-  console.log(param);
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -51,10 +55,6 @@ export default function Home() {
       }
     });
   };
-
-  useEffect(() => {
-    console.log("activeMobileSection:", activeMobileSection);
-  }, [activeMobileSection]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -175,7 +175,7 @@ export default function Home() {
       <main className="w-screen h-dvh md:h-screen">
         <TopBand
           pageName={
-            typeof window !== "undefined" && window.innerWidth <= 680
+            windowWidth <= 680
               ? mobileTopBandText
               : topBandText
           }

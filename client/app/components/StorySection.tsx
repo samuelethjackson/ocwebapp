@@ -4,7 +4,6 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import {
-  getData,
   randomPosition,
   useWindowDimensions,
   useData,
@@ -90,7 +89,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent overflow-hidden`}
+        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent !px-0 overflow-hidden`}
       >
         {isGif ? (
           <motion.div
@@ -131,7 +130,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           />
         )}
         <motion.div
-          className={``}
+          className="w-screen h-dvh md:h-screen"
           animate={
             isAnimateClicked
               ? "fadeOutSlow"
@@ -144,7 +143,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
           variants={textVariants}
         >
-          <div className="absolute top-0 left-0 center w-screen h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute">
+          <div className="absolute top-20 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
             {filteredData?.map((post, idx) => (
               <div
                 className="text-base font-normal leading-[26px] static md:absolute"
@@ -152,57 +151,63 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                 style={positions ? positions[idx] : {}}
               >
                 <Link
-                  id="storyCloud"
-                  className="flex flex-col gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
-                  href={`/blog/${post.currentSlug}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.prefetch(`/blog/${post.currentSlug}`);
-                    setIsAnimateClicked(true);
-                    setTimeout(() => {
-                      router.push(`/blog/${post.currentSlug}`);
-                    }, 3000);
-                    handleMouseLeave(); // Call the function here
-                  }}
-                  onMouseEnter={(e) => {
-                    setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
-                    const element = e.currentTarget.getBoundingClientRect();
-                    const middleOfScreenX = window.innerWidth / 2;
-                    const middleOfScreenY = window.innerHeight / 2;
-                    if (element.left < middleOfScreenX) {
-                      setVideoAnimation({
-                        scale: 0.98,
-                        x: window.innerWidth * 0.025,
-                        y:
-                          element.top < middleOfScreenY
-                            ? window.innerHeight * 0.025
-                            : window.innerHeight * -0.015,
-                      });
-                    } else {
-                      setVideoAnimation({
-                        scale: 0.98,
-                        x: window.innerWidth * 0.015,
-                        y:
-                          element.top < middleOfScreenY
-                            ? window.innerHeight * 0.025
-                            : window.innerHeight * -0.015,
-                      });
-                    }
-                  }}
-                  onMouseLeave={handleMouseLeave}
-                >
+  id="storyCloud"
+  className="flex flex-col gap-1 md:gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
+  href={`/blog/${post.currentSlug}`}
+  onClick={(e) => {
+    e.preventDefault();
+    router.prefetch(`/blog/${post.currentSlug}`);
+    setIsAnimateClicked(true);
+    setTimeout(() => {
+      router.push(`/blog/${post.currentSlug}`);
+    }, 3000);
+    handleMouseLeave(); // Call the function here
+  }}
+  onMouseEnter={(e) => {
+    if (window.innerWidth > 768) { // Change 768 to whatever breakpoint you're using for mobile
+      setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
+      const element = e.currentTarget.getBoundingClientRect();
+      const middleOfScreenX = window.innerWidth / 2;
+      const middleOfScreenY = window.innerHeight / 2;
+      if (element.left < middleOfScreenX) {
+        setVideoAnimation({
+          scale: 0.98,
+          x: window.innerWidth * 0.025,
+          y:
+            element.top < middleOfScreenY
+              ? window.innerHeight * 0.025
+              : window.innerHeight * -0.015,
+        });
+      } else {
+        setVideoAnimation({
+          scale: 0.98,
+          x: window.innerWidth * 0.015,
+          y:
+            element.top < middleOfScreenY
+              ? window.innerHeight * 0.025
+              : window.innerHeight * -0.015,
+        });
+      }
+    }
+  }}
+  onMouseLeave={() => {
+    if (window.innerWidth > 768) { // Change 768 to whatever breakpoint you're using for mobile
+      handleMouseLeave();
+    }
+  }}
+>
                   <p
-                    className={`text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
+                    className={`hidden md:block text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
                       ${
                         isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
                       }`}
                   >
                     {post?.type}
                   </p>
-                  <h3 className="cloud-shadow-white text-black max-w-[300px] z-20">
+                  <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
                     {post?.title}
                   </h3>
-                  <p className="cloud-shadow-grey pl-8">{post?.author}</p>
+                  <p className="cloud-shadow-grey text-sm md:text-base pl-8">{post?.author}</p>
                 </Link>
               </div>
             ))}
