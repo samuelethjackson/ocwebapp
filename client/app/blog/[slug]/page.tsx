@@ -175,7 +175,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-52 md:pt-40 pb-40`}
               >
                 <div className="fixed md:relative md:flex flex-col gap-0.5 z-30 px-2">
-                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal max-w-[400px] z-10">
+                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-[400px] z-10">
                     {data?.title.split("\\n").map((line, i) => (
                       <React.Fragment key={i}>
                         <span dangerouslySetInnerHTML={{ __html: line }} />
@@ -187,7 +187,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     {data?.author}
                   </p>
                 </div>
-                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-32 md:pt-0 prose-strong:dark:text-white prose-strong:text-white">
+                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-24 md:pt-0 prose-strong:dark:text-white prose-strong:text-white">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -242,7 +242,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               className={`${
                 isAnimateClicked
                   ? "absolute top-0 left-0 h-dvh !md:h-screen w-screen object-cover md:object-fill md:aspect-video"
-                  : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
+                  : "absolute place-self-start -top-[64vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
               }`}
             >
               <Link
@@ -266,7 +266,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <Image
                     src={videoPath}
                     alt={"Moving Background video"}
-                    className="opacity-50"
+                    className=""
                     layout="fill"
                     objectFit="cover"
                   />
@@ -311,7 +311,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           exit={{ opacity: 0 }}
                           transition={{ ease: "easeInOut", duration: 1 }}
                           key={footnote._key}
-                          className="w-full flex flex-row gap-3"
+                          className="w-1/2 flex flex-row gap-3"
                         >
                           <span>{footnote.number}</span>
                           <span>{footnote.text}</span>

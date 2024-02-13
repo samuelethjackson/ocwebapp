@@ -73,7 +73,7 @@ const AboutPage: React.FC = () => {
             <div id="about" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Who we are</h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
-                <p>
+                <p className="!indent-0">
                   Oceanic Refractions emerges from a long-standing friendship
                   and collaboration between us - AM Kanngieser
                   (Germany/Australia) and Mere Nailatikau (Fiji). Beginning in

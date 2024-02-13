@@ -3,21 +3,18 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import {
-  randomPosition,
-  useWindowDimensions,
-  useData,
-} from "./StorySectionHelper";
+import { useData } from "./StorySectionHelper";
 
 interface StorySectionProps {
   text: string;
   video: string;
   id: number;
   isAboutHovered: boolean;
+  highRes: boolean;
 }
 
 const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
-  ({ video, text, id, isAboutHovered }, ref) => {
+  ({ video, text, id, isAboutHovered, highRes }, ref) => {
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
@@ -26,32 +23,11 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
     const router = useRouter();
 
-    const videoVariants = {
-      zoomIn: { scale: 1.1 },
-      zoomOut: { scale: 1 },
-    };
-
     const textVariants = {
       fadeIn: { opacity: 1 },
       fadeOut: { opacity: 0 },
       fadeOutSlow: { opacity: 0, transition: { duration: 2 } }, // New variant
     };
-
-    const { windowWidth, windowHeight } = useWindowDimensions();
-    const [positions, setPositions] = useState<{ top: number; left: number }[]>(
-      []
-    );
-
-    useEffect(() => {
-      if (data) {
-        setPositions((prevPositions) => {
-          const newPositions = data.map(() =>
-            randomPosition(windowHeight, windowWidth, prevPositions)
-          );
-          return [...prevPositions, ...newPositions];
-        });
-      }
-    }, [data, windowHeight, windowWidth]);
 
     // Create a mapping between id and category
     const idCategoryMapping: { [key: number]: string } = {
@@ -85,11 +61,20 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
     const [isAnimateClicked, setIsAnimateClicked] = useState(false);
 
+    const fixedPositions = [
+      { top: "10vh", left: "20vw" },
+      { top: "20vh", left: "60vw" },
+      { top: "50vh", left: "30vw" },
+      { top: "60vh", left: "70vw" },
+      { top: "45vh", left: "45vw" },
+      { top: "30vh", left: "10vw" },
+    ];
+
     return (
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent !px-0 overflow-hidden`}
+        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent px-0 md:px-5 overflow-hidden`}
       >
         {isGif ? (
           <motion.div
@@ -119,7 +104,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             className={`${
               !isAnimateClicked
                 ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover aspect-[9/16] md:object-fill md:aspect-video opacity-60"
-                : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-60"
+                : "absolute place-self-start -top-[64vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-60"
             }`}
             animate={videoAnimation}
             transition={{
@@ -148,11 +133,11 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
               <div
                 className="text-base font-normal leading-[26px] static md:absolute"
                 key={idx}
-                style={positions ? positions[idx] : {}}
+                style={fixedPositions[idx % fixedPositions.length]} // Use modulo operator to avoid going out of bounds
               >
                 <Link
                   id="storyCloud"
-                  className="flex flex-col gap-1 md:gap-2 opacity-60 hover:opacity-100 transition-opacity duration-1000 ease-in-out"
+                  className={`flex flex-col gap-1 md:gap-2 ${!highRes ? 'opacity-60' : 'opacity-100'} transition-opacity duration-1000 ease-in-out`}
                   href={`/blog/${post.currentSlug}`}
                   onClick={(e) => {
                     e.preventDefault();

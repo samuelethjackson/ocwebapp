@@ -185,21 +185,24 @@ export default function Home() {
             id={1}
             video={highRes ? "precedents.gif" : "precedents.mp4"}
             text={Text1}
-            isAboutHovered={isAboutHovered} // Add this line
+            isAboutHovered={isAboutHovered}
+            highRes={highRes}
           />
           <StorySection
             ref={ref2}
             id={2}
             video={highRes ? "witnessing.gif" : "witnessing.mp4"}
             text={Text2}
-            isAboutHovered={isAboutHovered} // Add this line
+            isAboutHovered={isAboutHovered}
+            highRes={highRes}
           />
           <StorySection
             ref={ref3}
             id={3}
             video={highRes ? "responding.gif" : "responding.mp4"}
             text={Text3}
-            isAboutHovered={isAboutHovered} // Add this line
+            isAboutHovered={isAboutHovered}
+            highRes={highRes}
           />
         </motion.div>
         <div
@@ -211,7 +214,8 @@ export default function Home() {
             id={activeMobileSection}
             video={mobileVideo}
             text={mobileText}
-            isAboutHovered={isAboutHovered} // Add this line
+            isAboutHovered={isAboutHovered}
+            highRes={highRes}
           />
         </div>
         <AnimatePresence>
