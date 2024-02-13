@@ -58,31 +58,18 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       []
     );
 
-    let elementWidth = 300;
-    let elementHeight = 150;
-
     useEffect(() => {
-      if (!isMobile) {
-        if (data) {
-          setPositions((prevPositions) => {
-            let accumulatedPositions = [...prevPositions]; // Start with previous positions
-            const newPositions = data.map(() => {
-              // Generate a position that doesn't overlap with accumulated positions
-              const newPosition = randomPosition(
-                windowHeight,
-                windowWidth,
-                accumulatedPositions,
-                elementWidth,
-                elementHeight
-              );
-              accumulatedPositions.push(newPosition); // Add the new position for subsequent checks
-              return newPosition;
-            });
-            return accumulatedPositions; // Now contains all previous and new positions
-          });
-        }
+      if (data) {
+        setPositions((prevPositions) => {
+          const newPositions = data.map(() =>
+            randomPosition(windowHeight, windowWidth, prevPositions)
+          );
+          return [...prevPositions, ...newPositions];
+        });
       }
     }, [data, windowHeight, windowWidth]);
+
+   
 
     // Create a mapping between id and category
     const idCategoryMapping: { [key: number]: string } = {
@@ -238,13 +225,13 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     {post?.type}
                   </p>
                   <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
-  {post?.title.split('\\n').map((line, i) => (
+                  {post?.title.split('\\n').map((line, i) => (
     <React.Fragment key={i}>
       <span dangerouslySetInnerHTML={{ __html: line }} />
       {i !== post.title.split('\\n').length - 1 && <br />}
     </React.Fragment>
   ))}
-</h3>
+                  </h3>
                   <p className="cloud-shadow-grey text-sm md:text-base pl-8">
                     {post?.author}
                   </p>

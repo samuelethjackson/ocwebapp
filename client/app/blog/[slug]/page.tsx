@@ -20,8 +20,6 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
-  const [windowWidth, setWindowWidth] = useState(0);
-
   const [hoveredFootnote, setHoveredFootnote] = useState<string | null>(null);
 
   const Footnote = ({
@@ -226,14 +224,9 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       )}
                     </div>
                     <div>
-                      {data && (
-                        <p className="!indent-0">
-                          <span className="text-white dark:text-black cloud-shadow-black dark:cloud-shadow-white-small mr-2">
-                            Cite this article{" "}
-                          </span>{" "}
-                          {data?.citation}
-                        </p>
-                      )}
+                    <PortableText
+                    value={data?.citation}
+                  />
                     </div>
                   </div>
                 </div>

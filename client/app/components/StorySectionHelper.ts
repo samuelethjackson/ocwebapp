@@ -18,9 +18,7 @@ export async function getData() {
 export const randomPosition = (
   maxHeight: number,
   maxWidth: number,
-  existingPositions: { top: number; left: number }[],
-  elementWidth: number,
-  elementHeight: number
+  existingPositions: { top: number; left: number }[]
 ) => {
   const boundaryTop = 0.15 * maxHeight;
   const boundaryBottom = 0.2 * maxHeight;
@@ -42,12 +40,8 @@ export const randomPosition = (
 
     // Check if the new position overlaps with any existing position
     for (let pos of existingPositions) {
-      if (
-        x < pos.left + elementWidth &&
-        x + elementWidth > pos.left &&
-        y < pos.top + elementHeight &&
-        y + elementHeight > pos.top
-      ) {
+      if (Math.abs(pos.left - x) < 50 && Math.abs(pos.top - y) < 50) {
+        // 200 is the minimum distance between elements
         overlap = true;
         break;
       }
