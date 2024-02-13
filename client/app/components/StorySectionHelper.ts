@@ -21,7 +21,7 @@ export const randomPosition = (
   existingPositions: { top: number; left: number }[]
 ) => {
   const boundaryTop = 0.15 * maxHeight;
-  const boundaryBottom = 0.2 * maxHeight;
+  const boundaryBottom = 0.15 * maxHeight;
   const boundaryLeft = 0.1 * maxWidth;
   const boundaryRight = 0.1 * maxWidth;
 
@@ -41,7 +41,7 @@ export const randomPosition = (
     // Check if the new position overlaps with any existing position
     for (let pos of existingPositions) {
       if (Math.abs(pos.left - x) < 50 && Math.abs(pos.top - y) < 50) {
-        // 200 is the minimum distance between elements
+        // 50 is the minimum distance between elements
         overlap = true;
         break;
       }
@@ -61,7 +61,10 @@ export const useWindowDimensions = () => {
       setWindowHeight(window.innerHeight);
     };
 
-    return updateWindowDimensions;
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions();
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
   }, []);
 
   return { windowWidth, windowHeight };

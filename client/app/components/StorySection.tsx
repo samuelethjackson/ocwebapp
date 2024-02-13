@@ -21,22 +21,6 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-      setIsMobile(window.innerWidth <= 768);
-
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
-
-      window.addEventListener("resize", handleResize);
-
-      // Cleanup function
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
 
     const data = useData();
 
@@ -68,8 +52,6 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
         });
       }
     }, [data, windowHeight, windowWidth]);
-
-   
 
     // Create a mapping between id and category
     const idCategoryMapping: { [key: number]: string } = {
@@ -182,7 +164,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     handleMouseLeave(); // Call the function here
                   }}
                   onMouseEnter={(e) => {
-                    if (!isMobile) {
+                    if (window.innerWidth > 768) {
                       // Change 768 to whatever breakpoint you're using for mobile
                       setIsLinkHovered(isLinkHovered.map((v, i) => i === idx));
                       const element = e.currentTarget.getBoundingClientRect();
@@ -210,7 +192,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     }
                   }}
                   onMouseLeave={() => {
-                    if (!isMobile) {
+                    if (window.innerWidth > 768) {
                       // Change 768 to whatever breakpoint you're using for mobile
                       handleMouseLeave();
                     }
@@ -225,12 +207,12 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                     {post?.type}
                   </p>
                   <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
-                  {post?.title.split('\\n').map((line, i) => (
-    <React.Fragment key={i}>
-      <span dangerouslySetInnerHTML={{ __html: line }} />
-      {i !== post.title.split('\\n').length - 1 && <br />}
-    </React.Fragment>
-  ))}
+                    {post?.title.split("\\n").map((line, i) => (
+                      <React.Fragment key={i}>
+                        <span dangerouslySetInnerHTML={{ __html: line }} />
+                        {i !== post.title.split("\\n").length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
                   </h3>
                   <p className="cloud-shadow-grey text-sm md:text-base pl-8">
                     {post?.author}
