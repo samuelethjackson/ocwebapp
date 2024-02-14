@@ -224,9 +224,14 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       )}
                     </div>
                     <div>
-                    <PortableText
-                    value={data?.citation}
-                  />
+                      {data && (
+                        <p className="!indent-0">
+                          <span className="text-white dark:text-black cloud-shadow-black dark:cloud-shadow-white-small mr-2">
+                            Cite this article{" "}
+                          </span>{" "}
+                          {data?.citation}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
