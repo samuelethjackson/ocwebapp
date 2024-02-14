@@ -56,8 +56,13 @@ const footnote = {
           },
           {
               name: "biographyText",
-              type: "text",
+              type: "array",
               title: "Biography",
+              of: [
+                {
+                    type: 'block'
+                }
+            ]
           },
           {
               name: "date",
@@ -71,8 +76,13 @@ const footnote = {
           },
           {
               name: "citation",
-              type: "string",
+              type: "array",
               title: "Citation",
+              of: [
+                {
+                    type: 'block'
+                }
+            ]
           },
           {
             name: "content",

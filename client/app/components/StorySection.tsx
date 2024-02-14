@@ -104,7 +104,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             className={`${
               !isAnimateClicked
                 ? "absolute top-0 left-0 h-dvh md:h-screen w-screen object-cover aspect-[9/16] md:object-fill md:aspect-video opacity-60"
-                : "absolute place-self-start -top-[64vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-60"
+                : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover  aspect-[9/16] md:object-fill md:aspect-video opacity-60"
             }`}
             animate={videoAnimation}
             transition={{
@@ -128,7 +128,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
           variants={textVariants}
         >
-          <div className="absolute top-20 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
+          <div className="absolute top-48 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
             {filteredData?.map((post, idx) => (
               <div
                 className="text-base font-normal leading-[26px] static md:absolute"

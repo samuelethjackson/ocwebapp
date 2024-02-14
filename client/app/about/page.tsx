@@ -112,7 +112,7 @@ const AboutPage: React.FC = () => {
                 Our background and approach
               </h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
-                <p>
+              <p className="!indent-0">
                   Oceanic Refractions has been created to convey testimonies of
                   the everyday lives, practices and world views of Pacific
                   people and their environments, bearing witness to ongoing and
@@ -180,7 +180,7 @@ const AboutPage: React.FC = () => {
                 Relationships and circulation
               </h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
-                <p>
+              <p className="!indent-0">
                   The foundation of our artistic and professional collaboration
                   lies in our friendship, which has flourished through the time
                   we`ve dedicated—both individually and together—to
@@ -267,7 +267,7 @@ const AboutPage: React.FC = () => {
             <div id="community" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Community</h2>
               <div className="flex flex-col w-full col-span-10 gap-8">
-                <p>
+              <p className="!indent-0">
                   We acknowledge the many generous individuals, communities and
                   institutions who have contributed to making Oceanic
                   Refractions possible. Our gratitude goes to the following for
@@ -312,7 +312,7 @@ const AboutPage: React.FC = () => {
                 Collective philosophies, values and ethics
               </h2>
               <div className="w-full grid grid-cols-10 col-span-10 gap-8">
-                <p>
+              <p className="!indent-0">
                   As a collective, our shared principles shape why and how we
                   work together. These principles guide how we relate to one
                   another and how we also hope to relate to project partners.

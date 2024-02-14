@@ -122,8 +122,12 @@ body::-webkit-scrollbar {
   @apply text-base pl-4 text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
 }
 
+.article a {
+  @apply  text-black dark:text-white mt-4;
+}
+
 .article ol {
-  @apply text-base text-black dark:text-white;
+  @apply text-black dark:text-white text-base md:text-[18px] pl-8;
 }
 
 li::marker {
@@ -131,11 +135,20 @@ li::marker {
 }
 
 .article blockquote {
+  font-style: initial;
   @apply text-black dark:text-white border-0 py-8 pl-8 leading-6;
+}
+
+.article h6 {
+  @apply opacity-50 uppercase my-8;
 }
 
 .gridParent {
   @apply grid grid-cols-6 md:grid-cols-12 lg:grid-cols-24 px-5;
+}
+
+.citation p {
+  @apply text-xs leading-6 mt-2;
 }
 
 .fade-in {

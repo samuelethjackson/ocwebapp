@@ -21,6 +21,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   const [hoveredFootnote, setHoveredFootnote] = useState<string | null>(null);
+  const [clickedFootnote, setClickedFootnote] = useState<string | null>(null);
+
 
   const Footnote = ({
     children,
@@ -30,8 +32,15 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
       <sup
         className="text-xs cursor-pointer dark:cloud-shadow-white-small dark:text-black text-white cloud-shadow-black-small pl-1 pr-2"
         onMouseEnter={() => setHoveredFootnote(markKey || null)}
-        onMouseLeave={() => setHoveredFootnote(null)}
-        onClick={() => setHoveredFootnote(markKey || null)} // Add this line
+        onMouseLeave={() => {
+          if (markKey !== clickedFootnote) {
+            setHoveredFootnote(null);
+          }
+        }}
+        onClick={() => {
+          setClickedFootnote(markKey || null);
+          setHoveredFootnote(markKey || null);
+        }}
       >
         {children}
       </sup>
@@ -161,7 +170,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
           </div>
           <div className="">Oceanic Refractions</div>
         </div>
-        <main className="w-full md:h-screen gridParent px-5">
+        <main className="w-full gridParent px-5">
           <AnimatePresence>
             {!isAnimateClicked && (
               <motion.article
@@ -187,7 +196,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     {data?.author}
                   </p>
                 </div>
-                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-24 md:pt-0 prose-strong:dark:text-white prose-strong:text-white">
+                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-24 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -215,21 +224,25 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <div className="flex flex-col gap-8 pt-20">
                     <div>
                       {data && (
-                        <p className="!indent-0">
-                          <span className="text-white dark:text-black cloud-shadow-black dark:cloud-shadow-white-small mr-2">
+                        <p className="!indent-0 prose citation">
+                          <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
                             {data?.author}{" "}
                           </span>{" "}
-                          {data?.biographyText}
+                          <PortableText
+                    value={data?.biographyText}
+                          />
                         </p>
                       )}
                     </div>
                     <div>
                       {data && (
-                        <p className="!indent-0">
-                          <span className="text-white dark:text-black cloud-shadow-black dark:cloud-shadow-white-small mr-2">
+                        <p className="!indent-0 prose citation">
+                          <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
                             Cite this article{" "}
                           </span>{" "}
-                          {data?.citation}
+                          <PortableText
+                            value={data?.citation}
+                          />
                         </p>
                       )}
                     </div>
@@ -238,7 +251,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               </motion.article>
             )}
           </AnimatePresence>
-          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5 dark:bg-black bg-white">
+          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5 ">
             <motion.div
               layout
               transition={{
@@ -247,7 +260,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               className={`${
                 isAnimateClicked
                   ? "absolute top-0 left-0 h-dvh !md:h-screen w-screen object-cover md:object-fill md:aspect-video"
-                  : "absolute place-self-start -top-[64vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
+                  : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
               }`}
             >
               <Link
