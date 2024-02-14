@@ -137,7 +137,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
               >
                 <Link
                   id="storyCloud"
-                  className={`flex flex-col gap-1 md:gap-2 ${!highRes ? 'opacity-60' : 'opacity-100'} transition-opacity duration-1000 ease-in-out`}
+                  className={`flex flex-col gap-2 ${!highRes ? 'opacity-60' : 'opacity-100'} transition-opacity duration-1000 ease-in-out`}
                   href={`/blog/${post.currentSlug}`}
                   onClick={(e) => {
                     e.preventDefault();

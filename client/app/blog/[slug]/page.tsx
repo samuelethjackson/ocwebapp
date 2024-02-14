@@ -221,7 +221,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       )}
                     </div>
                   </div>
-                  <div className="flex flex-col gap-8 pt-20">
+                  <div className="w-full md:w-3/4 flex flex-col gap-8 pt-20">
                     <div>
                       {data && (
                         <p className="!indent-0 prose citation">

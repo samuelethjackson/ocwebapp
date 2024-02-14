@@ -148,7 +148,7 @@ li::marker {
 }
 
 .citation p {
-  @apply text-xs leading-6 mt-2;
+  @apply text-xs leading-6 mt-2 indent-0;
 }
 
 .fade-in {
