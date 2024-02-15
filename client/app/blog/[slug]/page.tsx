@@ -264,7 +264,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
             <motion.div
               layout
               transition={{
-                layout: { duration: 3, ease: "easeInOut" },
+                layout: { duration: 3, ease: "easeOut" },
               }}
               className={`${
                 isAnimateClicked
