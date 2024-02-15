@@ -144,9 +144,18 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
       setIsAboutHovered={setIsAboutHovered}
     >
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <AboutTopBand pageName={data?.category || "default"} />
-        <div className="fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50">
-          <div className="w-full flex flex-row justify-between">
+        <div className="hidden md:flex md:w-full">
+          <AboutTopBand pageName={data?.category || "default"} />
+        </div>
+        <div
+         className={`${
+          isAnimateClicked
+            ? "opacity-0"
+            : "fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50"
+        }`}
+          >
+          <div 
+          className="w-full flex flex-row justify-between">
             <div className="">{data?.category}</div>
             <Link
               href={"/"}
@@ -181,9 +190,9 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   animate: { duration: 2, ease: "easeInOut", delay: 1 },
                   exit: { duration: 2, ease: "easeInOut", delay: 0 },
                 }}
-                className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-52 md:pt-40 pb-40`}
+                className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 md:pt-40 pb-40`}
               >
-                <div className="fixed md:relative md:flex flex-col gap-0.5 z-30 px-2">
+                <div className="fixed top-[18vh] md:top-0  md:relative md:flex flex-col gap-0.5 z-30 px-2">
                   <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-[400px] z-10">
                     {data?.title.split("\\n").map((line, i) => (
                       <React.Fragment key={i}>
@@ -196,7 +205,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     {data?.author}
                   </p>
                 </div>
-                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-24 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -259,8 +268,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               }}
               className={`${
                 isAnimateClicked
-                  ? "absolute top-0 left-0 h-dvh !md:h-screen w-screen object-cover md:object-fill md:aspect-video"
-                  : "absolute place-self-start -top-[56vh] left-0 md:top-40 lg:col-start-15 w-screen md:col-end-25 flex flex-col md:w-full center object-cover aspect-[9/16] md:object-fill md:aspect-video"
+                  ? "absolute top-0 left-0 h-dvh md:h-screen w-screen opacity-50"
+                  : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-dvh md:h-min md:col-end-25 md:w-full opacity-100"
               }`}
             >
               <Link
@@ -284,7 +293,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <Image
                     src={videoPath}
                     alt={"Moving Background video"}
-                    className=""
+                    className="md:opacity-50"
                     layout="fill"
                     objectFit="cover"
                   />
@@ -294,12 +303,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     autoPlay
                     muted
                     playsInline
-                    className={`md:opacity-60 ${
-                      isAnimateClicked
-                        ? "w-full h-full object-cover aspect-[9/16] md:object-fill md:aspect-video"
-                        : "object-cover aspect-[9/16] md:object-fill md:aspect-video"
-                    }`}
-                    loop
+                    className="object-cover w-full h-full md:opacity-50"
+              layout
+              loop
+              transition={{
+                layout: { duration: 3, ease: "easeOut" },
+              }}
                   />
                 )}
                 <motion.div
