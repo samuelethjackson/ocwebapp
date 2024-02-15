@@ -62,10 +62,10 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     const [isAnimateClicked, setIsAnimateClicked] = useState(false);
 
     const fixedPositions = [
-      { top: "10vh", left: "20vw" },
-      { top: "20vh", left: "60vw" },
+      { top: "20vh", left: "20vw" },
+      { top: "30vh", left: "60vw" },
       { top: "50vh", left: "30vw" },
-      { top: "60vh", left: "70vw" },
+      { top: "70vh", left: "70vw" },
       { top: "45vh", left: "45vw" },
       { top: "30vh", left: "10vw" },
     ];
@@ -128,7 +128,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
           variants={textVariants}
         >
-          <div className="absolute top-48 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
+          <div className="absolute top-48 md:top-0 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
             {filteredData?.map((post, idx) => (
               <div
                 className="text-base font-normal leading-[26px] static md:absolute"

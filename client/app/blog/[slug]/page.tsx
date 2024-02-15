@@ -205,17 +205,17 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       },
                     }}
                   />
-                  <div className="flex flex-col gap-1 pt-20">
+                  <div className="flex flex-col gap-1 pt-20 citation">
                     <div>
                       {data && (
-                        <p className="!indent-0 !text-xs">
+                        <p className="!indent-0">
                           Written in {data?.language}
                         </p>
                       )}
                     </div>
                     <div>
                       {data && (
-                        <p className="!indent-0 !text-xs">
+                        <p className="!indent-0">
                           Published on {formatDate(data?.date)}
                         </p>
                       )}
