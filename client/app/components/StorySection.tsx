@@ -5,8 +5,8 @@ import { AnimatePresence, motion, spring } from "framer-motion";
 import Link from "next/link";
 import { useData } from "./StorySectionHelper";
 
+
 interface StorySectionProps {
-  text: string;
   video: string;
   id: number;
   isAboutHovered: boolean;
@@ -14,7 +14,7 @@ interface StorySectionProps {
 }
 
 const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
-  ({ video, text, id, isAboutHovered, highRes }, ref) => {
+  ({ video, id, isAboutHovered, highRes }, ref) => {
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
@@ -74,14 +74,14 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent px-0 md:px-5 overflow-hidden`}
+        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent px-0 md:px-5 overflow-x-hidden`}
       >
         <motion.div
         layout
         className={`${
           !isAnimateClicked
             ? "absolute top-0 left-0 h-dvh md:h-screen w-screen opacity-50"
-            : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-dvh md:h-min md:col-end-25 md:w-full opacity-50"
+            : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:h-min md:col-end-25 md:w-full opacity-50"
         }`}
         animate={videoAnimation}
         transition={{
@@ -93,7 +93,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           {isGif ? (
               <Image
                 src={videoPath}
-                alt={text}
+                alt={""}
                 layout="fill"
                 objectFit="cover"
               />
@@ -126,87 +126,90 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
             variants={textVariants}
           >
-            <div className="absolute top-48 md:top-0 left-0 justify-start items-center w-full min-h-dvh md:h-screen flex flex-col gap-16 p-8 md:absolute overflow-scroll">
-              {filteredData?.map((post, idx) => (
-                <div
-                  className="text-base font-normal leading-[26px] static md:absolute"
-                  key={idx}
-                  style={fixedPositions[idx % fixedPositions.length]} // Use modulo operator to avoid going out of bounds
-                >
-                  <Link
-                    id="storyCloud"
-                    className={`flex flex-col gap-2 ${
-                      !highRes ? "opacity-60" : "opacity-100"
-                    } transition-opacity duration-1000 ease-in-out`}
-                    href={`/blog/${post.currentSlug}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      router.prefetch(`/blog/${post.currentSlug}`);
-                      setIsAnimateClicked(true);
-                      setTimeout(() => {
-                        router.push(`/blog/${post.currentSlug}`);
-                      }, 3000);
-                      handleMouseLeave(); // Call the function here
-                    }}
-                    onMouseEnter={(e) => {
-                      if (window.innerWidth > 768) {
-                        // Change 768 to whatever breakpoint you're using for mobile
-                        setIsLinkHovered(
-                          isLinkHovered.map((v, i) => i === idx)
-                        );
-                        const element = e.currentTarget.getBoundingClientRect();
-                        const middleOfScreenX = window.innerWidth / 2;
-                        const middleOfScreenY = window.innerHeight / 2;
-                        if (element.left < middleOfScreenX) {
-                          setVideoAnimation({
-                            scale: 0.98,
-                            x: window.innerWidth * 0.025,
-                            y:
-                              element.top < middleOfScreenY
-                                ? window.innerHeight * 0.025
-                                : window.innerHeight * -0.015,
-                          });
-                        } else {
-                          setVideoAnimation({
-                            scale: 0.98,
-                            x: window.innerWidth * 0.015,
-                            y:
-                              element.top < middleOfScreenY
-                                ? window.innerHeight * 0.025
-                                : window.innerHeight * -0.015,
-                          });
-                        }
-                      }
-                    }}
-                    onMouseLeave={() => {
-                      if (window.innerWidth > 768) {
-                        // Change 768 to whatever breakpoint you're using for mobile
-                        handleMouseLeave();
-                      }
-                    }}
+            <div className="absolute md:top-0 left-0 center h-dvh overflow-y-scroll w-full md:h-screen md:absolute"
+            >
+              <div className="absolute top-40 md:top-0 md:h-screen justify-start items-center flex flex-col w-full gap-16 p-8 overflow-y-scroll pb-40 md:overflow-clip ">
+                {filteredData?.map((post, idx) => (
+                  <div
+                    className="text-base font-normal leading-[26px] static md:absolute"
+                    key={idx}
+                    style={fixedPositions[idx % fixedPositions.length]} // Use modulo operator to avoid going out of bounds
                   >
-                    <p
-                      className={`hidden md:block text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
-                      ${
-                        isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
-                      }`}
+                    <Link
+                      id="storyCloud"
+                      className={`flex flex-col gap-2 max-w-64 ${
+                        !highRes ? "opacity-60" : "opacity-100"
+                      } transition-opacity duration-1000 ease-in-out`}
+                      href={`/blog/${post.currentSlug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        router.prefetch(`/blog/${post.currentSlug}`);
+                        setIsAnimateClicked(true);
+                        setTimeout(() => {
+                          router.push(`/blog/${post.currentSlug}`);
+                        }, 3000);
+                        handleMouseLeave(); // Call the function here
+                      }}
+                      onMouseEnter={(e) => {
+                        if (window.innerWidth > 768) {
+                          // Change 768 to whatever breakpoint you're using for mobile
+                          setIsLinkHovered(
+                            isLinkHovered.map((v, i) => i === idx)
+                          );
+                          const element = e.currentTarget.getBoundingClientRect();
+                          const middleOfScreenX = window.innerWidth / 2;
+                          const middleOfScreenY = window.innerHeight / 2;
+                          if (element.left < middleOfScreenX) {
+                            setVideoAnimation({
+                              scale: 0.98,
+                              x: window.innerWidth * 0.025,
+                              y:
+                                element.top < middleOfScreenY
+                                  ? window.innerHeight * 0.025
+                                  : window.innerHeight * -0.015,
+                            });
+                          } else {
+                            setVideoAnimation({
+                              scale: 0.98,
+                              x: window.innerWidth * 0.015,
+                              y:
+                                element.top < middleOfScreenY
+                                  ? window.innerHeight * 0.025
+                                  : window.innerHeight * -0.015,
+                            });
+                          }
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        if (window.innerWidth > 768) {
+                          // Change 768 to whatever breakpoint you're using for mobile
+                          handleMouseLeave();
+                        }
+                      }}
                     >
-                      {post?.type}
-                    </p>
-                    <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
-                      {post?.title.split("\\n").map((line, i) => (
-                        <React.Fragment key={i}>
-                          <span dangerouslySetInnerHTML={{ __html: line }} />
-                          {i !== post.title.split("\\n").length - 1 && <br />}
-                        </React.Fragment>
-                      ))}
-                    </h3>
-                    <p className="cloud-shadow-grey text-sm md:text-base pl-8">
-                      {post?.author}
-                    </p>
-                  </Link>
-                </div>
-              ))}
+                      <p
+                        className={`hidden md:block text-opacity-70 text-xs font-normal uppercase transition-opacity ease-in-out duration-1000 leading-tight tracking-wide mb-1
+                        ${
+                          isLinkHovered[idx] ? "md:opacity-100" : "md:opacity-0"
+                        }`}
+                      >
+                        {post?.type}
+                      </p>
+                      <h3 className="cloud-shadow-white text-sm md:text-base text-black max-w-[300px] z-20">
+                        {post?.title.split("\\n").map((line, i) => (
+                          <React.Fragment key={i}>
+                            <span dangerouslySetInnerHTML={{ __html: line }} />
+                            {i !== post.title.split("\\n").length - 1 && <br />}
+                          </React.Fragment>
+                        ))}
+                      </h3>
+                      <p className="cloud-shadow-grey text-sm md:text-base pl-8">
+                        {post?.author}
+                      </p>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         <motion.p

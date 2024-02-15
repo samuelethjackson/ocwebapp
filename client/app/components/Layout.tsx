@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ pageName, highRes, setHighRes, isAboutH
   return (
       <div className='dark:bg-black bg-white'>
         <TitleBand pageName={pageName} highRes={highRes} setHighRes={setHighRes} onAboutHover={setIsAboutHovered} />
-        <div className='fade-in'>{children}</div>
+        <div>{children}</div>
       </div>
   );
 };

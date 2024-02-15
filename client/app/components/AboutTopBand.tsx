@@ -45,7 +45,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
           {pageName}
         </motion.div>
       </div>
-      <div className='md:w-1/3 w-full bg-white dark:bg-black absolute top-0 left-0 md:hidden flex flex-row pt-2 pb-8 pl-1'>
+      <div className='md:w-1/3 w-full bg-white dark:bg-black absolute top-0 left-0 md:hidden flex flex-row pt-2 pb-10 pl-1'>
         <div
           key={pageName}
           className="w-full text-base font-normal leading-tight pl-12 md:pl-0"

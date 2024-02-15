@@ -104,7 +104,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
           {pageTitle}
         </motion.div>
       </div>
-      <div className="w-1/6 flex flex-col md:flex-row justify-between md:items-center items-end gap-4">
+      <div className="w-1/6 flex flex-col md:flex-row justify-between md:items-center -mt-1 items-end gap-4">
         {isAboutPage ? (
           <div className="opacity-100">
             <Link href={"/"}>

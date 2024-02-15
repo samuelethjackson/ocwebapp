@@ -1,21 +1,3 @@
-const footnote = {
-    name: 'footnote',
-    type: 'object',
-    title: 'Footnote',
-    fields: [
-      {
-        name: 'number',
-        type: 'number',
-        title: 'Footnote number',
-      },
-      {
-        name: 'text',
-        type: 'text',
-        title: 'Footnote text',
-      },
-    ],
-  };
-  
   export default {
       name: "blog",
       type: "document",

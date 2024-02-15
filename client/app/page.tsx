@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { useSearchParams } from "next/navigation";
+import SwipeableViews from "react-swipeable-views";
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -81,13 +82,6 @@ export default function Home() {
   let titleBandText = "";
   let bottomBandText = "";
 
-  let Text1 =
-    "featuring the words of Craig Santos-Perez, Julian Aguon, \nKathy Jetn̄il-Kijiner, and Prof. Unaisi Nabobo-Baba.";
-  let Text2 =
-    "featuring newly commissioned words from Christina Sharpe, \nNabil Ahmed, Nicolas Jaar, Zoe Todd, and Zoé Samudzi.";
-  let Text3 =
-    "featuring newly commissioned words \nfrom Elise Misao Hunchuck and Sinthujan Varatharajah.";
-
   if (activeSection === 1) {
     topBandText = "";
     titleBandText = "Precedents of";
@@ -109,15 +103,12 @@ export default function Home() {
   if (activeMobileSection === 1) {
     mobileTopBandText = "Precedents of";
     mobileVideo = highRes ? "precedents.gif" : "precedents.mp4";
-    mobileText = Text1;
   } else if (activeMobileSection === 2) {
     mobileTopBandText = "Witnessing via";
     mobileVideo = highRes ? "witnessing.gif" : "witnessing.mp4";
-    mobileText = Text2;
   } else if (activeMobileSection === 3) {
     mobileTopBandText = "Responding to";
     mobileVideo = highRes ? "responding.gif" : "responding.mp4";
-    mobileText = Text3;
   }
 
   useEffect(() => {
@@ -184,7 +175,6 @@ export default function Home() {
             ref={ref1}
             id={1}
             video={highRes ? "precedents.gif" : "precedents.mp4"}
-            text={Text1}
             isAboutHovered={isAboutHovered}
             highRes={highRes}
           />
@@ -192,7 +182,6 @@ export default function Home() {
             ref={ref2}
             id={2}
             video={highRes ? "witnessing.gif" : "witnessing.mp4"}
-            text={Text2}
             isAboutHovered={isAboutHovered}
             highRes={highRes}
           />
@@ -200,23 +189,37 @@ export default function Home() {
             ref={ref3}
             id={3}
             video={highRes ? "responding.gif" : "responding.mp4"}
-            text={Text3}
             isAboutHovered={isAboutHovered}
             highRes={highRes}
           />
         </motion.div>
-        <div
-          id="mobile"
-          className="md:hidden absolute no-scrollbar top-0 left-0 w-full"
-        >
-          <StorySection
-            ref={ref4}
-            id={activeMobileSection}
-            video={mobileVideo}
-            text={mobileText}
-            isAboutHovered={isAboutHovered}
-            highRes={highRes}
-          />
+        <div id="mobile" className="md:hidden no-scrollbar w-full">
+          <SwipeableViews
+            index={activeMobileSection - 1}
+            onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
+          >
+            <StorySection
+              ref={ref1}
+              id={1}
+              video={highRes ? "precedents.gif" : "precedents.mp4"}
+              isAboutHovered={isAboutHovered}
+              highRes={highRes}
+            />
+            <StorySection
+              ref={ref2}
+              id={2}
+              video={highRes ? "witnessing.gif" : "witnessing.mp4"}
+              isAboutHovered={isAboutHovered}
+              highRes={highRes}
+            />
+            <StorySection
+              ref={ref3}
+              id={3}
+              video={highRes ? "responding.gif" : "responding.mp4"}
+              isAboutHovered={isAboutHovered}
+              highRes={highRes}
+            />
+          </SwipeableViews>
         </div>
         <AnimatePresence>
           {!isAboutHovered && (

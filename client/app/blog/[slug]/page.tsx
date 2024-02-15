@@ -23,6 +23,10 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [hoveredFootnote, setHoveredFootnote] = useState<string | null>(null);
   const [clickedFootnote, setClickedFootnote] = useState<string | null>(null);
 
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1, ease: "easeInOut", delay: 2 } },
+  };
 
   const Footnote = ({
     children,
@@ -126,11 +130,6 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
   const isGif = backVideo.endsWith(".gif");
   const videoPath = `/videos/${backVideo}`;
 
-  const videoVariants = {
-    zoomIn: { scale: 1.1 },
-    zoomOut: { scale: 1 },
-  };
-
   const router = useRouter();
 
   const [isAnimateClicked, setIsAnimateClicked] = useState(false);
@@ -147,11 +146,15 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
         <div className="hidden md:flex md:w-full">
           <AboutTopBand pageName={data?.category || "default"} />
         </div>
-        <div
+        <motion.div 
+        variants={textVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
          className={`${
-          isAnimateClicked
-            ? "opacity-0"
-            : "fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50"
+          !isAnimateClicked
+            ? "fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50" 
+            : "hidden"
         }`}
           >
           <div 
@@ -178,7 +181,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
             </Link>
           </div>
           <div className="">Oceanic Refractions</div>
-        </div>
+        </motion.div>
         <main className="w-full gridParent px-5">
           <AnimatePresence>
             {!isAnimateClicked && (
@@ -192,8 +195,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 }}
                 className={`col-start-1 col-end-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 md:pt-40 pb-40`}
               >
-                <div className="fixed top-[18vh] md:top-0  md:relative md:flex flex-col gap-0.5 z-30 px-2">
-                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-[400px] z-10">
+                <motion.div 
+                variants={textVariants}
+                initial="hidden"
+                animate="visible"
+                className="fixed top-[18vh] md:top-0 md:relative flex flex-col gap-1 z-30 px-2">
+                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64">
                     {data?.title.split("\\n").map((line, i) => (
                       <React.Fragment key={i}>
                         <span dangerouslySetInnerHTML={{ __html: line }} />
@@ -204,8 +211,12 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <p className="cloud-shadow-grey !text-white inset-8">
                     {data?.author}
                   </p>
-                </div>
-                <div className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+                </motion.div>
+                <motion.div 
+                variants={textVariants}
+                initial="hidden"
+                animate="visible" 
+                className="prose dark:text-white prose-headings:indent-8 md:z-20 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
                   <PortableText
                     value={data?.content}
                     components={{
@@ -256,7 +267,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       )}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.article>
             )}
           </AnimatePresence>
@@ -269,7 +280,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               className={`${
                 isAnimateClicked
                   ? "absolute top-0 left-0 h-dvh md:h-screen w-screen opacity-50"
-                  : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-dvh md:h-min md:col-end-25 md:w-full opacity-100"
+                  : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:h-min md:col-end-25 md:w-full opacity-100"
               }`}
             >
               <Link
@@ -304,11 +315,11 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                     muted
                     playsInline
                     className="object-cover w-full h-full md:opacity-50"
-              layout
-              loop
-              transition={{
-                layout: { duration: 3, ease: "easeOut" },
-              }}
+                    layout
+                    loop
+                    transition={{
+                      layout: { duration: 3, ease: "easeOut" },
+                    }}
                   />
                 )}
                 <motion.div
@@ -323,7 +334,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 </motion.div>
               </Link>
             </motion.div>
-            <footer className="absolute bottom-0 text-xs leading-6 place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col">
+            <footer className="absolute bottom-0 text-xs w-full leading-6 place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col">
               {data && (
                 <div>
                   <AnimatePresence>
@@ -341,7 +352,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           className="w-1/2 flex flex-row gap-3"
                         >
                           <span>{footnote.number}</span>
-                          <span>{footnote.text}</span>
+                          <span dangerouslySetInnerHTML={{ __html: footnote.text }}></span>
                         </motion.div>
                       ))}
                   </AnimatePresence>
@@ -367,7 +378,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                         >
                           <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start">
                             <span>{footnote.number}</span>
-                            <span>{footnote.text}</span>
+                            <span dangerouslySetInnerHTML={{ __html: footnote.text }}></span>
                             <div
                               className="w-6 h-6"
                               onClick={() => setHoveredFootnote(null)}
