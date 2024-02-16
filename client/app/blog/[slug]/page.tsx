@@ -25,7 +25,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
 
   const textVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1, ease: "easeInOut", delay: 2 } },
+    visible: { opacity: 1, transition: { duration: 1, ease: "easeInOut", delay: 1 } },
   };
 
   const Footnote = ({
