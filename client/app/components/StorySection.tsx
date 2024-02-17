@@ -81,7 +81,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
         className={`${
           !isAnimateClicked
             ? "absolute top-0 left-0 h-dvh md:h-screen w-screen opacity-50"
-            : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:h-min md:col-end-25 md:w-full opacity-50"
+            : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:h-[300px] md:col-end-25 md:w-full opacity-50"
         }`}
         animate={videoAnimation}
         transition={{

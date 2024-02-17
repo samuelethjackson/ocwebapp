@@ -143,7 +143,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
       setIsAboutHovered={setIsAboutHovered}
     >
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="hidden md:flex md:w-full">
+        <div className="hidden md:flex md:w-full z-50">
           <AboutTopBand pageName={data?.category || "default"} />
         </div>
         <motion.div 
@@ -153,7 +153,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
         exit="hidden"
          className={`${
           !isAnimateClicked
-            ? "fixed w-screen bg-gradient-to-b from-black/40 to-transparent md:hidden top-0 left-0 pl-12 pt-2 flex flex-col gap-1 z-50" 
+            ? "fixed w-screen bg-gradient-to-b dark:from-black/40 dark:to-transparent from-white/50 to-transparent md:hidden top-0 left-0 pl-12 pb-16 pt-2 flex flex-col gap-1 z-[49]" 
             : "hidden"
         }`}
           >
@@ -278,7 +278,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               className={`${
                 isAnimateClicked
                   ? "absolute top-0 left-0 h-dvh md:h-screen w-screen opacity-50"
-                  : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:h-min md:col-end-25 md:w-full opacity-100"
+                  : "absolute place-self-start -top-[80vh] left-0 md:top-40 lg:col-start-15 w-screen h-screen md:w-full md:h-[300px] md:col-end-25 opacity-100"
               }`}
             >
               <Link
@@ -302,9 +302,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                   <Image
                     src={videoPath}
                     alt={"Moving Background video"}
-                    className="md:opacity-50"
+                    className="object-cover w-full h-full md:opacity-50"
                     layout="fill"
-                    objectFit="cover"
                   />
                 ) : (
                   <motion.video
