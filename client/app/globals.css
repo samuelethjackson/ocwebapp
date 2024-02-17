@@ -32,7 +32,7 @@ body {
 }
 
 .app {
-  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-200 fade-in;
+  @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-200 fade-in no-scrollbar;
 }
 
 main {
@@ -148,7 +148,7 @@ li::marker {
 }
 
 .citation p {
-  @apply text-sm leading-6 mt-2 indent-0;
+  @apply text-sm leading-[1.3rem] mt-2 indent-0;
 }
 
 .fade-in {

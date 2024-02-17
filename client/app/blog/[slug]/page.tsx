@@ -200,7 +200,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 initial="hidden"
                 animate="visible"
                 className="fixed top-[18vh] md:top-0 md:relative flex flex-col gap-1 z-30 px-2">
-                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64">
+                  <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-full z-10">
                     {data?.title.split("\\n").map((line, i) => (
                       <React.Fragment key={i}>
                         <span dangerouslySetInnerHTML={{ __html: line }} />
@@ -225,17 +225,17 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                       },
                     }}
                   />
-                  <div className="flex flex-col gap-1 pt-20 citation">
+                  <div className="flex flex-col gap-0 pt-20 citation">
                     <div>
                       {data && (
-                        <p className="!indent-0">
+                        <p className="!indent-0 !mt-0">
                           Written in {data?.language}
                         </p>
                       )}
                     </div>
                     <div>
                       {data && (
-                        <p className="!indent-0">
+                        <p className="!indent-0 !mt-0">
                           Published on {formatDate(data?.date)}
                         </p>
                       )}
@@ -249,7 +249,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                             {data?.author}{" "}
                           </span>{" "}
                           <PortableText
-                    value={data?.biographyText}
+                            value={data?.biographyText}
                           />
                         </p>
                       )}
@@ -259,10 +259,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                         <p className="!indent-0 prose citation">
                           <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
                             Cite this article{" "}
-                          </span>{" "}
-                          <PortableText
-                            value={data?.citation}
-                          />
+                          </span>
+                          <p dangerouslySetInnerHTML={{ __html: data?.citation }}></p>
                         </p>
                       )}
                     </div>
@@ -334,7 +332,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                 </motion.div>
               </Link>
             </motion.div>
-            <footer className="absolute bottom-0 text-xs w-full leading-6 place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col">
+            <footer className="absolute bottom-0 w-full place-self-end pb-4 lg:col-start-15 col-end-25 flex flex-col citation">
               {data && (
                 <div>
                   <AnimatePresence>
@@ -351,8 +349,8 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           key={footnote._key}
                           className="w-1/2 flex flex-row gap-3"
                         >
-                          <span>{footnote.number}</span>
-                          <span dangerouslySetInnerHTML={{ __html: footnote.text }}></span>
+                          <p>{footnote.number}</p>
+                          <p dangerouslySetInnerHTML={{ __html: footnote.text }}></p>
                         </motion.div>
                       ))}
                   </AnimatePresence>
@@ -376,7 +374,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
                           key={footnote._key}
                           className="fixed w-screen left-0 p-4 bottom-0 mb-2  text-white dark:text-black md:hidden text-xs flex flex-row gap-2"
                         >
-                          <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start">
+                          <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start text-sm leading-[1.3rem]">
                             <span>{footnote.number}</span>
                             <span dangerouslySetInnerHTML={{ __html: footnote.text }}></span>
                             <div

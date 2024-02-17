@@ -15,6 +15,8 @@ export default function Home() {
   const ref2 = useRef<HTMLDivElement>(null);
   const ref3 = useRef<HTMLDivElement>(null);
   const ref4 = useRef<HTMLDivElement>(null);
+  const ref5 = useRef<HTMLDivElement>(null);
+  const ref6 = useRef<HTMLDivElement>(null);
 
   const [activeSection, setActiveSection] = useState(1);
   const [highRes, setHighRes] = useState(false);
@@ -148,6 +150,8 @@ export default function Home() {
     fadeOut: { opacity: 0 },
   };
 
+  console.log(activeSection);
+
   return (
     <Layout
       pageName={titleBandText}
@@ -199,21 +203,21 @@ export default function Home() {
             onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
           >
             <StorySection
-              ref={ref1}
+              ref={ref4}
               id={1}
               video={highRes ? "precedents.gif" : "precedents.mp4"}
               isAboutHovered={isAboutHovered}
               highRes={highRes}
             />
             <StorySection
-              ref={ref2}
+              ref={ref5}
               id={2}
               video={highRes ? "witnessing.gif" : "witnessing.mp4"}
               isAboutHovered={isAboutHovered}
               highRes={highRes}
             />
             <StorySection
-              ref={ref3}
+              ref={ref6}
               id={3}
               video={highRes ? "responding.gif" : "responding.mp4"}
               isAboutHovered={isAboutHovered}

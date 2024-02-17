@@ -58,13 +58,8 @@
           },
           {
               name: "citation",
-              type: "array",
+              type: "text",
               title: "Citation",
-              of: [
-                {
-                    type: 'block'
-                }
-            ]
           },
           {
             name: "content",

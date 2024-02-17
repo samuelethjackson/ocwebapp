@@ -14,6 +14,6 @@ export interface storyOverview {
     "content": any;
     "biographyText": any;
     "date": string;
-    "citation": any;
+    "citation": string;
     "language": string;
   }

@@ -74,7 +74,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent px-0 md:px-5 overflow-x-hidden`}
+        className={`relative w-full h-dvh md:h-screen bg-white dark:bg-black snap-start gridParent px-0 md:px-5 overflow-hidden no-scrollbar`}
       >
         <motion.div
         layout
@@ -126,9 +126,9 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             transition={{ ease: "easeInOut", duration: 2, delay: 1 }}
             variants={textVariants}
           >
-            <div className="absolute md:top-0 left-0 center h-dvh overflow-y-scroll w-full md:h-screen md:absolute"
+            <div className="absolute md:top-0 left-0 center h-dvh overflow-y-scroll w-full md:h-screen md:absolute no-scrollbar"
             >
-              <div className="absolute top-40 md:top-0 md:h-screen justify-start items-center flex flex-col w-full gap-16 p-8 overflow-y-scroll pb-40 md:overflow-clip ">
+              <div className="absolute top-40 md:top-0 md:h-screen justify-start items-center flex flex-col w-full gap-16 p-8 overflow-y-scroll no-scrollbar pb-40 md:overflow-clip ">
                 {filteredData?.map((post, idx) => (
                   <div
                     className="text-base font-normal leading-[26px] static md:absolute"

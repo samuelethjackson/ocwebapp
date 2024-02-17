@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import localFont from 'next/font/local';
-import { motion } from "framer-motion";
-import { fullBlog } from "./lib/interface";
-import TitleBand from "./components/TitleBand";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Suspense } from "react";
 const EduDiatype = localFont({ 
   src: './EduDiatype-Regular.woff2',
@@ -30,6 +28,7 @@ export default async function RootLayout({
         <Suspense fallback={<div>Loading...</div>}>
         <div className="app">{children}</div>
         </Suspense>
+        <SpeedInsights />
         </body>
     </html>
   );
