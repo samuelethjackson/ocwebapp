@@ -3,6 +3,7 @@ import "./globals.css";
 
 import localFont from 'next/font/local';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/react';
 import { Suspense } from "react";
 const EduDiatype = localFont({ 
   src: './EduDiatype-Regular.woff2',
@@ -29,6 +30,7 @@ export default async function RootLayout({
         <div className="app">{children}</div>
         </Suspense>
         <SpeedInsights />
+        <Analytics />
         </body>
     </html>
   );
