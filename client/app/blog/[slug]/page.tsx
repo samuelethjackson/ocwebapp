@@ -13,6 +13,7 @@ import Link from "next/link";
 import { PortableTextMarkComponentProps } from "@portabletext/react";
 import CloseIcon from "../../components/icons/closeIcon";
 import React from "react";
+import AnimatedVideo from "../../components/AnimatedVideo";
 
 export default function BlogArticle({ params }: { params: { slug: string } }) {
   const [data, setData] = useState<fullBlog | null>(null);
@@ -182,7 +183,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
           </div>
           <div className="">Oceanic Refractions</div>
         </motion.div>
-        <main className="w-full gridParent px-5">
+        <main className="w-full grid-parent px-5">
           <AnimatePresence>
             {!isAnimateClicked && (
               <motion.article
@@ -269,7 +270,7 @@ export default function BlogArticle({ params }: { params: { slug: string } }) {
               </motion.article>
             )}
           </AnimatePresence>
-          <div className="fixed top-0 left-0 w-full h-min md:h-screen gridParent z-0 px-5 ">
+          <div className="fixed top-0 left-0 w-full h-min md:h-screen grid-parent z-0 px-5 ">
             <motion.div
               layout
               transition={{

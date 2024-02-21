@@ -1,3 +1,4 @@
+import AnimatedVideo from './AnimatedVideo';
 import TitleBand from './TitleBand';
 
 interface LayoutProps {
@@ -14,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ pageName, highRes, setHighRes, isAboutH
   return (
       <div className='dark:bg-black bg-white'>
         <TitleBand pageName={pageName} highRes={highRes} setHighRes={setHighRes} onAboutHover={setIsAboutHovered} />
-        <div>{children}</div>
+        {children}
       </div>
   );
 };

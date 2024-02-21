@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { useSearchParams } from "next/navigation";
 import SwipeableViews from "react-swipeable-views";
+import BlogArticle from "./components/BlogArticle";
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -22,6 +23,18 @@ export default function Home() {
   const [highRes, setHighRes] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(1);
 
+  const [isAnimateClicked, setIsAnimateClicked] = useState(false);
+  const [isAnimateFinished, setIsAnimateFinished] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAnimateFinished(isAnimateClicked);
+    }, 2000); // 3 seconds delay
+
+    // Cleanup function to clear the timeout when the component unmounts or isAnimateClicked changes
+    return () => clearTimeout(timer);
+  }, [isAnimateClicked]);
+
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -29,9 +42,6 @@ export default function Home() {
   }, []);
 
   const [isAboutHovered, setIsAboutHovered] = useState(false);
-
-  const searchParams = useSearchParams();
-  const param = searchParams.get("param");
 
   const handleBottomBandClick = () => {
     if (activeSection === 1 && ref2.current) {
@@ -113,37 +123,60 @@ export default function Home() {
     mobileVideo = highRes ? "responding.gif" : "responding.mp4";
   }
 
-  useEffect(() => {
-    if (param) {
-      switch (param) {
-        case "1":
-          setActiveMobileSection(1);
-          if (ref1.current) {
-            ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
-          }
-          break;
-        case "2":
-          setActiveMobileSection(2);
-          if (ref2.current) {
-            ref2.current.scrollIntoView({ behavior: "auto", block: "start" });
-          }
-          break;
-        case "3":
-          setActiveMobileSection(3);
-          if (ref3.current) {
-            ref3.current.scrollIntoView({ behavior: "auto", block: "start" });
-          }
-          break;
-        default:
-          break;
-      }
-    } else {
-      setActiveMobileSection(1);
-      if (ref1.current) {
-        ref1.current.scrollIntoView({ behavior: "auto", block: "start" });
-      }
+  const [selectedStorySlug, setSelectedStorySlug] = useState("");
+  const [selectedSectionId, setSelectedSectionId] = useState<number | null>(
+    null
+  );
+
+  const renderStorySection = (
+    ref: React.RefObject<HTMLDivElement>,
+    id: number,
+    video: string
+  ) => {
+    if (
+      !isAnimateClicked ||
+      selectedSectionId === null ||
+      selectedSectionId === id
+    ) {
+      return (
+        <StorySection
+          ref={ref}
+          id={id}
+          video={highRes ? `${video}.gif` : `${video}.mp4`}
+          isAboutHovered={isAboutHovered}
+          highRes={highRes}
+          setSelectedStorySlug={setSelectedStorySlug}
+          setSelectedSectionId={setSelectedSectionId}
+          isAnimateClicked={isAnimateClicked}
+          setIsAnimateClicked={setIsAnimateClicked}
+          isAnimateFinished={isAnimateFinished}
+          setIsAnimateFinished={setIsAnimateFinished}
+        />
+      );
     }
-  }, [param]);
+    return null;
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const param = searchParams.get("article");
+    if (param) {
+      setIsLoading(true);
+      setIsAnimateClicked(true);
+      setSelectedStorySlug(param);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000); // 3 seconds delay
+    }
+  }, [isLoading]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },
@@ -160,7 +193,37 @@ export default function Home() {
       isAboutHovered={isAboutHovered}
       setIsAboutHovered={setIsAboutHovered}
     >
+    {isLoading && (
+      <motion.div 
+        className="fixed top-0 left-0 w-screen h-screen flex-col gap-4 items-center justify-center z-[100]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <p className="text-white text-2xl">OC article detected</p>
+      </motion.div>
+    )}
       <main className="w-screen h-dvh md:h-screen">
+      <AnimatePresence>
+        {isAnimateFinished && isAnimateClicked && selectedStorySlug && (
+          <motion.div
+            initial="fadeOut" // Add this line
+            animate="fadeIn"
+            exit="fadeOut" // Add this line
+            transition={{ ease: "easeInOut", duration: 1 }}
+          >
+            <BlogArticle
+  params={{ slug: selectedStorySlug }}
+  highRes={highRes}
+  setHighRes={setHighRes}
+  isAboutHovered={isAboutHovered}
+  setIsAboutHovered={setIsAboutHovered}
+  isAnimateClicked={isAnimateClicked}
+  setIsAnimateClicked={setIsAnimateClicked}
+/>
+          </motion.div>
+        )}
+      </AnimatePresence>
         <TopBand
           pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
           onArrowClick={handleArrowClick}
@@ -175,58 +238,22 @@ export default function Home() {
           transition={{ ease: "easeInOut", duration: 1 }}
           className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory"
         >
-          <StorySection
-            ref={ref1}
-            id={1}
-            video={highRes ? "precedents.gif" : "precedents.mp4"}
-            isAboutHovered={isAboutHovered}
-            highRes={highRes}
-          />
-          <StorySection
-            ref={ref2}
-            id={2}
-            video={highRes ? "witnessing.gif" : "witnessing.mp4"}
-            isAboutHovered={isAboutHovered}
-            highRes={highRes}
-          />
-          <StorySection
-            ref={ref3}
-            id={3}
-            video={highRes ? "responding.gif" : "responding.mp4"}
-            isAboutHovered={isAboutHovered}
-            highRes={highRes}
-          />
+          {renderStorySection(ref1, 1, "precedents")}
+          {renderStorySection(ref2, 2, "witnessing")}
+          {renderStorySection(ref3, 3, "responding")}
         </motion.div>
         <div id="mobile" className="md:hidden no-scrollbar w-full">
           <SwipeableViews
             index={activeMobileSection - 1}
             onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
           >
-            <StorySection
-              ref={ref4}
-              id={1}
-              video={highRes ? "precedents.gif" : "precedents.mp4"}
-              isAboutHovered={isAboutHovered}
-              highRes={highRes}
-            />
-            <StorySection
-              ref={ref5}
-              id={2}
-              video={highRes ? "witnessing.gif" : "witnessing.mp4"}
-              isAboutHovered={isAboutHovered}
-              highRes={highRes}
-            />
-            <StorySection
-              ref={ref6}
-              id={3}
-              video={highRes ? "responding.gif" : "responding.mp4"}
-              isAboutHovered={isAboutHovered}
-              highRes={highRes}
-            />
+          {renderStorySection(ref4, 1, "precedents")}
+          {renderStorySection(ref5, 2, "witnessing")}
+          {renderStorySection(ref6, 3, "responding")}
           </SwipeableViews>
         </div>
         <AnimatePresence>
-          {!isAboutHovered && (
+          {!isAboutHovered && !isAnimateClicked && (
             <motion.div
               key="bottomBand"
               variants={bandVariants}
