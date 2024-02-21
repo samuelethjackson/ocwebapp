@@ -58,9 +58,8 @@ const TitleBand: React.FC<TitleBandProps> = ({
   };
 
   return (
-    <div className="fixed top-8 flex flex-row w-full px-5 py-2 justify-between z-50">
-      <div className="opacity-0 md:opacity-100 w-full md:w-1/3 flex flex-row-reverse md:flex-row gap-0">
-        <div id="pageName" className="w-full hidden md:flex">
+    <div className="fixed top-8 flex flex-row w-full py-2 gridParent z-[100001]">
+        <div id="pageName" className="w-full col-start-1 hidden md:flex">
         {!isAboutHovered && (
           <motion.div
             key={pageName}
@@ -91,7 +90,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
           </motion.div>
         </div>
         <motion.div
-          className={`w-full text-base font-normal leading-tight pl-8 md:pl-0`}
+          className={`w-full hidden md:flex text-base font-normal col-start-4 col-end-12 pl-12 leading-tight `}
           variants={variants}
           initial="hidden"
           animate={isScrolledDown ? "hidden" : "visible"}
@@ -103,8 +102,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
         >
           {pageTitle}
         </motion.div>
-      </div>
-      <div className="w-1/6 flex flex-col md:flex-row justify-between md:items-center -mt-1 items-end gap-4">
+      <div className="w-full col-start-21 col-end-25 flex flex-col md:flex-row justify-between md:items-center -mt-1 items-end gap-4">
         {isAboutPage ? (
           <div className="opacity-100">
             <Link href={"/"}>

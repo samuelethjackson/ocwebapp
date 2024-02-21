@@ -59,7 +59,11 @@ body::-webkit-scrollbar {
 .grid-parent {
   display: grid;
   grid-template-rows: 160px 1fr;
-  grid-template-columns: 32px 1fr 128px 1fr 32px;
+  @apply md:grid-cols-12 lg:grid-cols-24 px-5;
+}
+
+.gridParent {
+  @apply grid grid-cols-6 md:grid-cols-12 lg:grid-cols-24 px-5;
 }
 
 .video-grid {
@@ -67,6 +71,19 @@ body::-webkit-scrollbar {
   grid-template-rows: 160px 1fr 1fr;
   grid-template-columns: 32px 1fr 128px 1fr 32px;
 }
+
+.half-grid {
+  display: grid;
+  grid-template-rows: 160px 1fr 1fr;
+  grid-template-columns: 64px 1fr 32px;
+}
+
+@media (max-width: 680px) {
+  .video-grid {
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+}
+
 
 @layer utilities {
   .text-balance {
@@ -111,7 +128,7 @@ body::-webkit-scrollbar {
 }
 
 .article h3 {
-  @apply indent-0 pl-8 text-xs md:text-base font-normal dark:text-white text-black uppercase leading-tight pb-3 tracking-wide col-start-2 col-end-10 pt-8;
+  @apply indent-0 pl-12 text-xs md:text-base font-normal dark:text-white text-black uppercase leading-tight pb-3 tracking-wide col-start-2 col-end-10 pt-8;
 }
 
 .article p {

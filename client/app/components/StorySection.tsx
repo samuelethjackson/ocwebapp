@@ -1,8 +1,6 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { AnimatePresence, motion, spring } from "framer-motion";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import { useData } from "./StorySectionHelper";
 
 interface StorySectionProps {
@@ -90,31 +88,6 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       setIsLinkHovered(isLinkHovered.map((v, i) => false));
     };
 
-    const [ratio, setRatio] = useState("");
-
-    useEffect(() => {
-      const handleResize = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const gcd = (a: number, b: number): number =>
-          b === 0 ? a : gcd(b, a % b); // Function to calculate greatest common divisor
-        const divisor = gcd(width, height);
-        setRatio(
-          `${Math.round(width / divisor / 15)}/${Math.round(
-            height / divisor / 15
-          )}`
-        );
-      };
-
-      window.addEventListener("resize", handleResize);
-      handleResize(); // Call the function initially to set the ratio
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
-
-    console.log(ratio);
-
     const fixedPositions = [
       { top: "20vh", left: "20vw" },
       { top: "30vh", left: "60vw" },
@@ -130,15 +103,15 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
         ref={ref}
         className={`relative w-full h-dvh md:h-screen snap-start grid-parent px-0 md:px-5 overflow-hidden no-scrollbar`}
       >
-        <div className="fixed left-0 w-screen h-screen video-grid place-items-stretch">
+        <div className="absolute left-0 w-screen h-screen video-grid place-items-stretch">
           {isGif ? (
             <motion.img
               src={videoPath}
               alt={""}
               className={`opacity-50 object-cover ${
                 !isAnimateClicked
-                     ? "col-start-1 col-span-5 row-start-1 row-span-3"
-                     : "col-start-4 col-span-1 row-start-2 row-span-1"
+                  ? "col-start-1 col-end-6 md:col-span-5 md:row-start-1 md:row-span-3"
+                  : "md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
               }`}
               layout
               animate={videoAnimation}
@@ -153,8 +126,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                  src={videoPath}
                  className={`opacity-50 object-cover ${
                    !isAnimateClicked
-                     ? "col-start-1 col-span-5 row-start-1 row-span-3"
-                     : "col-start-4 col-span-1 row-start-2 row-span-1"
+                     ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
+                     : "col-start-1 col-end-6 row-span-3 md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
                  }`}
                  autoPlay
                  muted
@@ -184,8 +157,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           }
           initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}
-          transition={{ ease: "easeInOut", duration: 2, delay: 2 }}
           variants={textVariants}
+          transition={{ ease: "easeInOut", duration: 2, delay: 2 }}
         >
           <div className="absolute md:top-0 left-0 center h-dvh overflow-y-scroll w-full md:h-screen md:absolute no-scrollbar">
             <div className="absolute top-40 md:top-0 md:h-screen justify-start items-center flex flex-col w-full gap-16 p-8 overflow-y-scroll no-scrollbar pb-40 md:overflow-clip ">
@@ -270,15 +243,17 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             </div>
           </div>
         </motion.div>
-        <motion.p
-          id="aboutText"
-          className={`text-black dark:text-white text-base col-start-1 col-end-6 md:col-start-5 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
-          animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
-          variants={textVariants}
-          transition={{ ease: "easeInOut", duration: 1 }}
-        >
-          Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki
-        </motion.p>
+        {!isAnimateClicked && (
+          <motion.p
+            id="aboutText"
+            className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
+            animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
+            variants={textVariants}
+            transition={{ ease: "easeInOut", duration: 1 }}
+          >
+            Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki
+          </motion.p>
+        )}
       </section>
     );
   }

@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { fullBlog } from "../lib/interface";
-import Layout from "./Layout";
 import { client } from "../lib/sanity";
 import { PortableText } from "@portabletext/react";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
 import { PortableTextMarkComponentProps } from "@portabletext/react";
 import CloseIcon from "./icons/closeIcon";
 import React from "react";
-import AboutTopBand from "./AboutTopBand";
 
 interface BlogArticleProps {
   params: { slug: string };
@@ -137,51 +133,14 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
     backVideo = highRes ? "responding.gif" : "responding.mp4";
   }
 
-  const isGif = backVideo.endsWith(".gif");
-  const videoPath = `/videos/${backVideo}`;
-
-  const router = useRouter();
-
   return (
     <div className="fixed top-0 left-0 h-screen w-screen z-[100] grid-parent overflow-y-scroll no-scrollbar">
-      <motion.div
-        variants={textVariants}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        className={`${
-          !isAnimateClicked
-            ? "fixed w-screen bg-gradient-to-b dark:from-black/40 dark:to-transparent from-white/50 to-transparent md:hidden top-0 left-0 pl-12 pb-16 pt-2 flex flex-col gap-1 z-[49]"
-            : "hidden"
-        }`}
-      >
-        <div className="w-full flex flex-row justify-between">
-          <div className="">{data?.category}</div>
-        </div>
-        <div className="">Oceanic Refractions</div>
-      </motion.div>
-      <motion.div
-        onClick={() => {
-          setIsAnimateClicked(false);
-          router.push(`/`);
-        }}
-        className="fixed col-start-4 w-[41vw] top-40 h-[40vh] z-[1000] flex cursor-pointer"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        {isAnimateClicked && (
-          <div className="h-full w-full center flex">
-            <p className="text-white text-base">All Contributions</p>
-          </div>
-        )}
-      </motion.div>
       <AnimatePresence>
         <article
-          className={`h-full pl-[15.5vw] fade-in col-start-1 col-end-5 row-start-2 row-end-auto md:col-start-2 md:col-end-3 article flex flex-col gap-20 pb-40 z-[100]`}
+          className={`h-full fade-in col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex flex-col gap-20 pb-40 z-[100]`}
         >
           <div className="md:top-0 flex flex-col gap-1 z-30 px-2">
-            <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-full z-10">
+            <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-80 z-10">
               {data?.title.split("\\n").map((line, i) => (
                 <React.Fragment key={i}>
                   <span dangerouslySetInnerHTML={{ __html: line }} />
@@ -193,7 +152,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
               {data?.author}
             </p>
           </div>
-          <div className="prose dark:text-white prose-headings:indent-8 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+          <div className="prose dark:text-white prose-headings:indent-12 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
             <PortableText
               value={data?.content}
               components={{
@@ -241,7 +200,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
           </div>
         </article>
       </AnimatePresence>
-      <div className="fixed top-0 left-0 w-full h-min md:h-screen grid-parent z-0 px-5 ">
+      <div className="fixed top-0 left-0 w-full h-min md:h-screen video-grid z-0 px-5 ">
         <footer className="absolute bottom-0 w-full place-self-end pb-4 col-start-4 flex flex-col citation">
           {data && (
             <div>

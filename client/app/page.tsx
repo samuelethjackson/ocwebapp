@@ -7,7 +7,7 @@ import TopBand from "./components/TopBand";
 import Layout from "./components/Layout";
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SwipeableViews from "react-swipeable-views";
 import BlogArticle from "./components/BlogArticle";
 
@@ -154,10 +154,12 @@ export default function Home() {
         />
       );
     }
-    return null;
+    return <div />; // return an empty div instead of null
   };
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const searchParams = useSearchParams();
 
@@ -170,20 +172,10 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000); // 3 seconds delay
-    }
-  }, [isLoading]);
-
   const bandVariants = {
     fadeIn: { opacity: 1 },
     fadeOut: { opacity: 0 },
   };
-
-  console.log(activeSection);
 
   return (
     <Layout
@@ -193,42 +185,33 @@ export default function Home() {
       isAboutHovered={isAboutHovered}
       setIsAboutHovered={setIsAboutHovered}
     >
-    {isLoading && (
-      <motion.div 
-        className="fixed top-0 left-0 w-screen h-screen flex-col gap-4 items-center justify-center z-[100]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="text-white text-2xl">OC article detected</p>
-      </motion.div>
-    )}
-      <main className="w-screen h-dvh md:h-screen">
       <AnimatePresence>
-        {isAnimateFinished && isAnimateClicked && selectedStorySlug && (
-          <motion.div
-            initial="fadeOut" // Add this line
-            animate="fadeIn"
-            exit="fadeOut" // Add this line
-            transition={{ ease: "easeInOut", duration: 1 }}
-          >
-            <BlogArticle
-  params={{ slug: selectedStorySlug }}
-  highRes={highRes}
-  setHighRes={setHighRes}
-  isAboutHovered={isAboutHovered}
-  setIsAboutHovered={setIsAboutHovered}
-  isAnimateClicked={isAnimateClicked}
-  setIsAnimateClicked={setIsAnimateClicked}
-/>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <main className="w-screen h-dvh md:h-screen">
+          {isAnimateFinished && isAnimateClicked && selectedStorySlug && (
+            <motion.div
+              initial="fadeOut" // Add this line
+              animate="fadeIn"
+              exit="fadeOut" // Add this line
+              transition={{ ease: "easeInOut", duration: 1 }}
+            >
+              <BlogArticle
+                params={{ slug: selectedStorySlug }}
+                highRes={highRes}
+                setHighRes={setHighRes}
+                isAboutHovered={isAboutHovered}
+                setIsAboutHovered={setIsAboutHovered}
+                isAnimateClicked={isAnimateClicked}
+                setIsAnimateClicked={setIsAnimateClicked}
+              />
+            </motion.div>
+          )}
         <TopBand
           pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
           onArrowClick={handleArrowClick}
           onTopBandClick={handleTopBandClick}
           isAboutHovered={isAboutHovered}
+          isAnimateClicked={isAnimateClicked}
+          setIsAnimateClicked={setIsAnimateClicked}
         />
         <motion.div
           variants={bandVariants}
@@ -247,12 +230,11 @@ export default function Home() {
             index={activeMobileSection - 1}
             onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
           >
-          {renderStorySection(ref4, 1, "precedents")}
-          {renderStorySection(ref5, 2, "witnessing")}
-          {renderStorySection(ref6, 3, "responding")}
+            {renderStorySection(ref4, 1, "precedents")}
+            {renderStorySection(ref5, 2, "witnessing")}
+            {renderStorySection(ref6, 3, "responding")}
           </SwipeableViews>
         </div>
-        <AnimatePresence>
           {!isAboutHovered && !isAnimateClicked && (
             <motion.div
               key="bottomBand"
@@ -268,8 +250,29 @@ export default function Home() {
               />
             </motion.div>
           )}
-        </AnimatePresence>
+        
+        {isAnimateClicked && (
+        <div className="hidden md:half-grid h-screen w-[50vw] fixed right-0 top-0 mt-8 mb-8 z-[900]">
+          <motion.div
+          onClick={() => {
+            setIsAnimateClicked(false);
+            router.push(`/`);
+          }}
+          className="col-start-2 row-start-2 -mt-8 flex cursor-pointer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          >
+          {isAnimateClicked && (
+            <div className="h-full w-full center flex">
+              <p className="text-base">All Contributions</p>
+            </div>
+          )}
+          </motion.div>
+        </div>
+        )}
       </main>
+      </AnimatePresence>
     </Layout>
   );
 }

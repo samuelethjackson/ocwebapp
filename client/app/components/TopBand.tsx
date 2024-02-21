@@ -2,12 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import ArrowNextIcon from "./icons/arrowNextIcon";
 import ArrowBackIcon from "./icons/arrowBackIcon";
+import CloseIcon from "./icons/closeIcon";
+import { useRouter } from "next/navigation";
 
 interface TopBandProps {
   pageName: string;
   onArrowClick?: (direction: "next" | "back") => void;
   onTopBandClick: () => void;
   isAboutHovered: boolean;
+  isAnimateClicked: boolean;
+  setIsAnimateClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TopBand: React.FC<TopBandProps> = ({
@@ -15,14 +19,18 @@ const TopBand: React.FC<TopBandProps> = ({
   onArrowClick,
   onTopBandClick,
   isAboutHovered,
+  isAnimateClicked,
+  setIsAnimateClicked,
 }) => {
   const bandVariants = {
     fadeIn: { opacity: 1 },
     fadeOut: { opacity: 0 },
   };
 
+  const router = useRouter();
+
   return (
-    <div className={`flex flex-col gap-4`}>
+    <div className={`fixed flex flex-col gap-4 z-[10000]`}>
       <motion.div
         onClick={onTopBandClick}
         animate={isAboutHovered ? "fadeOut" : "fadeIn"}
@@ -30,7 +38,7 @@ const TopBand: React.FC<TopBandProps> = ({
         initial="fadeOut"
         exit="fadeOut"
         transition={{ ease: "easeInOut", duration: 1 }}
-        className="dark:bg-black bg-white text-black dark:text-white fixed top-0 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-center gap-2 z-30 pb-10 md:pb-2"
+        className="dark:bg-black bg-white text-black dark:text-white fixed top-0 h-16 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-start gap-2 z-30 pb-6 md:pb-2"
       >
         <div
           className="md:hidden flex justify-end w-12 px-4 py-1"
@@ -38,7 +46,7 @@ const TopBand: React.FC<TopBandProps> = ({
         >
           {pageName !== "Precedents of" && <ArrowBackIcon />}
         </div>
-        <div className="md:max-w-1/3 flex flex-row w-full gap-0 z-30">
+        <div className="md:max-w-1/3 flex flex-row w-full gap-0 z-30 h-8">
           <motion.div
             key={pageName}
             className="w-full cursor-pointer text-base font-normal leading-tight"
@@ -50,13 +58,24 @@ const TopBand: React.FC<TopBandProps> = ({
           </motion.div>
         </div>
         <div
-          className="md:hidden flex justify-start w-12 px-4 py-1"
+          className="md:hidden flex justify-end w-12 px-4 py-1"
           onClick={() => onArrowClick?.("next")}
         >
-          {pageName !== "Responding to" && <ArrowNextIcon />}
+          {!isAnimateClicked && pageName !== "Responding to" && (
+            <ArrowNextIcon />
+          )}
+        </div>
+        <div
+          onClick={() => {
+            setIsAnimateClicked(!isAnimateClicked);
+            router.push(`/`);
+          }}
+          className="md:hidden flex pr-2 -mt-1 z-[1000]"
+        >
+          {isAnimateClicked && <CloseIcon />}
         </div>
       </motion.div>
-      <div className="w-full fixed top-9 pl-[52px] z-40 md:hidden">
+      <div className="w-full fixed top-9 pl-[51px] z-40 md:hidden">
         Oceanic Refractions
       </div>
     </div>
