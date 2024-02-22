@@ -54,8 +54,13 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
           }
         }}
         onClick={() => {
-          setClickedFootnote(markKey || null);
-          setHoveredFootnote(markKey || null);
+          if (markKey === clickedFootnote) {
+            setClickedFootnote(null);
+            setHoveredFootnote(null);
+          } else {
+            setClickedFootnote(markKey || null);
+            setHoveredFootnote(markKey || null);
+          }
         }}
       >
         {children}
@@ -134,25 +139,12 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
   }
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-screen z-[100] grid-parent overflow-y-scroll no-scrollbar">
+    <div className="fixed top-0 left-0 h-screen w-screen md:z-[100] grid-parent overflow-y-scroll no-scrollbar">
       <AnimatePresence>
         <article
-          className={`h-full fade-in col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex flex-col gap-20 pb-40 z-[100]`}
+          className={`h-full fade-in col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex flex-col gap-20 pb-40 z-50`}
         >
-          <div className="md:top-0 flex flex-col gap-1 z-30 px-2">
-            <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-80 z-10">
-              {data?.title.split("\\n").map((line, i) => (
-                <React.Fragment key={i}>
-                  <span dangerouslySetInnerHTML={{ __html: line }} />
-                  {i !== data.title.split("\\n").length - 1 && <br />}
-                </React.Fragment>
-              ))}
-            </h1>
-            <p className="cloud-shadow-grey !text-white inset-8">
-              {data?.author}
-            </p>
-          </div>
-          <div className="prose dark:text-white prose-headings:indent-12 pt-16 md:pt-0 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+          <div className="prose dark:text-white prose-headings:indent-12 pt-40 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
             <PortableText
               value={data?.content}
               components={{
@@ -178,22 +170,22 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
             <div className="w-full md:w-3/4 flex flex-col gap-8 pt-20">
               <div>
                 {data && (
-                  <p className="!indent-0 prose citation">
+                  <div className="!indent-0 prose citation">
                     <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
                       {data?.author}{" "}
                     </span>{" "}
-                    <PortableText value={data?.biographyText} />
-                  </p>
+                    <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data?.biographyText }}></p>
+                  </div>
                 )}
               </div>
               <div>
                 {data && (
-                  <p className="!indent-0 prose citation">
-                    <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
-                      Cite this article{" "}
-                    </span>
-                    <p dangerouslySetInnerHTML={{ __html: data?.citation }}></p>
-                  </p>
+                  <div className="!indent-0 prose citation">
+                  <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
+                    Cite this article{" "}
+                  </span>
+                  <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data?.citation }}></p>
+                </div>
                 )}
               </div>
             </div>
@@ -201,7 +193,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
         </article>
       </AnimatePresence>
       <div className="fixed top-0 left-0 w-full h-min md:h-screen video-grid z-0 px-5 ">
-        <footer className="absolute bottom-0 w-full place-self-end pb-4 col-start-4 flex flex-col citation">
+        <footer className="hidden absolute bottom-0 w-full place-self-end pb-4 col-start-4 md:flex flex-col citation">
           {data && (
             <div>
               <AnimatePresence>
@@ -214,7 +206,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                       exit={{ opacity: 0 }}
                       transition={{ ease: "easeInOut", duration: 1 }}
                       key={footnote._key}
-                      className="w-1/2 flex flex-row gap-3"
+                      className="md:w-full md:pr-8 lg:w-2/3 flex flex-row gap-3"
                     >
                       <p>{footnote.number}</p>
                       <p
@@ -226,7 +218,6 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
             </div>
           )}
         </footer>
-        <div className="">
           {data && (
             <div>
               <AnimatePresence>
@@ -241,7 +232,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                       key={footnote._key}
                       className="fixed w-screen left-0 p-4 bottom-0 mb-2  text-white dark:text-black md:hidden text-xs flex flex-row gap-2"
                     >
-                      <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start text-sm leading-[1.3rem]">
+                      <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start text-sm leading-[1.3rem] !z-[99999]">
                         <span>{footnote.number}</span>
                         <span
                           dangerouslySetInnerHTML={{ __html: footnote.text }}
@@ -258,7 +249,6 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
               </AnimatePresence>
             </div>
           )}
-        </div>
       </div>
     </div>
   );

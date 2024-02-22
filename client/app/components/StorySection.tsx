@@ -1,7 +1,8 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useData } from "./StorySectionHelper";
+import { storyOverview } from "../lib/interface"; // Add this line
 
 interface StorySectionProps {
   video: string;
@@ -14,6 +15,8 @@ interface StorySectionProps {
   setIsAnimateClicked: (value: boolean) => void;
   isAnimateFinished: boolean;
   setIsAnimateFinished: (value: boolean) => void;
+  setSelectedStory: (story: storyOverview) => void;
+  selectedStory: storyOverview | null;
 }
 
 const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
@@ -29,6 +32,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       setIsAnimateClicked,
       isAnimateFinished,
       setIsAnimateFinished,
+      setSelectedStory,
+      selectedStory,
     },
     ref
   ) => {
@@ -98,51 +103,70 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     ];
 
     return (
+      <div style={{ overflow: isAnimateClicked ? 'hidden' : 'auto', pointerEvents: isAnimateClicked ? 'none' : 'auto' }}>
+      {selectedStory && isAnimateClicked && (
+        <div className="absolute flex bottom-0 left-4 md:top-40 md:left-24 flex-col gap-1 px-2 !z-[1000] fade-in">
+          <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-80 z-10">
+            {selectedStory.title.split("\\n").map((line, i) => (
+              <React.Fragment key={i}>
+                <span dangerouslySetInnerHTML={{ __html: line }} />
+                {i !== selectedStory.title.split("\\n").length - 1 && <br />}
+              </React.Fragment>
+            ))}
+          </h1>
+          <p className="cloud-shadow-grey !text-white pl-8 md:text-[21px]">
+            {selectedStory.author}
+          </p>
+        </div>
+      )}
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen snap-start grid-parent px-0 md:px-5 overflow-hidden no-scrollbar`}
+        className={`relative w-full h-dvh md:h-screen snap-start grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-16"
+      }`}
       >
-        <div className="absolute left-0 w-screen h-screen video-grid place-items-stretch">
+        <div
+          className={`absolute left-0 w-screen h-screen video-grid place-items-stretch`}
+        >
           {isGif ? (
             <motion.img
               src={videoPath}
               alt={""}
-              className={`opacity-50 object-cover ${
+              className={`dark:brightness-50 dark:contrast-100 brightness-[1.1] contrast-[0.7] object-cover object-bottom  ${
                 !isAnimateClicked
-                  ? "col-start-1 col-end-6 md:col-span-5 md:row-start-1 md:row-span-3"
-                  : "md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
+                  ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
+                  : "col-start-1 col-end-6 row-span-3 justify-self-start md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
               }`}
               layout
               animate={videoAnimation}
-                 transition={{
-                   ease: "easeInOut", 
-                   duration: 2,
-                   layout: { duration: 2, ease: "easeInOut" },
-                 }}
+              transition={{
+                ease: "easeInOut",
+                duration: 2,
+                layout: { duration: 2, ease: "easeInOut" },
+              }}
             ></motion.img>
           ) : (
-               <motion.video
-                 src={videoPath}
-                 className={`opacity-50 object-cover ${
-                   !isAnimateClicked
-                     ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
-                     : "col-start-1 col-end-6 row-span-3 md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
-                 }`}
-                 autoPlay
-                 muted
-                 layout
-                 playsInline
-                 loop
-                 animate={videoAnimation}
-                 transition={{
-                   ease: "easeInOut",
-                   duration: 2,
-                   layout: { duration: 2, ease: "easeInOut" },
-                 }}
-               />
+            <motion.video
+              src={videoPath}
+              className={`dark:brightness-50 dark:contrast-100 brightness-[1.1] contrast-[0.6] object-cover object-bottom ${
+                !isAnimateClicked
+                  ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
+                  : "col-start-1 col-end-6 row-span-3 justify-self-start md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
+              }`}
+              autoPlay={true}
+              muted
+              layout
+              playsInline
+              loop
+              animate={videoAnimation}
+              transition={{
+                ease: "easeInOut",
+                duration: 2,
+                layout: { duration: 2, ease: "easeInOut" },
+              }}
+            />
           )}
-          </div>
+        </div>
         <motion.div
           id="storyCloudWrapper"
           className="w-screen h-dvh md:h-screen"
@@ -170,7 +194,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                 >
                   <div
                     id="storyCloud"
-                    className={`flex flex-col gap-2 max-w-64 cursor-pointer ${
+                    className={`flex flex-col gap-2 max-w-64 cursor-pointer !opacity-100 dark:!opacity-60 hover:dark:!opacity-100 ${
                       !highRes ? "opacity-60" : "opacity-100"
                     } transition-opacity duration-1000 ease-in-out`}
                     onClick={(e) => {
@@ -180,6 +204,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                       setIsAnimateClicked(!isAnimateClicked);
                       setSelectedSectionId(id);
                       router.push(`/?article=${post.currentSlug}`);
+                      setSelectedStory(post); // Set the selected story
                     }}
                     onMouseEnter={(e) => {
                       if (window.innerWidth > 768) {
@@ -234,7 +259,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                         </React.Fragment>
                       ))}
                     </h3>
-                    <p className="cloud-shadow-grey text-sm md:text-base pl-8">
+                    <p className="cloud-shadow-grey text-white text-sm md:text-base pl-8">
                       {post?.author}
                     </p>
                   </div>
@@ -243,18 +268,22 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             </div>
           </div>
         </motion.div>
+        <AnimatePresence>
         {!isAnimateClicked && (
           <motion.p
             id="aboutText"
             className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
             animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
+            initial={{ opacity: 0 }}
             variants={textVariants}
             transition={{ ease: "easeInOut", duration: 1 }}
           >
             Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki
           </motion.p>
         )}
+        </AnimatePresence>
       </section>
+      </div>
     );
   }
 );

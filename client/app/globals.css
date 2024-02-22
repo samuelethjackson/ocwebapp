@@ -57,7 +57,7 @@ body::-webkit-scrollbar {
 }
 
 .grid-parent {
-  display: grid;
+  display: grid ;
   grid-template-rows: 160px 1fr;
   @apply md:grid-cols-12 lg:grid-cols-24 px-5;
 }
@@ -73,9 +73,9 @@ body::-webkit-scrollbar {
 }
 
 .half-grid {
-  display: grid;
   grid-template-rows: 160px 1fr 1fr;
   grid-template-columns: 64px 1fr 32px;
+  @apply hidden md:grid;
 }
 
 @media (max-width: 680px) {
@@ -124,7 +124,7 @@ body::-webkit-scrollbar {
 }
 
 .article h2 {
-  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal;
+  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[18px] font-normal leading-normal;
 }
 
 .article h3 {
@@ -177,39 +177,86 @@ li::marker {
 }
 
 .fade-in {
-  animation: fadeIn ease-in-out 2s;
-  -webkit-animation: fadeIn ease-in-out 2s;
-  -moz-animation: fadeIn ease-in-out 2s;
-  -o-animation: fadeIn ease-in-out 2s;
-  -ms-animation: fadeIn ease-in-out 2s;
+  animation: fadeIn ease-in-out 6s;
+  -webkit-animation: fadeIn ease-in-out 6s;
+  -moz-animation: fadeIn ease-in-out 6s;
+  -o-animation: fadeIn ease-in-out 6s;
+  -ms-animation: fadeIn ease-in-out 6s;
 }
 
 @keyframes fadeIn {
   0% {opacity:0;}
+  50% {opacity:0;}
   100% {opacity:1;}
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadeIn {
   0% {opacity:0;}
+  50% {opacity:0;}
   100% {opacity:1;}
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadeIn {
   0% {opacity:0;}
+  50% {opacity:0;}
   100% {opacity:1;}
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadeIn {
   0% {opacity:0;}
+  50% {opacity:0;}
   100% {opacity:1;}
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadeIn {
   0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.fade-in-quick {
+  animation: fadeIn ease-in-out 3s;
+  -webkit-animation: fadeIn ease-in-out 3s;
+  -moz-animation: fadeIn ease-in-out 3s;
+  -o-animation: fadeIn ease-in-out 3s;
+  -ms-animation: fadeIn ease-in-out 3s;
+}
+
+@keyframes fadeIn-quick {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeIn-quick {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeIn-quick {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeIn-quick {
+  0% {opacity:0;}
+  50% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeIn-quick {
+  0% {opacity:0;}
+  50% {opacity:0;}
   100% {opacity:1;}
 }
 

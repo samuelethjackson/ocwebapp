@@ -30,7 +30,7 @@ export default async function RootLayout({
         <Suspense fallback={<div>Loading...</div>}>
           <AnimateProvider>
             <VideoProvider>
-              <div className="app">{children}</div>
+              <div className="app fade-in">{children}</div>
             </VideoProvider>
           </AnimateProvider>
         </Suspense>

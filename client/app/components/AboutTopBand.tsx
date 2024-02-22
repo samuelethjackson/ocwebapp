@@ -53,7 +53,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
           {pageName}
         </div>
       </div>
-      <div className='w-1/2 absolute pl-8 pt-10 md:hidden pb-1'>
+      <div className='w-1/2 absolute pl-[31px] pt-8 md:hidden pb-1'>
         Oceanic Refractions
       </div>
     </div>

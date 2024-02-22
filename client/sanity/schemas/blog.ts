@@ -38,13 +38,8 @@
           },
           {
               name: "biographyText",
-              type: "array",
+              type: "text",
               title: "Biography",
-              of: [
-                {
-                    type: 'block'
-                }
-            ]
           },
           {
               name: "date",

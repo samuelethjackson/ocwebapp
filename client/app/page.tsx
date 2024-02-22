@@ -10,6 +10,9 @@ import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SwipeableViews from "react-swipeable-views";
 import BlogArticle from "./components/BlogArticle";
+import { storyOverview } from "./lib/interface";
+import { useData } from "./components/StorySectionHelper";
+
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -29,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsAnimateFinished(isAnimateClicked);
-    }, 2000); // 3 seconds delay
+    }, 1000); // 3 seconds delay
 
     // Cleanup function to clear the timeout when the component unmounts or isAnimateClicked changes
     return () => clearTimeout(timer);
@@ -110,7 +113,6 @@ export default function Home() {
 
   let mobileTopBandText = "";
   let mobileVideo = "";
-  let mobileText = "";
 
   if (activeMobileSection === 1) {
     mobileTopBandText = "Precedents of";
@@ -125,6 +127,10 @@ export default function Home() {
 
   const [selectedStorySlug, setSelectedStorySlug] = useState("");
   const [selectedSectionId, setSelectedSectionId] = useState<number | null>(
+    null
+  );
+
+  const [selectedStory, setSelectedStory] = useState<storyOverview | null>(
     null
   );
 
@@ -151,26 +157,31 @@ export default function Home() {
           setIsAnimateClicked={setIsAnimateClicked}
           isAnimateFinished={isAnimateFinished}
           setIsAnimateFinished={setIsAnimateFinished}
+          selectedStory={selectedStory}
+          setSelectedStory={setSelectedStory}
         />
       );
     }
     return <div />; // return an empty div instead of null
   };
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
 
   const searchParams = useSearchParams();
 
+  const data = useData();
+
   useEffect(() => {
     const param = searchParams.get("article");
     if (param) {
-      setIsLoading(true);
       setIsAnimateClicked(true);
       setSelectedStorySlug(param);
+      const story = data?.find((story) => story.currentSlug === param);
+      console.log(story);
+      setSelectedStory(story || null);
+      console.log(selectedStory);
     }
-  }, []);
+  }, [data]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },
@@ -225,7 +236,12 @@ export default function Home() {
           {renderStorySection(ref2, 2, "witnessing")}
           {renderStorySection(ref3, 3, "responding")}
         </motion.div>
-        <div id="mobile" className="md:hidden no-scrollbar w-full">
+        <motion.div 
+        layout
+        transition={{duration: 2}}
+        id="mobile" className={`md:hidden no-scrollbar w-full ${
+          !isAnimateClicked ? "bottom-0" : "absolute bottom-[70dvh] md:static md:bottom-auto"
+        }`}>
           <SwipeableViews
             index={activeMobileSection - 1}
             onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
@@ -234,7 +250,7 @@ export default function Home() {
             {renderStorySection(ref5, 2, "witnessing")}
             {renderStorySection(ref6, 3, "responding")}
           </SwipeableViews>
-        </div>
+        </motion.div>
           {!isAboutHovered && !isAnimateClicked && (
             <motion.div
               key="bottomBand"
@@ -252,19 +268,19 @@ export default function Home() {
           )}
         
         {isAnimateClicked && (
-        <div className="hidden md:half-grid h-screen w-[50vw] fixed right-0 top-0 mt-8 mb-8 z-[900]">
+        <div className="hidden md:grid half-grid h-screen w-[50vw] fixed right-0 top-0 md:-mb-4 lg:top-[6vh] z-[900]">
           <motion.div
           onClick={() => {
             setIsAnimateClicked(false);
             router.push(`/`);
           }}
-          className="col-start-2 row-start-2 -mt-8 flex cursor-pointer"
+          className="col-start-2 row-start-2 flex cursor-pointer"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           >
           {isAnimateClicked && (
-            <div className="h-full w-full center flex">
+            <div className="hidden md:flex h-full w-full center fade-in-quick">
               <p className="text-base">All Contributions</p>
             </div>
           )}
