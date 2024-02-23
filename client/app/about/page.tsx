@@ -65,14 +65,14 @@ const AboutPage: React.FC = () => {
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 pb-40">
             <div id="connect" className="grid md:hidden grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Connect with us</h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="flex flex-col gap-0"><a className="!no-underline" href="mailto:oceanicrefractions@gmail.com">oceanicrefractions@gmail.com</a>
                 <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/">Instagram</a></p>
               </div>
             </div>
             <div id="about" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Who we are</h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                   Oceanic Refractions emerges from a long-standing friendship
                   and collaboration between us - AM Kanngieser
@@ -111,7 +111,7 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">
                 Our background and approach
               </h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
                   Oceanic Refractions has been created to convey testimonies of
                   the everyday lives, practices and world views of Pacific
@@ -179,7 +179,7 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">
                 Relationships and circulation
               </h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
                   The foundation of our artistic and professional collaboration
                   lies in our friendship, which has flourished through the time
@@ -266,7 +266,7 @@ const AboutPage: React.FC = () => {
             </div>
             <div id="community" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">Community</h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
                   We acknowledge the many generous individuals, communities and
                   institutions who have contributed to making Oceanic
@@ -311,7 +311,7 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">
                 Collective philosophies, values and ethics
               </h2>
-              <div className="w-full grid grid-cols-10 col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
                   As a collective, our shared principles shape why and how we
                   work together. These principles guide how we relate to one
@@ -512,7 +512,7 @@ const AboutPage: React.FC = () => {
             </div>
             <div id="connect" className="fixed self-end	flex flex-col w-full gap-2">
               <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">Connect with us</h2>
-              <div className="flex flex-col w-full col-span-10 gap-8">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="flex flex-col gap-0 opacity-50"><a className="!no-underline" href="mailto:oceanicrefractions@gmail.com">oceanicrefractions@gmail.com</a>
                 <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/">Instagram</a></p>
               </div>

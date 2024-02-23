@@ -166,7 +166,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                           className="w-6 h-6"
                           onClick={() => setHoveredFootnote(null)}
                         >
-                          <CloseIcon className="dark:!text-black" />
+                          <CloseIcon className="dark:!text-black -mt-2" />
                         </div>
                       </div>
                     </motion.div>

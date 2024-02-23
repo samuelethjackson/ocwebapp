@@ -13,7 +13,6 @@ import BlogArticle from "./components/BlogArticle";
 import { storyOverview } from "./lib/interface";
 import { useData } from "./components/StorySectionHelper";
 
-
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
   const ref2 = useRef<HTMLDivElement>(null);
@@ -198,7 +197,7 @@ export default function Home() {
       setIsAboutHovered={setIsAboutHovered}
     >
       <AnimatePresence>
-      <main className="w-screen h-dvh md:h-screen">
+        <main className="w-screen h-dvh md:h-screen">
           {isAnimateFinished && isAnimateClicked && selectedStorySlug && (
             <motion.div
               initial="fadeOut" // Add this line
@@ -217,41 +216,47 @@ export default function Home() {
               />
             </motion.div>
           )}
-        <TopBand
-          pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
-          onArrowClick={handleArrowClick}
-          onTopBandClick={handleTopBandClick}
-          isAboutHovered={isAboutHovered}
-          isAnimateClicked={isAnimateClicked}
-          setIsAnimateClicked={setIsAnimateClicked}
-        />
-        <motion.div
-          variants={bandVariants}
-          initial="fadeOut" // Add this line
-          animate="fadeIn"
-          exit="fadeOut" // Add this line
-          transition={{ ease: "easeInOut", duration: 1 }}
-          className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory"
-        >
-          {renderStorySection(ref1, 1, "precedents")}
-          {renderStorySection(ref2, 2, "witnessing")}
-          {renderStorySection(ref3, 3, "responding")}
-        </motion.div>
-        <motion.div 
-        layout
-        transition={{duration: 2}}
-        id="mobile" className={`md:hidden no-scrollbar w-full ${
-          !isAnimateClicked ? "bottom-0" : "absolute bottom-[65dvh] md:static md:bottom-auto"
-        }`}>
-          <SwipeableViews
-            index={activeMobileSection - 1}
-            onChangeIndex={(index: number) => setActiveMobileSection(index + 1)}
+          <TopBand
+            pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
+            onArrowClick={handleArrowClick}
+            onTopBandClick={handleTopBandClick}
+            isAboutHovered={isAboutHovered}
+            isAnimateClicked={isAnimateClicked}
+            setIsAnimateClicked={setIsAnimateClicked}
+          />
+          <motion.div
+            variants={bandVariants}
+            initial="fadeOut" // Add this line
+            animate="fadeIn"
+            exit="fadeOut" // Add this line
+            transition={{ ease: "easeInOut", duration: 1 }}
+            className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory"
           >
-            {renderStorySection(ref4, 1, "precedents")}
-            {renderStorySection(ref5, 2, "witnessing")}
-            {renderStorySection(ref6, 3, "responding")}
-          </SwipeableViews>
-        </motion.div>
+            {renderStorySection(ref1, 1, "precedents")}
+            {renderStorySection(ref2, 2, "witnessing")}
+            {renderStorySection(ref3, 3, "responding")}
+          </motion.div>
+          <motion.div
+            layout
+            transition={{ duration: 2 }}
+            id="mobile"
+            className={`md:hidden no-scrollbar w-full ${
+              !isAnimateClicked
+                ? "bottom-0"
+                : "absolute bottom-[65dvh] md:static md:bottom-auto"
+            }`}
+          >
+            <SwipeableViews
+              index={activeMobileSection - 1}
+              onChangeIndex={(index: number) =>
+                setActiveMobileSection(index + 1)
+              }
+            >
+              {renderStorySection(ref4, 1, "precedents")}
+              {renderStorySection(ref5, 2, "witnessing")}
+              {renderStorySection(ref6, 3, "responding")}
+            </SwipeableViews>
+          </motion.div>
           {!isAboutHovered && !isAnimateClicked && (
             <motion.div
               key="bottomBand"
@@ -267,28 +272,30 @@ export default function Home() {
               />
             </motion.div>
           )}
-        
-        {isAnimateClicked && (
-        <div className="hidden md:grid half-grid h-screen w-[50vw] fixed right-0 top-0 md:-mb-4 lg:top-[6vh] z-[900]">
-          <motion.div
-          onClick={() => {
-            setIsAnimateClicked(false);
-            router.push(`/`);
-          }}
-          className="col-start-2 row-start-2 flex cursor-pointer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          >
-          {isAnimateClicked && (
-            <div className="hidden md:flex h-full w-full center fade-in-quick">
-              <p className="text-base">All Contributions</p>
-            </div>
-          )}
-          </motion.div>
-        </div>
-        )}
-      </main>
+          <AnimatePresence>
+            {isAnimateClicked && (
+              <div className="hidden md:grid half-grid h-screen w-[50vw] fixed right-0 top-0 md:top-[2vw] z-[900]">
+                <motion.div
+                  onClick={() => {
+                    setIsAnimateClicked(false);
+                    router.push(`/`);
+                  }}
+                  className="col-start-2 row-start-2 flex cursor-pointer"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  exit={{ opacity: 0 }}
+                >
+                  {isAnimateClicked && (
+                    <div className="hidden md:flex h-full w-full center fade-in-quick">
+                      <p className="text-base">All Contributions</p>
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
+        </main>
       </AnimatePresence>
     </Layout>
   );
