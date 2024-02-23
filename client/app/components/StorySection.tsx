@@ -103,7 +103,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     ];
 
     return (
-      <div style={{ overflow: isAnimateClicked ? 'hidden' : 'auto', pointerEvents: isAnimateClicked ? 'none' : 'auto' }}>
+      <div className="snap-start"
+      style={{ overflow: isAnimateClicked ? 'hidden' : 'auto', pointerEvents: isAnimateClicked ? 'none' : 'auto' }}>
       {selectedStory && isAnimateClicked && (
         <div className="absolute flex bottom-0 left-4 md:top-40 md:left-24 flex-col gap-1 px-2 !z-[1000] fade-in">
           <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-80 z-10">
@@ -122,7 +123,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen snap-start grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-16"
+        className={`relative w-full h-dvh md:h-screen grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-16"
       }`}
       >
         <div
