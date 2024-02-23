@@ -241,7 +241,7 @@ export default function Home() {
         layout
         transition={{duration: 2}}
         id="mobile" className={`md:hidden no-scrollbar w-full ${
-          !isAnimateClicked ? "bottom-0" : "absolute bottom-[70dvh] md:static md:bottom-auto"
+          !isAnimateClicked ? "bottom-0" : "absolute bottom-[65dvh] md:static md:bottom-auto"
         }`}>
           <SwipeableViews
             index={activeMobileSection - 1}
