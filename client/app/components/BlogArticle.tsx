@@ -46,7 +46,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
   }: PortableTextMarkComponentProps<any>) => {
     return (
       <sup
-        className="text-xs cursor-pointer dark:cloud-shadow-white-small dark:text-black text-white cloud-shadow-black-small pl-1 pr-2"
+        className="text-xs cursor-pointer dark:cloud-shadow-white-small dark:text-black text-white cloud-shadow-black-small pl-1 pr-2 -z-5"
         onMouseEnter={() => setHoveredFootnote(markKey || null)}
         onMouseLeave={() => {
           if (markKey !== clickedFootnote) {
