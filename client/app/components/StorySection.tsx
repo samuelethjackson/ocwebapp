@@ -215,7 +215,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                   <div
                     id="storyCloud"
                     className={`flex flex-col gap-2 max-w-64 cursor-pointer !opacity-100 dark:!opacity-60 hover:dark:!opacity-100 ${
-                      !highRes ? "opacity-60" : "opacity-100"
+                      !highRes ? "" : "dark:!opacity-100 !opacity-100"
                     } transition-opacity duration-1000 ease-in-out`}
                     onClick={(e) => {
                       e.preventDefault();

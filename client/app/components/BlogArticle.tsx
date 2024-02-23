@@ -144,7 +144,36 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
         <article
           className={`h-full fade-in col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex flex-col gap-20 pb-40 z-50`}
         >
-          <div className="prose dark:text-white prose-headings:indent-12 pt-40 prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+          {data && (
+              <AnimatePresence>
+                {extractFootnotes(data.content)
+                  .filter((footnote) => footnote.markKey === hoveredFootnote)
+                  .map((footnote, index) => (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ ease: "easeInOut", duration: 1 }}
+                      key={footnote._key}
+                      className="fixed w-screen left-0 p-4 bottom-0 mb-2  text-white dark:text-black md:hidden text-xs flex flex-row gap-2"
+                    >
+                      <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start text-sm leading-[1.3rem] !z-[99999]">
+                        <span>{footnote.number}</span>
+                        <span
+                          dangerouslySetInnerHTML={{ __html: footnote.text }}
+                        ></span>
+                        <div
+                          className="w-6 h-6"
+                          onClick={() => setHoveredFootnote(null)}
+                        >
+                          <CloseIcon className="dark:!text-black" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+          )}
+          <div className="prose dark:text-white prose-headings:indent-12 pt-[15dvh] prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
             <PortableText
               value={data?.content}
               components={{
@@ -218,37 +247,6 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
             </div>
           )}
         </footer>
-          {data && (
-            <div>
-              <AnimatePresence>
-                {extractFootnotes(data.content)
-                  .filter((footnote) => footnote.markKey === hoveredFootnote)
-                  .map((footnote, index) => (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ ease: "easeInOut", duration: 1 }}
-                      key={footnote._key}
-                      className="fixed w-screen left-0 p-4 bottom-0 mb-2  text-white dark:text-black md:hidden text-xs flex flex-row gap-2"
-                    >
-                      <div className="p-2 rounded-lg bg-black dark:bg-white w-full flex flex-row gap-3 items-start justify-start text-sm leading-[1.3rem] !z-[99999]">
-                        <span>{footnote.number}</span>
-                        <span
-                          dangerouslySetInnerHTML={{ __html: footnote.text }}
-                        ></span>
-                        <div
-                          className="w-6 h-6"
-                          onClick={() => setHoveredFootnote(null)}
-                        >
-                          <CloseIcon className="dark:!text-black" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-              </AnimatePresence>
-            </div>
-          )}
       </div>
     </div>
   );
