@@ -38,7 +38,7 @@ const TopBand: React.FC<TopBandProps> = ({
         initial="fadeOut"
         exit="fadeOut"
         transition={{ ease: "easeInOut", duration: 1 }}
-        className="dark:bg-black bg-white text-black dark:text-white fixed top-0 h-16 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-start gap-2 z-30 pb-6 md:pb-2"
+        className={`fixed top-0 h-16 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-start gap-2 z-30 pb-6 md:pb-2 ${isAnimateClicked ? 'bg-gradient-to-b dark:from-black from-white to-transparent' : 'dark:bg-black bg-white text-black dark:text-white'}`}
       >
         <div
           className="md:hidden flex justify-end w-12 px-4 py-1"

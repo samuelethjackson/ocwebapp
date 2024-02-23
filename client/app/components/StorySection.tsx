@@ -9,6 +9,7 @@ interface StorySectionProps {
   id: number;
   isAboutHovered: boolean;
   highRes: boolean;
+  setHighRes: (value: boolean) => void;
   setSelectedStorySlug: (slug: string) => void;
   setSelectedSectionId: (id: number) => void;
   isAnimateClicked: boolean;
@@ -26,6 +27,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       id,
       isAboutHovered,
       highRes,
+      setHighRes,
       setSelectedStorySlug,
       setSelectedSectionId,
       isAnimateClicked,
@@ -70,6 +72,22 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       3: "Responding to",
     };
 
+    useEffect(() => {
+      const videoElement = document.getElementById("backgroundvideo") as HTMLVideoElement;
+    
+      if (videoElement) {
+        videoElement
+          .play()
+          .then(() => {
+            // Video is playing
+          })
+          .catch((error) => {
+            // Video failed to play, show GIF instead
+            setHighRes(true);
+          });
+      }
+    }, []);
+
     const filteredData = data?.filter(
       (post) => post.category === idCategoryMapping[id]
     );
@@ -106,7 +124,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <div className="snap-start"
       style={{ overflow: isAnimateClicked ? 'hidden' : 'auto', pointerEvents: isAnimateClicked ? 'none' : 'auto' }}>
       {selectedStory && isAnimateClicked && (
-        <div className="absolute flex bottom-0 left-4 md:top-40 md:left-24 flex-col gap-1 px-2 !z-[1000] fade-in">
+        <div className="absolute h-28 flex bottom-2 left-4 md:top-40 md:left-24 flex-col gap-1 px-2 !z-[1000] justify-center fade-in">
           <h1 className="text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[21px] font-normal leading-normal max-w-64 md:max-w-80 z-10">
             {selectedStory.title.split("\\n").map((line, i) => (
               <React.Fragment key={i}>
@@ -123,7 +141,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`relative w-full h-dvh md:h-screen grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-16"
+        className={`relative w-full h-dvh md:h-screen grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-14"
       }`}
       >
         <div
@@ -148,17 +166,18 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             ></motion.img>
           ) : (
             <motion.video
+            id="backgroundvideo"
               src={videoPath}
               className={`dark:brightness-50 dark:contrast-100 brightness-[1.1] contrast-[0.6] object-cover object-bottom ${
                 !isAnimateClicked
                   ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
                   : "col-start-1 col-end-6 row-span-3 justify-self-start md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
               }`}
-              autoPlay={true}
-              muted
+              muted={true}
               layout
+              autoPlay
               playsInline
-              loop
+              loop={true}
               animate={videoAnimation}
               transition={{
                 ease: "easeInOut",

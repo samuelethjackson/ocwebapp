@@ -40,6 +40,19 @@ main {
   padding: 0;
 }
 
+.media-controls-container {
+  opacity: 0 !important;
+}
+
+video::-webkit-media-controls {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.media-controls button {
+  display: none !important;
+}
+
 body::-webkit-scrollbar {
   -ms-overflow-style: none !important;  /* IE and Edge */
   display: none !important;

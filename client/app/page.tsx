@@ -151,6 +151,7 @@ export default function Home() {
           video={highRes ? `${video}.gif` : `${video}.mp4`}
           isAboutHovered={isAboutHovered}
           highRes={highRes}
+          setHighRes={setHighRes}
           setSelectedStorySlug={setSelectedStorySlug}
           setSelectedSectionId={setSelectedSectionId}
           isAnimateClicked={isAnimateClicked}
