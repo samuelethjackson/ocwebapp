@@ -288,7 +288,7 @@ export default function Home() {
                 >
                   {isAnimateClicked && (
                     <div className="hidden md:flex h-full w-full center fade-in-quick">
-                      <p className="text-base">All Contributions</p>
+                      <p className="text-base text-black cloud-shadow-white">All Contributions</p>
                     </div>
                   )}
                 </motion.div>
