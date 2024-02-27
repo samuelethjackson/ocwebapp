@@ -80,7 +80,7 @@ const AboutPage: React.FC = () => {
                   </a>
                   ) a feature exhibition for a European sound art biennale (
                   <a href="https://struertracks.dk/project/am-kanngieser-mere-nailatikau-eliki-reade" target="_blank">
-                    Crenulations—Pacific Drift, 2023
+                    Crenulations – Pacific Drift, 2023
                   </a>
                   ), both co-produced with Eliki Reade (Australia/Fiji), and a major immersive installation (Oceanic Refractions, 2024).
                 </p>
@@ -131,7 +131,7 @@ const AboutPage: React.FC = () => {
                 <h3 className="paragraph-title">
                   How We Choose to Work and Why 
                 </h3>
-                <p>
+                <p className="!indent-0">
                   Our mission is to transmit testimonies of Pacific people and their environments responding to anthropogenic ecosystemic crises.
                 </p>
                 <p>Our commitments include to:</p>
@@ -164,66 +164,60 @@ const AboutPage: React.FC = () => {
                   We acknowledge the many generous individuals, communities, and institutions who have contributed to making <i>Oceanic Refractions</i> possible. Our gratitude goes to the following for their creativity, expertise, goodwill, testimonials, and resourcing:
                 </p>
                 <ul>
-                <b>Participants</b>
+                  Participants
                   <li>Lydia Jacob and Philip Tacom (Duke of York Islands, Papua New Guinea)</li>
                   <li>Teweiariki Teaero (Kiribati)</li>
-                  <li>Simione Sevudredre and Unaisi Nabobo-Baba (Fiji)</li>
+                  <li>Simione Sevudredre and <a href="https://unaisinabobobaba.wordpress.com/" target="_blank">Unaisi Nabobo-Baba</a> (Fiji)</li>
                 </ul>
                 <ul>
-                  <li>Eliki Reade (early collaborator)</li>
-                  <li>Joseph Kamaru</li>
-                  <li>Tumeli Tuqota and Dave Lavaki</li>
-                  <li>Sara Murphy and Frank Pendergast </li>
-                  <li>Olan Clarke</li>
-                  <li>
-                    Joey Tau, Sana Balai, Fleur Ramsay, Simione Sevudredre
-                  </li>
-                  <li>Elise Misao Hunchuck</li>
-                  <li>
-                    Sandra Kraushaar and Cynthia Ramirez - The Asia Foundation -
-                    Pacific Islands
-                  </li>
-                  <li>CTM Festival and transmediale - Exhibiting Partners</li>
-                  <li>
-                    acob Eriksen and Matilde Best - Sound Art Lab, Struer Tracks
-                    Sound Art Biennale
-                  </li>
-                  <li>Bang and Olufsen</li>
-                  <li>Verenike</li>
-                  <li>Daniel Jenatsch</li>
-                  <li>Deutschland Radio</li>
-                  <li>Creative Australia</li>
-                  <li>Australian Cultural Foundation</li>
+                  Family and Friends
+                  <li>Krystelle Lavaki (Fiji)</li>
+                </ul>
+                <ul>
+                  Artistic Collaborators
+                  <li>Eliki Reade (<i>Listening Across Faultlines</i>)</li>
+                  <li><a href="https://jenatsch.net/" target="_blank">Daniel Jenatsch</a> (<i>Listening Across Faultlines</i>)</li>
+                  <li><a href="https://robbiewingcom.wordpress.com/" target="_blank">Robbie Wing</a> (<i>Crenulations – Pacific Drift</i>)</li>
+                  <li><a href="https://kmru.info/" target="_blank">Joseph Kamaru</a> (<i>Oceanic Refractions</i>)</li>
+                  <li>Tumeli Tuqota and Dave Lavaki (<i>Oceanic Refractions</i>)</li>
+                  <li>Sara Murphy and Frank Pendergast at <a href="https://www.spaceforms.ie/" target="_blank">SpaceForms</a> (<i>Oceanic Refractions</i>)</li>
+                  <li>Olan Clarke at FrameWorks (<i>Oceanic Refractions</i>)</li>
+                  <li>Erin Adams (Australia) of <a href="https://www.smellart.com.au/" target="_blank">Smell Art</a> (<i>Oceanic Refractions</i>)</li>
+                  <li><a href="https://elisehunchuck.com/" target="_blank">Elise Misao Hunchuck</a> (Canada and Germany), Website Concept, Design, and Editing (<i>Oceanic Refractions</i>)</li>
+                  <li>Marco Ferrari (Italy) of <a href="https://www.studiofolder.it/" target="_blank">Studio Folder</a>, Website Design and Build (<i>Oceanic Refractions</i>)</li>
+                </ul>
+                <ul>
+                  Advisory Board
+                  <li>Joey Tau (Papua New Guinea/ Fiji)</li>
+                  <li>Sana Balai (Autonomous Region of Bougainville/ Australia)</li>
+                  <li>Fleur Ramsay (Samoa/ Australia)</li>
+                  <li>Simione Sevudredre (Fiji)</li>
+                </ul>
+                <ul>
+                  <li><a href="https://asiafoundation.org/people/sandra-kraushaar/" target="_blank">Sandra Kraushaar</a> and Cynthia Ramirez of <a href="https://asiafoundation.org/where-we-work/pacific-islands/" target="_blank">The Asia Foundation</a> (Pacific Islands)</li>
+                  <li><a href="https://www.ctm-festival.de/" target="_blank">CTM Festival</a> and <a href="https://transmediale.de/en" target="_blank">transmediale</a> (Germany)</li>
+                  <li><a href="https://soundartlab.org/" target="_blank">Sound Art Lab</a> and <a href="https://struertracks.dk/" target="_blank">Struer Tracks Sound Art Biennale</a> (Denmark)</li>
+                  <li><a href="https://www.bang-olufsen.com/" target="_blank">Bang and Olufsen</a> (Denmark)</li>
+                  <li><a href="https://www.deutschlandradio.de/" target="_blank">Deutschland Radio</a> (Germany)</li>
+                  <li><a href="https://creative.gov.au/" target="_blank">Creative Australia</a> (Australia)</li>
+                  <li><a href="https://australianculturalfund.org.au/" target="_blank">Australian Cultural Foundation</a> (Australia)</li>
+                  <li><a href="https://commission.europa.eu/index_en" target="_blank">European Commission</a> (MSCA)</li>
                 </ul>
               </div>
             </div>
             <div id="philosophies" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">
-                Collective philosophies, values and ethics
+                Collective Philosophies, Values, and Ethics
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
-                  As a collective, our shared principles shape why and how we
-                  work together. These principles guide how we relate to one
-                  another and how we also hope to relate to project partners.
-                  They also reflect the prioritisation of integrity and care in
-                  our working methods.
+                  As a collective, our shared principles shape why and how we work together. These principles guide how we relate to one another and how we also hope to relate to project partners. They also reflect the prioritisation of integrity and care in our working methods.
                 </p>
                 <h3 className="paragraph-title">
-                  Centering Indigenous knowledge and practices
+                  Centering Indigenous Knowledge and Practices
                 </h3>
-                <p>
-                  We are working with a variety of cultural materials that hold
-                  great significance and need to be treated respectfully. We
-                  view the materials we are working with as being a part of the
-                  places they are taken from, containing spiritual and emotional
-                  attributes and connections. We do not use these materials
-                  lightly. Acknowledging the immeasurable value of the
-                  recordings and the contributions of the Pacific people
-                  featured in the work, this endeavour incorporates the informed
-                  consent of its participants and the guidance and advice of
-                  Pacific practitioners of art, culture and development for a
-                  generative experience. 
+                <p className="!indent-0">
+                  We are working with a variety of cultural materials that hold great significance and need to be treated respectfully. We view the materials we are working with as being a part of the places they are taken from, containing spiritual and emotional attributes and connections. We do not use these materials lightly. Acknowledging the immeasurable value of the recordings and the contributions of the Pacific people featured in our work, this endeavour incorporates the informed consent of its participants and the guidance and advice of Pacific practitioners of art, culture, and development for a generative experience. 
                 </p>
                 <h3 className="paragraph-title">
                   What this looks like in practice:
