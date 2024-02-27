@@ -451,11 +451,12 @@ const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            Design:
             <a
               className="!no-underline opacity-50"
               href="https://www.studiofolder.it"
             >
-              Design: Studio Folder
+              Studio Folder
             </a>
           </div>
           <div className="hidden h-screen col-start-15 col-end-24 md:flex items-start py-8 pt-36">
