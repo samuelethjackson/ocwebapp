@@ -74,7 +74,7 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">Who we are</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
-                  Oceanic Refractions emerges from a long-standing friendship and collaboration between us—AM Kanngieser (Australia) and Mere Nailatikau (Fiji). Beginning in 2018 with an audio storytelling class at The University of South Pacific’s Oceania Center in Suva, Fiji, we have slowly been developing workshops, creative practices and writing that centres Indigenous Pacific storytelling in climate art and communication. Since 2023 we have launched a series of commissioned documentaries for international broadcast (
+                  <i>Oceanic Refractions</i> emerges from a long-standing friendship and collaboration between us — <a href="https://amkanngieser.com/" target="_blank">AM Kanngieser</a> (Australia) and <a href="https://www.merenailatikau.com/" target="_blank">Mere Nailatikau</a> (Fiji). Beginning in 2018 with an audio storytelling class at The University of South Pacific’s Oceania Center in Suva, Fiji, we have slowly been developing workshops, creative practices and writing that centres Indigenous Pacific storytelling in climate art and communication. Since 2023 we have launched a series of commissioned documentaries for international broadcast (
                   <a href="https://www.hoerspielundfeature.de/listening-across-fault-linses-folge-01-englisch-100.html" target="_blank">
                     Listening Across Fault Lines, 2023
                   </a>
@@ -85,7 +85,7 @@ const AboutPage: React.FC = () => {
                   ), both co-produced with Eliki Reade (Australia/Fiji), and a major immersive installation (Oceanic Refractions, 2024).
                 </p>
                 <p>
-                  Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), Tumeli Tuqota (Fiji) and Mere Nailatikau, and sound design by Joseph Kamaru (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators <a href="https://www.spaceforms.ie/" target="_blank">Space Forms</a> (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist Smell Art (Australia).  
+                  Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), <a href="https://tuqota.com/" target="_blank">Tumeli Tuqota</a> (Fiji) and Mere Nailatikau, and sound design by <a href="https://kmru.info/" target="_blank">Joseph Kamaru</a> (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators <a href="https://www.spaceforms.ie/" target="_blank">Space Forms</a> (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist <a href="https://www.smellart.com.au/" target="_blank">Smell Art</a> (Australia).  
                 </p>
               </div>
             </div>
