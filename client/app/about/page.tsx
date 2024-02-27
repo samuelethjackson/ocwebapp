@@ -163,8 +163,10 @@ const AboutPage: React.FC = () => {
               <p className="!indent-0">
                   We acknowledge the many generous individuals, communities, and institutions who have contributed to making <i>Oceanic Refractions</i> possible. Our gratitude goes to the following for their creativity, expertise, goodwill, testimonials, and resourcing:
                 </p>
-                <ul>
+                <h3 className="paragraph-title">
                   Participants
+                </h3>
+                <ul>
                   <li>Lydia Jacob and Philip Tacom (Duke of York Islands, Papua New Guinea)</li>
                   <li>Teweiariki Teaero (Kiribati)</li>
                   <li>Simione Sevudredre and <a href="https://unaisinabobobaba.wordpress.com/" target="_blank">Unaisi Nabobo-Baba</a> (Fiji)</li>
@@ -173,8 +175,10 @@ const AboutPage: React.FC = () => {
                   Family and Friends
                   <li>Krystelle Lavaki (Fiji)</li>
                 </ul>
-                <ul>
+                <h3 className="paragraph-title">
                   Artistic Collaborators
+                </h3>
+                <ul>
                   <li>Eliki Reade (<i>Listening Across Faultlines</i>)</li>
                   <li><a href="https://jenatsch.net/" target="_blank">Daniel Jenatsch</a> (<i>Listening Across Faultlines</i>)</li>
                   <li><a href="https://robbiewingcom.wordpress.com/" target="_blank">Robbie Wing</a> (<i>Crenulations – Pacific Drift</i>)</li>
@@ -195,8 +199,10 @@ const AboutPage: React.FC = () => {
                   <li>Fleur Ramsay (Samoa/ Australia)</li>
                   <li>Simione Sevudredre (Fiji)</li>
                 </ul>
-                <ul>
+                <h3 className="paragraph-title">
                   Exhibiting Partners, Funders, and Support
+                </h3>
+                <ul>
                   <li><a href="https://asiafoundation.org/people/sandra-kraushaar/" target="_blank">Sandra Kraushaar</a> and Cynthia Ramirez of <a href="https://asiafoundation.org/where-we-work/pacific-islands/" target="_blank">The Asia Foundation</a> (Pacific Islands)</li>
                   <li><a href="https://www.ctm-festival.de/" target="_blank">CTM Festival</a> and <a href="https://transmediale.de/en" target="_blank">transmediale</a> (Germany)</li>
                   <li><a href="https://soundartlab.org/" target="_blank">Sound Art Lab</a> and <a href="https://struertracks.dk/" target="_blank">Struer Tracks Sound Art Biennale</a> (Denmark)</li>
@@ -245,7 +251,7 @@ const AboutPage: React.FC = () => {
                 <h3 className="paragraph-title">
                   Mutuality and Circular Economy
                 </h3>
-                <p>
+                <p className="!indent-0">
                   A key priority of the collective is that when we produce work about places and communities, the works and resources produced by the work are returned to those places and communities in different ways. This is important to ensure that the work comes to rest in its rightful home and that the communities it draws from are included in the economies the works generate.
                 </p>
                 <p>
@@ -284,13 +290,13 @@ const AboutPage: React.FC = () => {
                   </li>
                 </ul>
                 <h3 className="paragraph-title">Clarity of Communication</h3>
-                <p>
+                <p className="!indent-0">
                   In order to minimise Western capitalist cultures of urgency and stress, we practise clear and direct communication. We do so within our team and with project partners.
                 </p>
                 <h3 className="paragraph-title">
                   Honouring Different Capacities and Disability Justice
                 </h3>
-                <p>
+                <p className="!indent-0">
                   As collaborators in a team with various chronic illnesses and disabilities, we honour our interdependence and co-existence within systems of care. We prioritise rest and pacing; everyone has different capacities and needs. We treat each other with grace and dignity. In our work relations, we seek to transform rather than avoid mistakes and conflict. We honour non-conventional ways of collaborating that are not based on urgency, demand, and stress.
                 </p>
               </div>
