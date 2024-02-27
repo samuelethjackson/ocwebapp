@@ -186,14 +186,17 @@ const AboutPage: React.FC = () => {
                   <li><a href="https://elisehunchuck.com/" target="_blank">Elise Misao Hunchuck</a> (Canada and Germany), Website Concept, Design, and Editing (<i>Oceanic Refractions</i>)</li>
                   <li>Marco Ferrari (Italy) of <a href="https://www.studiofolder.it/" target="_blank">Studio Folder</a>, Website Design and Build (<i>Oceanic Refractions</i>)</li>
                 </ul>
-                <ul>
+                <h3 className="paragraph-title">
                   Advisory Board
+                </h3>
+                <ul>
                   <li>Joey Tau (Papua New Guinea/ Fiji)</li>
                   <li>Sana Balai (Autonomous Region of Bougainville/ Australia)</li>
                   <li>Fleur Ramsay (Samoa/ Australia)</li>
                   <li>Simione Sevudredre (Fiji)</li>
                 </ul>
                 <ul>
+                  Exhibiting Partners, Funders, and Support
                   <li><a href="https://asiafoundation.org/people/sandra-kraushaar/" target="_blank">Sandra Kraushaar</a> and Cynthia Ramirez of <a href="https://asiafoundation.org/where-we-work/pacific-islands/" target="_blank">The Asia Foundation</a> (Pacific Islands)</li>
                   <li><a href="https://www.ctm-festival.de/" target="_blank">CTM Festival</a> and <a href="https://transmediale.de/en" target="_blank">transmediale</a> (Germany)</li>
                   <li><a href="https://soundartlab.org/" target="_blank">Sound Art Lab</a> and <a href="https://struertracks.dk/" target="_blank">Struer Tracks Sound Art Biennale</a> (Denmark)</li>
@@ -217,121 +220,78 @@ const AboutPage: React.FC = () => {
                   Centering Indigenous Knowledge and Practices
                 </h3>
                 <p className="!indent-0">
-                  We are working with a variety of cultural materials that hold great significance and need to be treated respectfully. We view the materials we are working with as being a part of the places they are taken from, containing spiritual and emotional attributes and connections. We do not use these materials lightly. Acknowledging the immeasurable value of the recordings and the contributions of the Pacific people featured in our work, this endeavour incorporates the informed consent of its participants and the guidance and advice of Pacific practitioners of art, culture, and development for a generative experience. 
+                  We are working with a variety of cultural materials that hold great significance and need to be treated respectfully. We view the materials we are working with as being a part of the places they are taken from, containing spiritual and emotional attributes and connections. We do not use these materials lightly. Acknowledging the immeasurable value of the recordings and the contributions of the Pacific people featured in our work, this endeavour incorporates the informed consent of its participants and the guidance and advice of Pacific practitioners of art, culture, and development for a generative experience.
                 </p>
-                <h3 className="paragraph-title">
+                <p>
                   What this looks like in practice:
-                </h3>
+                </p>
                 <ul>
                   <li>
-                    We defer to Indigenous partners` perspectives and
-                    approaches. We consult with and inform ourselves how best to
-                    work with the materials we have. This involves ongoing
-                    conversations with community members. If this is in conflict
-                    with Western perspectives and approaches, we are open to
-                    finding ways to navigate conflicting viewpoints where
-                    possible. However, our priority is to amplify the Indigenous
-                    perspective;
+                    We defer to Indigenous partners&#39; perspectives and approaches. We consult with and inform ourselves how best to work with the materials we have. This involves ongoing conversations with community members. If this is in conflict with Western perspectives and approaches, we are open to finding ways to navigate conflicting viewpoints where possible. However, our priority is to amplify the Indigenous perspective;
                   </li>
                   <li>
-                    We consult with Indigenous partners and collaborators to
-                    ensure we have consent and permission to gather material, to
-                    make material public, and the use of material is aligned
-                    with community protocols;
+                    We consult with Indigenous partners and collaborators to ensure we have consent and permission to gather material, to make material public, and the use of any material is aligned with community protocols;
                   </li>
                   <li>
-                    We commit to being aware of the ways in which extractive
-                    systems have shaped our outlooks and our relationships. We
-                    commit to continual open dialogue with each other, our
-                    Advisory Board and our community partners in this process;
+                    We commit to being aware of the ways in which extractive systems have shaped our outlooks and our relationships. We commit to continual open dialogue with each other, our Advisory Board, and our community partners in this process;
                   </li>
                   <li>
-                    We acknowledge the multiple realities our Indigenous project
-                    partners and collaborators hold and will create pathways for
-                    clear communication around mutually agreed expectations,
-                    timelines and needs;
+                    We acknowledge the multiple realities our Indigenous project partners and collaborators hold and will create pathways for clear communication around mutually agreed expectations, timelines, and needs;
                   </li>
                   <li>
-                    We will not foreground non-Indigenous presentation partners
-                    or funders in our public presentation materials. We will
-                    work with non-Indigenous project partners to find
-                    alternative ways to respectfully acknowledge their input.
+                    We will not foreground non-Indigenous presentation partners or funders in our public presentation materials. We will work with non-Indigenous project partners to find alternative ways to respectfully acknowledge their input.
                   </li>
                 </ul>
                 <h3 className="paragraph-title">
-                  Mutuality and circular economy
+                  Mutuality and Circular Economy
                 </h3>
                 <p>
-                  A key priority of the collective is that when we produce work
-                  about places and communities, the works and resources produced
-                  by the work are returned to those places and communities in
-                  different ways. This is important to ensure that the work
-                  comes to rest in its rightful home and that the communities it
-                  draws from are included in the economies the works generate.
+                  A key priority of the collective is that when we produce work about places and communities, the works and resources produced by the work are returned to those places and communities in different ways. This is important to ensure that the work comes to rest in its rightful home and that the communities it draws from are included in the economies the works generate.
                 </p>
-                <h3 className="paragraph-title">
+                <p>
                   What this looks like in practice:
-                </h3>
+                </p>
                 <ul>
-                  <li>We are respectful of the land that we’re on;</li>
                   <li>
-                    We redistribute resources through opportunities, bringing in
-                    and working with Pacific partners at every possible scale;
+                    We are respectful of the land that we’re on;
+                  </li>
+                  <li>
+                    We redistribute resources through opportunities, bringing in and working with Pacific partners at every possible scale;
                   </li>
                   <li>
                     We pay project partners at rates equitable to our own;
                   </li>
                   <li>
-                    All recordings and material will be properly attributed as
-                    desired by project partners;
+                    All recordings and material will be properly attributed as desired by project partners;
                   </li>
                   <li>
-                    We work with community Elders and organisations to return
-                    the artistic material to the lands they were taken from
-                    through national and local archives;
+                    We work with community Elders and organisations to return the artistic material to the lands they were taken from through national and local archives;
                   </li>
                   <li>
-                    We make the material free and available for educational
-                    resources without constraint;
+                    We make the material free and available for educational resources without constraint;
                   </li>
                   <li>
-                    We work with communities to make the material relevant to
-                    them in the ways they see fit;
+                    We work with communities to make the material relevant to them in the ways they see fit;
                   </li>
                   <li>
-                    We prioritise building long-term relationships of trust and
-                    reciprocity, and will follow Pacific protocols for
-                    engagement;
+                    We prioritise building long-term relationships of trust and reciprocity and will follow Pacific protocols for engagement;
                   </li>
                   <li>
-                    We work with a cultural Advisory Board and will receive
-                    ongoing communication and advice from them;
+                    We work with a cultural Advisory Board and will receive ongoing communication and advice from them;
                   </li>
                   <li>
-                    We establish a long-term financial trust guided by the
-                    Advisory Board with money incoming from the presentation of
-                    work distributed to Pacific communities directly without the
-                    burden of reporting.
+                    We establish a long-term financial trust guided by the Advisory Board with money incoming from the presentation of work distributed to Pacific communities directly without the burden of reporting.
                   </li>
                 </ul>
-                <h3 className="paragraph-title">Clarity of communication</h3>
+                <h3 className="paragraph-title">Clarity of Communication</h3>
                 <p>
-                  In order to minimise Western capitalist cultures of urgency
-                  and stress, we practise clear and direct communication. We do
-                  so within our team and with project partners.
+                  In order to minimise Western capitalist cultures of urgency and stress, we practise clear and direct communication. We do so within our team and with project partners.
                 </p>
                 <h3 className="paragraph-title">
-                  Honouring different capacities and disability justice
+                  Honouring Different Capacities and Disability Justice
                 </h3>
                 <p>
-                  As collaborators in a team with various chronic illnesses,
-                  pain and disabilities, we honour our interdependence and
-                  co-existence within systems of care. We prioritise rest and
-                  pacing; everyone has different capacities and needs. We treat
-                  each other with grace and dignity. In our work relations, we
-                  seek to transform rather than avoid mistakes and conflict. We
-                  honour non-conventional ways of collaborating that are not
-                  based on urgency, demand, and stress.
+                  As collaborators in a team with various chronic illnesses and disabilities, we honour our interdependence and co-existence within systems of care. We prioritise rest and pacing; everyone has different capacities and needs. We treat each other with grace and dignity. In our work relations, we seek to transform rather than avoid mistakes and conflict. We honour non-conventional ways of collaborating that are not based on urgency, demand, and stress.
                 </p>
               </div>
             </div>
