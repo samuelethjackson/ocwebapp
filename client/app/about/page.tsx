@@ -171,8 +171,10 @@ const AboutPage: React.FC = () => {
                   <li>Teweiariki Teaero (Kiribati)</li>
                   <li>Simione Sevudredre and <a href="https://unaisinabobobaba.wordpress.com/" target="_blank">Unaisi Nabobo-Baba</a> (Fiji)</li>
                 </ul>
-                <ul>
+                <h3 className="paragraph-title">
                   Family and Friends
+                </h3>
+                <ul>
                   <li>Krystelle Lavaki (Fiji)</li>
                 </ul>
                 <h3 className="paragraph-title">
