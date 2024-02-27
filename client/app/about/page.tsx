@@ -74,18 +74,18 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">Who we are</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
-                  Oceanic Refractions emerges from a long-standing friendship and collaboration between us - AM Kanngieser (Australia) and Mere Nailatikau (Fiji). Beginning in 2018 with an audio storytelling class at The University of South Pacific’s Oceania Center in Suva, Fiji, we have slowly been developing workshops, creative practices and writing that centres Indigenous Pacific storytelling in climate art and communication. Since 2023 we have launched a series of commissioned documentaries for international broadcast (
-                  <a href="https://www.hoerspielundfeature.de/listening-across-fault-linses-folge-01-englisch-100.html">
+                  Oceanic Refractions emerges from a long-standing friendship and collaboration between us—AM Kanngieser (Australia) and Mere Nailatikau (Fiji). Beginning in 2018 with an audio storytelling class at The University of South Pacific’s Oceania Center in Suva, Fiji, we have slowly been developing workshops, creative practices and writing that centres Indigenous Pacific storytelling in climate art and communication. Since 2023 we have launched a series of commissioned documentaries for international broadcast (
+                  <a href="https://www.hoerspielundfeature.de/listening-across-fault-linses-folge-01-englisch-100.html" target="_blank">
                     Listening Across Fault Lines, 2023
                   </a>
                   ) a feature exhibition for a European sound art biennale (
-                  <a href="https://struertracks.dk/project/am-kanngieser-mere-nailatikau-eliki-reade">
+                  <a href="https://struertracks.dk/project/am-kanngieser-mere-nailatikau-eliki-reade" target="_blank">
                     Crenulations—Pacific Drift, 2023
                   </a>
                   ), both co-produced with Eliki Reade (Australia/Fiji), and a major immersive installation (Oceanic Refractions, 2024).
                 </p>
                 <p>
-                  Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), Tumeli Tuqota (Fiji) and Mere Nailatikau, and sound design by Joseph Kamaru (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators Space Forms (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist Smell Art (Australia).  
+                  Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), Tumeli Tuqota (Fiji) and Mere Nailatikau, and sound design by Joseph Kamaru (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators <a href="https://www.spaceforms.ie/" target="_blank">Space Forms</a> (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist Smell Art (Australia).  
                 </p>
               </div>
             </div>
@@ -95,65 +95,22 @@ const AboutPage: React.FC = () => {
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
-                  Oceanic Refractions has been created to convey testimonies of
-                  the everyday lives, practices and world views of Pacific
-                  people and their environments, bearing witness to ongoing and
-                  accelerating ecocide.
+                  Oceanic Refractions has been created to convey testimonies from the everyday lives of diverse Oceanic communities and their environments, bearing witness to ongoing and accelerating ecocide. 
                 </p>
                 <p>
-                  With backgrounds in communication, public policy and
-                  international relations (Nailatikau), and climate research,
-                  geography and arts (Kanngieser), our interdisciplinary
-                  approaches form the foundation on which we learn from and
-                  amplify the sovereignty of Oceanic peoples. Through Oceanic
-                  Refractions, we foreground interconnecting and divergent
-                  perspectives held by the Pacific communities with whom we have
-                  the privilege of working. In embracing their complexity, we
-                  move away from universalised and dehumanising descriptions of
-                  Indigeneity that seek to depict communities as ‘heroes’ or
-                  ‘victims’ of the climate crisis.
+                  With backgrounds in communication, advocacy and international relations (Nailatikau), and climate geography and art (Kanngieser), our interdisciplinary approaches form the foundation from which we amplify the sovereignty of Oceanic peoples. Through Oceanic Refractions, we foreground interdependence and connection across the many experiences held by the Pacific communities with whom we have the privilege of working. In embracing their complexity, we move away from universalised and dehumanising descriptions of Indigenous resilience that seek to depict communities as simply ‘heroes’ or ‘victims’ of the climate crisis. 
                 </p>
                 <p>
-                  The catastrophic ecosystemic changes experienced across the
-                  region derive from legacies of European colonisation,
-                  imperialism, and resource extraction – and post-independence,
-                  from neo-colonial capitalism. We recognise these violences and
-                  centre liberation and self-determination. It is crucial for us
-                  to expand beyond the ‘deficit’ and trauma narratives prevalent
-                  in arts, NGO, aid and academic discourses by focusing on
-                  knowledges and experiences usually left out of international
-                  environmental conversations, particularly those of transgender
-                  and queer communities, women and older custodians. 
+                  The ecosystemic changes experienced across the region derive from legacies of European colonisation, imperialism, and resource extraction – and post-independence – from neo-colonial capitalism. We recognise these violences and work from narratives and practices of liberation and self-determination. In our view, it is crucial for us to expand beyond the ‘deficit’ and trauma narratives prevalent in arts, NGO, aid and academic discourses by focusing on knowledges and perspectives usually left out of international environmental conversations, particularly those of transgender and queer communities, women and older custodians. 
                 </p>
                 <p>
-                  We will always prioritise collaborating with and highlighting
-                  creators and artists in the Pacific Islands. The western
-                  concept of Indigeneity holds significant social cachet within
-                  artistic circles of white settler-coloniser societies, where
-                  it is often exoticised and patronised. For Indigenous artists
-                  residing in their home countries without the support of a
-                  publicly funded arts sector, creative opportunities are
-                  frequently limited to performative cultural representation and
-                  influenced by themes imposed by development and aid agencies.
+                  In line with our approach, we prioritise collaborating with and highlighting creators and artists living across the Pacific region. The western concept of Indigeneity holds significant social cachet within artistic circles of settler-coloniser societies, where it is often tokenised, taking away the dignity of producers and forcing them to make work legible to white audiences. For Indigenous artists residing in their home countries without the support of a publicly funded arts sector, creative opportunities are frequently limited to performative cultural representation and influenced by themes imposed by development and aid agencies.
                 </p>
                 <p>
-                  Recognising the complex inequities they confront, we
-                  purposefully showcase Pacific Islands-based creators and
-                  artists and ensure equitable pay. This commitment is the
-                  foundation upholding our decision to bring Oceanic Refractions
-                  back to the region. The project must benefit the communities
-                  we work with; our plan is to co-design ongoing interactions of
-                  the project with local communities, creators, and artists on a
-                  long-term basis and establish a community-led trust to support
-                  local initiatives without reporting.
+                  Recognising the inequities they confront, we purposefully showcase Pacific Islands-based creators and artists and ensure equitable pay. This commitment upholds our decision to bring Oceanic Refractions back to the region. The project must benefit the communities we work with; we plan to co-design ongoing interactions of the project with local communities, creators, and artists on a long-term basis and establish a community-led trust to support local initiatives without the burden of reporting.
                 </p>
                 <p>
-                  Our work progresses in close consultation with an Advisory
-                  Group comprising Joey Tau (Papua New Guinea/ Fiji) from
-                  Pacific Network on Globalisation - PANG; Fleur Ramsay (Samoa/
-                  Australia) from Blue Ocean Law; Indigenous culturalist Simione
-                  Sevudredre (Fiji); and environmental scientist and curator
-                  Sana Balai (Bouganville/ Australia). 
+                  Our work progresses in close consultation with an Advisory Group comprising Joey Tau (Papua New Guinea/ Fiji) from Pacific Network on Globalisation; Fleur Ramsay (Samoa/ Australia) from Blue Ocean Law; Indigenous culturalist Simione Sevudredre (Fiji); and environmental scientist and curator Sana Balai (Bouganville/ Australia). 
                 </p>
               </div>
             </div>
