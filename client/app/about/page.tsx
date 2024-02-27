@@ -71,7 +71,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="about" className="grid grid-cols-10 gap-8">
-              <h2 className="col-start-2 col-end-10">Who we are</h2>
+              <h2 className="col-start-2 col-end-10">Who We Are</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                   <i>Oceanic Refractions</i> emerges from a long-standing friendship and collaboration between us — <a href="https://amkanngieser.com/" target="_blank">AM Kanngieser</a> (Australia) and <a href="https://www.merenailatikau.com/" target="_blank">Mere Nailatikau</a> (Fiji). Beginning in 2018 with an audio storytelling class at The University of South Pacific’s Oceania Center in Suva, Fiji, we have slowly been developing workshops, creative practices and writing that centres Indigenous Pacific storytelling in climate art and communication. Since 2023 we have launched a series of commissioned documentaries for international broadcast (
@@ -91,115 +91,69 @@ const AboutPage: React.FC = () => {
             </div>
             <div id="background" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">
-                Our background and approach
+                Our Background and Approach
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
-                  Oceanic Refractions has been created to convey testimonies from the everyday lives of diverse Oceanic communities and their environments, bearing witness to ongoing and accelerating ecocide. 
+                  <i>Oceanic Refractions</i> has been created to convey testimonies from the everyday lives of diverse Oceanic communities and their environments, bearing witness to ongoing and accelerating ecocide.
                 </p>
                 <p>
-                  With backgrounds in communication, advocacy and international relations (Nailatikau), and climate geography and art (Kanngieser), our interdisciplinary approaches form the foundation from which we amplify the sovereignty of Oceanic peoples. Through Oceanic Refractions, we foreground interdependence and connection across the many experiences held by the Pacific communities with whom we have the privilege of working. In embracing their complexity, we move away from universalised and dehumanising descriptions of Indigenous resilience that seek to depict communities as simply ‘heroes’ or ‘victims’ of the climate crisis. 
+                  With backgrounds in communication, advocacy, and international relations (Nailatikau), and climate geography and art (Kanngieser), our interdisciplinary approaches form the foundation from which we amplify the sovereignty of Oceanic peoples. Through <i>Oceanic Refractions</i>, we foreground interdependence and connection across the many experiences held by the Pacific communities with whom we have the privilege of working. In embracing their complexity, we move away from universalised and dehumanising descriptions of Indigenous resilience that seek to depict communities as simply ‘heroes’ or ‘victims’ of the climate crisis.
                 </p>
                 <p>
-                  The ecosystemic changes experienced across the region derive from legacies of European colonisation, imperialism, and resource extraction – and post-independence – from neo-colonial capitalism. We recognise these violences and work from narratives and practices of liberation and self-determination. In our view, it is crucial for us to expand beyond the ‘deficit’ and trauma narratives prevalent in arts, NGO, aid and academic discourses by focusing on knowledges and perspectives usually left out of international environmental conversations, particularly those of transgender and queer communities, women and older custodians. 
+                  The ecosystemic changes experienced across the region derive from legacies of European colonisation, imperialism, and resource extraction — and post-independence — from neo-colonial capitalism. We recognise these violences and work from narratives and practices of liberation and self-determination. In our view, it is crucial for us to expand beyond the ‘deficit’ and trauma narratives prevalent in arts, NGO, aid, and academic discourses by focusing on knowledges and perspectives usually left out of international environmental conversations, particularly those of transgender and queer communities, women and older custodians.
                 </p>
                 <p>
-                  In line with our approach, we prioritise collaborating with and highlighting creators and artists living across the Pacific region. The western concept of Indigeneity holds significant social cachet within artistic circles of settler-coloniser societies, where it is often tokenised, taking away the dignity of producers and forcing them to make work legible to white audiences. For Indigenous artists residing in their home countries without the support of a publicly funded arts sector, creative opportunities are frequently limited to performative cultural representation and influenced by themes imposed by development and aid agencies.
+                  In line with our approach, we prioritise collaborating with and highlighting creators and artists living across the Pacific region. The Western concept of Indigeneity holds significant social cachet within artistic circles of settler-coloniser societies, where it is often tokenised, taking away the dignity of producers and forcing them to make work legible to white audiences. For Indigenous artists residing in their home countries without the support of a publicly funded arts sector, creative opportunities are frequently limited to performative cultural representation and influenced by themes imposed by development and aid agencies.
                 </p>
                 <p>
                   Recognising the inequities they confront, we purposefully showcase Pacific Islands-based creators and artists and ensure equitable pay. This commitment upholds our decision to bring Oceanic Refractions back to the region. The project must benefit the communities we work with; we plan to co-design ongoing interactions of the project with local communities, creators, and artists on a long-term basis and establish a community-led trust to support local initiatives without the burden of reporting.
                 </p>
                 <p>
-                  Our work progresses in close consultation with an Advisory Group comprising Joey Tau (Papua New Guinea/ Fiji) from Pacific Network on Globalisation; Fleur Ramsay (Samoa/ Australia) from Blue Ocean Law; Indigenous culturalist Simione Sevudredre (Fiji); and environmental scientist and curator Sana Balai (Bouganville/ Australia). 
+                  Our work progresses in close consultation with an Advisory Group comprising Joey Tau (Papua New Guinea/ Fiji) from <a href="http://www.pang.org.fj/" target="_blank">Pacific Network on Globalisation (PANG)</a>; Fleur Ramsay (Samoa/ Australia) from <a href="https://www.blueoceanlaw.com/" target="_blank">Blue Ocean Law</a>; Indigenous culturalist Simione Sevudredre (Fiji); and environmental scientist and curator Sana Balai (Bouganville/ Australia).
                 </p>
               </div>
             </div>
             <div id="relationship" className="grid grid-cols-10 gap-8">
               <h2 className="col-start-2 col-end-10">
-                Relationships and circulation
+                Relationships and Circulation
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
-                  The foundation of our artistic and professional collaboration
-                  lies in our friendship, which has flourished through the time
-                  we`ve dedicated—both individually and together—to
-                  contemplating the integrity of our work and its purpose. As a
-                  white creator, Amer knows there is no truly ethical way for
-                  them to do this work, and we are continuously reflecting on
-                  how to navigate as well as possible the vastly differential
-                  economic, racial and social capital and power between diverse
-                  Indigenous and non-Indigenous communities. All material in
-                  Oceanic Refractions has been recorded consensually, in
-                  consultation with, and invitation by, the speakers and
-                  environments. We are explicitly dedicated to anti-colonial
-                  approaches and the centralisation of Indigenous knowledge and
-                  relational values. Our actions and protocols as Indigenous and
-                  non-Indigenous artists are outlined in the Oceanic Refractions
-                  project philosophy.
+                  The foundation of our artistic and professional collaboration lies in our friendship, which has flourished through the time we've dedicated — both individually and together — to contemplating the integrity of our work and its purpose. As a white Anglo-European creator, AM knows there is no absolutely ethical way for them to do this work, and we are continuously reflecting on how to navigate as well as possible the vastly differential economic, racial, and social capital and power held between diverse Indigenous and non-Indigenous communities. All material in <i>Oceanic Refractions</i> has been recorded consensually, in consultation with, and invitation by, the speakers and environments. We are explicitly dedicated to anti-colonial approaches and the centralisation of Indigenous knowledge and relational values. Our actions and protocols as Indigenous and non-Indigenous artists are outlined in the <i>Oceanic Refractions</i> project philosophy.
                 </p>
                 <p>
-                  Following overseas exhibitions, Oceanic Refractions will be
-                  brought back to Fiji. We are fostering partnerships with local
-                  institutions, including a program involving skill-sharing and
-                  cultural exchange activities. We hope to do the same in other
-                  Pacific Island countries. It is crucial for Oceanic
-                  Refractions to extend beyond formalised and exclusive arts
-                  spaces. Creativity knows no bounds, and we firmly believe that
-                  the right to enjoy, contribute to, and engage with the arts
-                  belongs to everyone.
+                  Following overseas exhibitions, <i>Oceanic Refractions</i> will be brought back to Fiji. We are fostering partnerships with local institutions, including a program involving skill-sharing and cultural exchange activities. We hope to do the same in other Pacific Island countries. It is crucial for <i>Oceanic Refractions</i> to extend beyond formalised and exclusive arts spaces. Creativity knows no bounds, and we firmly believe that the right to enjoy, contribute to, and engage with the arts belongs to everyone.
                 </p>
                 <p>
-                  We are in the process of setting up a trust with any future
-                  income from Oceanic Refractions exhibitions. Guided by the
-                  Advisory Group, this trust will support workshops, dialogues,
-                  and collaborations with communities and creators in the
-                  Pacific Islands.
+                  We are setting up a trust with any future income from <i>Oceanic Refractions</i> exhibitions. Guided by the Advisory Group, this trust will support workshops, dialogues, and collaborations with communities and creators in the Pacific Islands.
                 </p>
                 <h3 className="paragraph-title">
-                  How we choose to work and why 
+                  How We Choose to Work and Why 
                 </h3>
                 <p>
-                  Our mission is to transmit testimonies of Pacific people and
-                  their environments responding to anthropogenic ecosystemic
-                  crises. 
+                  Our mission is to transmit testimonies of Pacific people and their environments responding to anthropogenic ecosystemic crises.
                 </p>
                 <p>Our commitments include to:</p>
                 <ul>
                   <li>
-                    Create a community-led trust to distribute income from
-                    commissions to Pacific communities;
+                    Create a community-led trust to distribute income from commissions to Pacific communities;
                   </li>
                   <li>
-                    Equitably pay collaborators for their time and showcase
-                    their contributions, prioritising Pacific Islands-based
-                    creators at every opportunity;
+                    Equitably pay collaborators for their time and showcase their contributions, prioritising Pacific Islands-based creators at every opportunity;
                   </li>
                   <li>
-                    Archive recordings in their countries and with their
-                    communities of origin;
+                    Archive recordings in their countries and with their communities of origin;
                   </li>
                   <li>
-                    Bring the installation to the Pacific region with an
-                    emphasis on engaging long-term with communities and schools
-                    through workshops, skill-sharing and creative opportunities.
+                    Bring the installation to the Pacific region with an emphasis on engaging long-term with communities and schools through workshops, skill-sharing, and creative opportunities.
                   </li>
                 </ul>
                 <p>
-                  We work closely with our Advisory Group to ensure we are
-                  always accountable to Pacific communities. Our project
-                  philosophy captures how we commit to working based on our
-                  reflections on methods, co-design, listening, and emphasising
-                  Indigenous knowledge and perspectives. 
+                  We work closely with our Advisory Group to ensure we are always accountable to Pacific communities. Our project philosophy captures how we commit to working based on our reflections on methods, co-design, listening, and emphasising Indigenous knowledge and perspectives.
                 </p>
                 <p>
-                  Informed by our individual and collective experiences, we
-                  align ourselves with people, places and communities that share
-                  Oceanic Refractions’ ethos and values. Conversely, we refrain
-                  from engaging with institutions and actors that have shown a
-                  lack of good faith. Recognising the extractive and colonialist
-                  frameworks of aid-funded development and academia, both of
-                  which we have extensive experience in, we make a deliberate
-                  choice to demote these spaces in our work. 
+                  Informed by our individual and collective experiences, we align ourselves with people, places, and communities that share <i>Oceanic Refractions</i>’ ethos and values. Conversely, we refrain from engaging with institutions and actors that have shown a lack of good faith. Recognising the extractive systems of aid-funded development, arts, and academia, of which we have extensive experience, we make a deliberate choice to demote these spaces in our work.
                 </p>
               </div>
             </div>
@@ -207,18 +161,15 @@ const AboutPage: React.FC = () => {
               <h2 className="col-start-2 col-end-10">Community</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
               <p className="!indent-0">
-                  We acknowledge the many generous individuals, communities and
-                  institutions who have contributed to making Oceanic
-                  Refractions possible. Our gratitude goes to the following for
-                  their creativity, expertise, goodwill, testimonials and
-                  resourcing: 
+                  We acknowledge the many generous individuals, communities, and institutions who have contributed to making <i>Oceanic Refractions</i> possible. Our gratitude goes to the following for their creativity, expertise, goodwill, testimonials, and resourcing:
                 </p>
                 <ul>
-                  <li>
-                    Lydia Jacob and Philip Tacom (Duke of York Islands, Papua
-                    New Guinea), Teweiariki Teaero (Kiribati), Simione
-                    Sevudredre and Unaisi Nabobo-Baba (Fiji)
-                  </li>
+                <b>Participants</b>
+                  <li>Lydia Jacob and Philip Tacom (Duke of York Islands, Papua New Guinea)</li>
+                  <li>Teweiariki Teaero (Kiribati)</li>
+                  <li>Simione Sevudredre and Unaisi Nabobo-Baba (Fiji)</li>
+                </ul>
+                <ul>
                   <li>Eliki Reade (early collaborator)</li>
                   <li>Joseph Kamaru</li>
                   <li>Tumeli Tuqota and Dave Lavaki</li>
