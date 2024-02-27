@@ -514,7 +514,7 @@ const AboutPage: React.FC = () => {
               <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">Connect with us</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="flex flex-col gap-0 opacity-50"><a className="!no-underline" href="mailto:oceanicrefractions@gmail.com">oceanicrefractions@gmail.com</a>
-                <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/">Instagram</a></p>
+                <a className="!no-underline" href="https://www.instagram.com/oceanicrefractions/" target="_blank">Instagram</a></p>
               </div>
             </div>
           </div>
