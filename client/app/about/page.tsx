@@ -82,7 +82,10 @@ const AboutPage: React.FC = () => {
                   <a href="https://struertracks.dk/project/am-kanngieser-mere-nailatikau-eliki-reade">
                     Crenulations—Pacific Drift, 2023
                   </a>
-                  ), both co-produced with Eliki Reade (Australia/Fiji), and a major immersive installation (Oceanic Refractions, 2024). Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), Tumeli Tuqota (Fiji) and Mere Nailatikau, and sound design by Joseph Kamaru (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators Space Forms (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist Smell Art (Australia).  
+                  ), both co-produced with Eliki Reade (Australia/Fiji), and a major immersive installation (Oceanic Refractions, 2024).
+                </p>
+                <p>
+                  Oceanic Refractions is a multisensory audio-visual work featuring videography from Laisiasa Dave Lavaki (Fiji), Tumeli Tuqota (Fiji) and Mere Nailatikau, and sound design by Joseph Kamaru (Kenya/ Germany) and AM Kanngieser. The European installation is built with technical production managers and fabricators Space Forms (Ireland), projection specialists FrameWorks (Ireland), and olfactory artist Smell Art (Australia).  
                 </p>
               </div>
             </div>
