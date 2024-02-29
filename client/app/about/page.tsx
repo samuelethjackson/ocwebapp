@@ -181,16 +181,17 @@ const AboutPage: React.FC = () => {
                   Artistic Collaborators
                 </h3>
                 <ul>
-                  <li>Eliki Reade (<i>Listening Across Faultlines</i>)</li>
-                  <li><a href="https://jenatsch.net/" target="_blank">Daniel Jenatsch</a> (<i>Listening Across Faultlines</i>)</li>
-                  <li><a href="https://robbiewingcom.wordpress.com/" target="_blank">Robbie Wing</a> (<i>Crenulations – Pacific Drift</i>)</li>
+                  <li>Eliki Reade (Australia/ Fiji) (<i>Listening Across Faultlines</i>)</li>
+                  <li><a href="https://jenatsch.net/" target="_blank">Daniel Jenatsch</a> (Australia) (<i>Listening Across Faultlines</i>)</li>
+                  <li><a href="https://robbiewingcom.wordpress.com/" target="_blank">Robbie Wing</a> (Cherokee Nation, Oklahoma) (<i>Crenulations – Pacific Drift</i>)</li>
                   <li><a href="https://kmru.info/" target="_blank">Joseph Kamaru</a> (<i>Oceanic Refractions</i>)</li>
                   <li>Tumeli Tuqota and Dave Lavaki (<i>Oceanic Refractions</i>)</li>
                   <li>Sara Murphy and Frank Pendergast at <a href="https://www.spaceforms.ie/" target="_blank">SpaceForms</a> (<i>Oceanic Refractions</i>)</li>
                   <li>Olan Clarke at FrameWorks (<i>Oceanic Refractions</i>)</li>
-                  <li>Erin Adams (Australia) of <a href="https://www.smellart.com.au/" target="_blank">Smell Art</a> (<i>Oceanic Refractions</i>)</li>
-                  <li><a href="https://elisehunchuck.com/" target="_blank">Elise Misao Hunchuck</a> (Canada and Germany), Website Concept, Design, and Editing (<i>Oceanic Refractions</i>)</li>
+                  <li>Erin Adams of <a href="https://www.smellart.com.au/" target="_blank">Smell Art</a> (<i>Oceanic Refractions</i>)</li>
+                  <li><a href="https://elisehunchuck.com/" target="_blank">Elise Misao Hunchuck</a> (Canada/Germany), Website Concept, Design, and Editing (<i>Oceanic Refractions</i>)</li>
                   <li>Marco Ferrari (Italy) of <a href="https://www.studiofolder.it/" target="_blank">Studio Folder</a>, Website Design and Build (<i>Oceanic Refractions</i>)</li>
+                  <li>Zoe Todd (Métis, Alberta), Conceptual Design</li>
                 </ul>
                 <h3 className="paragraph-title">
                   Advisory Board
