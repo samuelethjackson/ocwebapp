@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useAnimate } from './AnimateContext';
+import { useAnimate } from './context/AnimateContext';
 
 interface AnimatedVideoProps {
 }

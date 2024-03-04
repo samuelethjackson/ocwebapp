@@ -27,6 +27,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
   const pathname = usePathname();
   const pageTitle = "Oceanic Refractions";
   const isAboutPage = pathname === "/about";
+  const isInstallationPage = pathname === "/installation";
 
   const checkScroll = useCallback(() => {
     if (window.scrollY > 0 && !isScrolledDown) {
@@ -102,29 +103,55 @@ const TitleBand: React.FC<TitleBandProps> = ({
         >
           {pageTitle}
         </motion.div>
-      <div className="w-full col-start-21 col-end-25 flex flex-col md:flex-row justify-between md:items-center -mt-1 items-end gap-4">
-        {isAboutPage ? (
-          <div className="opacity-100 -mt-1">
-            <Link href={"/"}>
-              <CloseIcon />
+      <div className="w-full col-start-17 md:pl-12 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4">
+      <div className="flex justify-end">
+          {isInstallationPage ? (
+            <div className="opacity-100 -mt-1">
+              <Link href={"/"}>
+                <CloseIcon />
+              </Link>
+            </div>
+          ) : (
+            <Link
+              href="/installation"
+              onMouseEnter={() => {
+                onAboutHover(true);
+                setIsAboutHovered(true); // Set hover state to true
+              }}
+              onMouseLeave={() => {
+                onAboutHover(false);
+                setIsAboutHovered(false); // Set hover state to false
+              }}
+              className="w-full text-base text-right md:text-left font-normal leading-tight"
+            >
+              Installation
             </Link>
-          </div>
-        ) : (
-          <Link
-            href="/about"
-            onMouseEnter={() => {
-              onAboutHover(true);
-              setIsAboutHovered(true); // Set hover state to true
-            }}
-            onMouseLeave={() => {
-              onAboutHover(false);
-              setIsAboutHovered(false); // Set hover state to false
-            }}
-            className="w-full text-base text-right md:text-left font-normal leading-tight"
-          >
-            About
-          </Link>
-        )}
+          )}
+        </div>
+        <div>
+          {isAboutPage ? (
+            <div className="opacity-100 -mt-1">
+              <Link href={"/"}>
+                <CloseIcon />
+              </Link>
+            </div>
+          ) : (
+            <Link
+              href="/about"
+              onMouseEnter={() => {
+                onAboutHover(true);
+                setIsAboutHovered(true); // Set hover state to true
+              }}
+              onMouseLeave={() => {
+                onAboutHover(false);
+                setIsAboutHovered(false); // Set hover state to false
+              }}
+              className="w-full text-base text-right md:text-left font-normal leading-tight"
+            >
+              About
+            </Link>
+          )}
+        </div>
         <div className="flex flex-col md:flex-row gap-3 center">
           <ResolutionIcon highRes={highRes} setHighRes={setHighRes} />
           <InvertIcon />
