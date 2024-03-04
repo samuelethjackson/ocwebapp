@@ -75,9 +75,6 @@ const TopBand: React.FC<TopBandProps> = ({
           {isAnimateClicked && <CloseIcon />}
         </div>
       </motion.div>
-      <div className="w-full fixed top-9 pl-[51px] z-40 md:hidden">
-        Oceanic Refractions
-      </div>
     </div>
   );
 };

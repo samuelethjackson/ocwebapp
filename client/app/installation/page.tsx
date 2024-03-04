@@ -36,9 +36,7 @@ const AboutPage: React.FC = () => {
               truly entails. And I do not believe settlers here understand what
               listening to fish and water as relatives actually means.
             </p>
-            <h3 className="paragraph-title">
-                  Credits
-            </h3>
+            <h3 className="paragraph-title">Credits</h3>
             <ul>
               <li>Video production:</li>
               <li>Photography:</li>
