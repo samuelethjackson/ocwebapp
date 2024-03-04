@@ -121,19 +121,19 @@ body::-webkit-scrollbar {
 }
 
 .about p {
-  @apply text-base indent-8 md:text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 max-w-[720px];
+  @apply text-base indent-8 md:text-[18px] text-black dark:text-white font-normal leading-7 col-span-10 max-w-[720px];
 }
 
-.about ul {
-  @apply text-base pl-4 md:text-[21px] text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
+.article ul {
+  @apply text-base pl-4 md:text-[18px] text-black dark:text-white font-normal leading-7 col-span-10 list-disc;
 }
 
-.about ol {
-  @apply text-base pl-4 md:text-[21px] text-black dark:text-white;
+.article ol {
+  @apply text-base pl-4 md:text-[18px] text-black dark:text-white;
 }
 
-.about li {
-  @apply pt-1;
+.article li {
+  @apply pt-1 text-base md:text-[18px] leading-7;
 }
 
 .article h2 {
@@ -145,7 +145,7 @@ body::-webkit-scrollbar {
 }
 
 .article p {
-  @apply text-base md:text-[18px] indent-8 text-black dark:text-white font-normal col-span-10 max-w-[720px] mb-0;
+  @apply text-base md:text-[18px] indent-12 text-black dark:text-white font-normal col-span-10 max-w-[720px] mb-0;
 }
 
 .prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
@@ -277,7 +277,7 @@ a {
   @apply hover:opacity-80 transition-opacity duration-500 ease-in-out;
 }
 
-.about a {
+.article a {
   @apply underline;
 }
 
