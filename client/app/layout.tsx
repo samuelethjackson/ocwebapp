@@ -5,8 +5,8 @@ import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import { Suspense } from "react";
-import { AnimateProvider } from "./components/AnimateContext";
-import { VideoProvider } from "./components/VideoContext";
+import { AnimateProvider } from "./components/context/AnimateContext";
+import { VideoProvider } from "./components/context/VideoContext";
 const EduDiatype = localFont({
   src: "./EduDiatype-Regular.woff2",
   display: "swap",

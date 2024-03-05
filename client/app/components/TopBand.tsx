@@ -38,7 +38,7 @@ const TopBand: React.FC<TopBandProps> = ({
         initial="fadeOut"
         exit="fadeOut"
         transition={{ ease: "easeInOut", duration: 1 }}
-        className={`fixed top-0 h-16 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-start gap-2 z-30 pb-6 md:pb-2 ${isAnimateClicked ? 'bg-gradient-to-b dark:from-black from-white to-transparent' : 'dark:bg-black bg-white text-black dark:text-white'}`}
+        className={`fixed top-0 h-16 md:h-8 flex flex-row w-full px-0 md:px-5 py-2 justify-between items-start gap-1 z-30 pb-6 md:pb-2 ${isAnimateClicked ? 'bg-gradient-to-b dark:from-black from-white to-transparent' : 'dark:bg-black bg-white text-black dark:text-white'}`}
       >
         <div
           className="md:hidden flex justify-start w-12 px-4 py-1"
@@ -46,10 +46,17 @@ const TopBand: React.FC<TopBandProps> = ({
         >
           {pageName !== "Precedents of" && <ArrowBackIcon />}
         </div>
+        {(pageName === "Precedents of" || pageName === "Witnessing via") &&
+        <div className="hidden h-4 w-3 md:flex center mr-1 cursor-pointer">
+          <div className="rotate-90 opacity-50">
+            <ArrowBackIcon />
+          </div>
+        </div>
+        }
         <div className="md:max-w-1/3 flex flex-row w-full gap-0 z-30 h-8">
           <motion.div
             key={pageName}
-            className="w-full cursor-pointer text-base font-normal leading-tight"
+            className="w-full cursor-pointer text-base font-normal leading-tight flex-row gap-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             transition={{ ease: "easeInOut", duration: 1 }}
@@ -75,9 +82,6 @@ const TopBand: React.FC<TopBandProps> = ({
           {isAnimateClicked && <CloseIcon />}
         </div>
       </motion.div>
-      <div className="w-full fixed top-9 pl-[51px] z-40 md:hidden">
-        Oceanic Refractions
-      </div>
     </div>
   );
 };
