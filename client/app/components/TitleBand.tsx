@@ -81,7 +81,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
         {!isAboutHovered && (
           <motion.div
             key={pageName}
-            className={`hidden md:flex absolute text-base font-normal leading-tight`}
+            className={`hidden md:flex absolute text-base font-normal leading-tight pl-6`}
             variants={variants}
             initial="hidden"
             animate={isScrolledDown ? "hidden" : "visible"}
@@ -109,7 +109,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
         </motion.div>
       </div>
       <motion.div
-        className={`w-full hidden md:flex text-base font-normal col-start-4 col-end-12 pl-12 leading-tight `}
+        className={`w-full hidden md:flex text-base font-normal col-start-4 col-end-12 pl-12 leading-tight`}
         variants={variants}
         initial="hidden"
         animate={isScrolledDown ? "hidden" : "visible"}
@@ -123,7 +123,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
       </motion.div>
       
       {!isMobile && (
-        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4">
+        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-8">
           <NavigationItem label="Installation" link="/installation" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
           <NavigationItem label="About" link="/about" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
           <div className="flex flex-col md:flex-row gap-3 center">
@@ -151,7 +151,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
       </div>
       )}
       {isHomePage && isMobile && (
-        <div className="w-full fixed top-9 pl-[51px] z-40 flex flex-row justify-between pr-5 gap-12">
+        <div className="w-full absolute pl-12 pt-2 z-40 flex flex-row justify-between pr-5 gap-12">
         {isMenuClicked ? (
           <div className="flex flex-row w-full justify-between">
             <Link href="/installation" className="">Installation</Link>

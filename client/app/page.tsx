@@ -29,6 +29,30 @@ export default function Home() {
   const [isAnimateFinished, setIsAnimateFinished] = useState(false);
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowUp":
+          // Handle up arrow key press
+          handleTopBandClick();
+          break;
+        case "ArrowDown":
+          // Handle down arrow key press
+          handleBottomBandClick();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeSection]); // Re-run the effect when activeSection changes
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsAnimateFinished(isAnimateClicked);
     }, 1000); // 3 seconds delay

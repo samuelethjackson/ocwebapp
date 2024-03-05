@@ -178,7 +178,7 @@ li::marker {
 
 .article blockquote {
   font-style: initial;
-  @apply text-black dark:text-white border-0 py-8 pl-8 leading-6;
+  @apply text-black dark:text-white border-0 py-8 pl-12 leading-6;
 }
 
 .article h6 {
