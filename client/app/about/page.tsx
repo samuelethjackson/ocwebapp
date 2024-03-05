@@ -304,6 +304,33 @@ const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            <div id="donations" className="grid grid-cols-10 gap-8">
+              <h2 className="col-start-2 col-end-10">
+                Donate to Pacific Organisations
+              </h2>
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
+              <p className="!indent-0">
+              Explore and engage with the impactful initiatives of various community organizations in Oceania. Discover opportunities to learn more about their work and contribute to meaningful causes. We invite suggestions and additions and are open to potential collaborations in the future.
+              </p>
+              <ul>
+                <li>
+                  <a href="https://divafiji.org/get-involved/" target="_blank">DIVA</a> (Fiji)
+                </li>
+                <li>
+                  <a href="https://www.afgfiji.org/donate" target="_blank">Alliance for Future Generations</a> (Fiji)
+                </li>
+                <li>
+                  <a href="https://tips.pinecast.com/jar/deeppacific" target="_blank">Deep Pacific Podcast</a> (North Pacific)
+                </li>
+                <li>
+                  <a href="https://kirican.wordpress.com/2014/12/01/donations/" target="_blank">Kiribati Climate Action Network (KiriCAN)</a> (Kiribati)
+                </li>
+                <li>
+                  <a href="https://www.thevoicepng.org/shop" target="_blank">The Voice Inc PNG: Book Shop and Merchandise</a> (Papua New Guinea)
+                </li>
+              </ul>
+              </div>
+            </div>
             <a
               className="!no-underline opacity-50"
               href="https://www.studiofolder.it"
@@ -361,6 +388,17 @@ const AboutPage: React.FC = () => {
                 }
               >
                 Collective philosophies, values and ethics
+              </a>
+              <a
+                href="#donations"
+                onClick={(e) => handleScroll(e, "donations")}
+                className={
+                  activeSection === "donations"
+                    ? "opacity-100"
+                    : "opacity-50"
+                }
+              >
+                Donate to Pacific Organisations
               </a>
             </div>
             <div id="connect" className="fixed self-end	flex flex-col w-full gap-2">
