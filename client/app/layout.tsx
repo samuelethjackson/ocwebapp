@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Suspense } from "react";
 import { AnimateProvider } from "./components/context/AnimateContext";
 import { VideoProvider } from "./components/context/VideoContext";
+import { ThemeProvider } from "./components/context/ThemeProvider";
 const EduDiatype = localFont({
   src: "./EduDiatype-Regular.woff2",
   display: "swap",
@@ -28,11 +29,18 @@ export default async function RootLayout({
     <html lang="en">
       <body className={EduDiatype.className}>
         <Suspense fallback={<div>Loading...</div>}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
           <AnimateProvider>
             <VideoProvider>
               <div className="app fade-in">{children}</div>
             </VideoProvider>
           </AnimateProvider>
+          </ThemeProvider>
         </Suspense>
         <SpeedInsights />
         <Analytics />

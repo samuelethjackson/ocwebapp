@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useData } from "./StorySectionHelper";
 import { storyOverview } from "../lib/interface"; // Add this line
+import { useAnimate } from "./context/AnimateContext";
 
 interface StorySectionProps {
   video: string;
@@ -42,6 +43,8 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
+    const { isMenuClicked, setIsMenuClicked } = useAnimate();
+
 
     const data = useData();
 
@@ -225,6 +228,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                       setSelectedSectionId(id);
                       router.push(`/?article=${post.currentSlug}`);
                       setSelectedStory(post); // Set the selected story
+                      setIsMenuClicked(false);
                     }}
                     onMouseEnter={(e) => {
                       if (window.innerWidth > 768) {

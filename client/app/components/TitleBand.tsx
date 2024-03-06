@@ -15,6 +15,8 @@ interface TitleBandProps {
   highRes: boolean;
   setHighRes: (value: boolean) => void;
   onAboutHover: (isHovered: boolean) => void;
+  isMenuClicked: boolean;
+  setIsMenuClicked: (value: boolean) => void;
 }
 
 const TitleBand: React.FC<TitleBandProps> = ({
@@ -22,6 +24,8 @@ const TitleBand: React.FC<TitleBandProps> = ({
   highRes,
   setHighRes,
   onAboutHover,
+  isMenuClicked,
+  setIsMenuClicked,
 }) => {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [isScrolledUp, setIsScrolledUp] = useState(true);
@@ -31,7 +35,6 @@ const TitleBand: React.FC<TitleBandProps> = ({
   const isAboutPage = pathname === "/about";
   const isInstallationPage = pathname === "/installation";
   const isHomePage = pathname === "/";
-  const [isMenuClicked, setIsMenuClicked] = useState (false);
 
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 680 : false);
 
@@ -151,11 +154,15 @@ const TitleBand: React.FC<TitleBandProps> = ({
       </div>
       )}
       {isHomePage && isMobile && (
-        <div className="w-full absolute pl-12 pt-2 z-40 flex flex-row justify-between pr-5 gap-12">
+        <div className="w-full absolute pl-12 pt-2 z-40 flex flex-row justify-between pr-2 md:pr-5 gap-20">
         {isMenuClicked ? (
           <div className="flex flex-row w-full justify-between">
-            <Link href="/installation" className="">Installation</Link>
-            <Link href="/about" className="">About</Link>
+            <Link 
+            onClick={() => setIsMenuClicked(false)}
+            href="/installation" className="">Installation</Link>
+            <Link 
+            onClick={() => setIsMenuClicked(false)}
+            href="/about" className="">About</Link>
           </div>
         ) : (
           <div>Oceanic Refractions</div>
