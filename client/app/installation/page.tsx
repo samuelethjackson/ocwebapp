@@ -53,16 +53,20 @@ const AboutPage: React.FC = () => {
             />
           </div>
           <ImageElement
-            image="one.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
+            image="OR_screen_run_Image_Laisiasa-Dave-Lavaki_2024.jpg"
+            citation='Oceanic Refractions, Berlin, 2024.'
           />
           <ImageElement
-            image="two.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
+            image="OR_full_room_top_Image_Frankie-Casillo_2024.jpg"
+            citation='Oceanic Refractions, Berlin, 2024.'
           />
           <ImageElement
-            image="three.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
+            image="OR_full_room_run_Image_Laisiasa-Dave-Lavaki_2024.jpg"
+            citation='Oceanic Refractions, Berlin, 2024.'
+          />
+          <ImageElement
+            image="OR_projection_map_Image_Laisiasa-Dave-Lavaki_2024.jpg"
+            citation='Oceanic Refractions, Berlin, 2024.'
           />
           <VimeoElement src={""} citation={""}
           />
