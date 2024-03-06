@@ -98,7 +98,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
           </motion.div>
         )}
         <motion.div
-          className={`absolute text-base font-normal leading-tight`}
+          className={`absolute text-base font-normal leading-tight pl-5`}
           variants={variants}
           initial="hidden"
           animate={isScrolledDown ? "visible" : "hidden"}

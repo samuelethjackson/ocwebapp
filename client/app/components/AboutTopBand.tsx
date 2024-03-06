@@ -32,7 +32,7 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
   };
 
   return (
-    <div className={`fixed top-0 flex flex-row w-full px-5 pt-0 pb-2 md:py-2 justify-between z-50'}`}>
+    <div className={`fixed top-0 flex flex-row w-full px-10 pt-0 pb-2 md:py-2 justify-between z-50'}`}>
       <div className='w-1/3 hidden md:flex flex-row gap-0'>
         <motion.div
           key={pageName}
