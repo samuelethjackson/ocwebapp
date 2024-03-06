@@ -10,6 +10,8 @@ import { client } from "../lib/sanity";
 import { fullBlog } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
 import VideoElement from "../components/VideoElement";
+import Image from "next/image";
+import { urlForImage } from "../lib/image";
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -48,28 +50,11 @@ const AboutPage: React.FC = () => {
         <TopBand pageName="Installation" />
         <main className="w-full h-full gridParent px-5 fade-in-quick gap-8 pb-8">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col justify-start items-start gap-8 pt-40 pb-8">
-          <PortableText
+            <PortableText
               value={data?.content}
+              components={myPortableTextComponents}
             />
           </div>
-          <ImageElement
-            image="OR_screen_run_Image_Laisiasa-Dave-Lavaki_2024.jpg"
-            citation='Oceanic Refractions, Berlin, 2024.'
-          />
-          <ImageElement
-            image="OR_full_room_top_Image_Frankie-Casillo_2024.jpg"
-            citation='Oceanic Refractions, Berlin, 2024.'
-          />
-          <ImageElement
-            image="OR_full_room_run_Image_Laisiasa-Dave-Lavaki_2024.jpg"
-            citation='Oceanic Refractions, Berlin, 2024.'
-          />
-          <ImageElement
-            image="OR_projection_map_Image_Laisiasa-Dave-Lavaki_2024.jpg"
-            citation='Oceanic Refractions, Berlin, 2024.'
-          />
-          <VimeoElement src={""} citation={""}
-          />
         </main>
       </div>
     </Layout>
@@ -77,3 +62,15 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+
+const myPortableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <ImageElement image={urlForImage(value).url()} citation={value.alt} />
+    ),
+    video: ({ value }: any) => (
+      <VimeoElement src={value.url} citation={value.caption} />
+    ),
+  },
+};
+
