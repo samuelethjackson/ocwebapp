@@ -84,7 +84,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
         {!isAboutHovered && (
           <motion.div
             key={pageName}
-            className={`hidden md:flex absolute text-base font-normal leading-tight pl-6`}
+            className={`hidden md:flex absolute text-base font-normal leading-tight pl-5`}
             variants={variants}
             initial="hidden"
             animate={isScrolledDown ? "hidden" : "visible"}
