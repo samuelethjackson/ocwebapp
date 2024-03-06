@@ -6,13 +6,12 @@ interface ImageElementProps {
 }
 
 const ImageElement: React.FC<ImageElementProps> = ({ image, citation }) => {
-  const imagePath = `/images/${image}`;
 
   return (
     <div className="col-start-1 col-end-7 md:col-start-1 md:col-end-12 lg:col-start-1 lg:col-end-25 gridParent !p-0 gap-4 md:gap-0">
       <div className="col-start-1 col-end-7 lg:col-end-18 aspect-video row-start-1">
         <img
-          src={imagePath}
+          src={image}
           width={"100%"}
           height={"400px"}
         />
