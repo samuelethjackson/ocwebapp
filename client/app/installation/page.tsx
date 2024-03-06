@@ -49,7 +49,7 @@ const AboutPage: React.FC = () => {
       <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
         <TopBand pageName="Installation" />
         <main className="w-full h-full gridParent px-5 fade-in-quick gap-8 pb-8">
-          <div className="col-start-1 col-end-7 pr-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col justify-start items-start gap-8 pt-40 pb-8">
+          <div className="col-start-1 col-end-7 pr-7 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col justify-start items-start gap-4 pt-40 pb-8">
             <PortableText
               value={data?.content}
               components={myPortableTextComponents}

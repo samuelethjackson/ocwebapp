@@ -128,7 +128,9 @@ const TitleBand: React.FC<TitleBandProps> = ({
       {!isMobile && (
         <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-8">
           <NavigationItem label="Installation" link="/installation" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
-          <NavigationItem label="About" link="/about" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
+          <div className="pl-10">
+            <NavigationItem label="About" link="/about" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
+          </div>
           <div className="flex flex-col md:flex-row gap-3 center">
             <ResolutionIcon highRes={highRes} setHighRes={setHighRes} />
             <InvertIcon />

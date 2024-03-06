@@ -296,7 +296,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
         {!isAnimateClicked && (
           <motion.p
             id="aboutText"
-            className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
+            className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10 fade-in-quick`}
             animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
             initial={{ opacity: 0 }}
             variants={textVariants}
