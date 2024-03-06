@@ -66,7 +66,7 @@ export default AboutPage;
 const myPortableTextComponents = {
   types: {
     image: ({ value }: any) => (
-      <ImageElement image={urlForImage(value).url()} citation={value.alt} />
+      <ImageElement image={urlForImage(value).url()} citation={value.caption} />
     ),
     video: ({ value }: any) => (
       <VimeoElement src={value.url} citation={value.caption} />
