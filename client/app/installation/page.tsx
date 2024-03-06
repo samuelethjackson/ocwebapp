@@ -9,6 +9,8 @@ import { useData } from "../components/StorySectionHelper";
 import { client } from "../lib/sanity";
 import { fullBlog } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
+import Image from "next/image";
+import { urlForImage } from "../lib/image";
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -47,22 +49,11 @@ const AboutPage: React.FC = () => {
         <TopBand pageName="Installation" />
         <main className="w-full h-full gridParent px-5 fade-in-quick gap-8 pb-8">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col justify-start items-start gap-8 pt-40 pb-8">
-          <PortableText
+            <PortableText
               value={data?.content}
+              components={myPortableTextComponents}
             />
           </div>
-          <ImageElement
-            image="one.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
-          />
-          <ImageElement
-            image="two.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
-          />
-          <ImageElement
-            image="three.jpg"
-            citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
-          />
         </main>
       </div>
     </Layout>
@@ -70,3 +61,15 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+
+const myPortableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <ImageElement image={urlForImage(value).url()} citation={value.alt} />
+    ),
+    video: ({ value }: any) => (
+      <VimeoElement src={value.url} citation={value.caption} />
+    ),
+  },
+};
+
