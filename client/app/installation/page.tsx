@@ -53,7 +53,7 @@ const AboutPage: React.FC = () => {
             <PortableText
               value={data?.content}
               components={myPortableTextComponents}
-            />
+            /> 
           </div>
         </main>
       </div>
