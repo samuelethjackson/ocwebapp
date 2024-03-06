@@ -9,6 +9,7 @@ import { useData } from "../components/StorySectionHelper";
 import { client } from "../lib/sanity";
 import { fullBlog } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
+import VideoElement from "../components/VideoElement";
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -62,6 +63,8 @@ const AboutPage: React.FC = () => {
           <ImageElement
             image="three.jpg"
             citation='Mere Nailatikau opens each episode with this reminder that can be heard between 00:30 and 00:34. To hear the third episode, “Stories of Oceanic Life,” please see: AM Kanngieser, Mere Nailatikau and Eliki Reade, "Stories of oceanic life,".'
+          />
+          <VimeoElement src={""} citation={""}
           />
         </main>
       </div>
