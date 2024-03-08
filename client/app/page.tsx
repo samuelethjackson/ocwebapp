@@ -148,6 +148,15 @@ export default function Home() {
     mobileVideo = highRes ? "responding.gif" : "responding.mp4";
   }
 
+  function getRandomVideoNumber() {
+    const totalVideos = 3; // Change this to the total number of videos in each folder
+    return Math.floor(Math.random() * totalVideos) + 1;
+  }
+
+  const [randomVideoNumber, setRandomVideoNumber] = useState(
+    getRandomVideoNumber()
+  );
+
   const [selectedStorySlug, setSelectedStorySlug] = useState("");
   const [selectedSectionId, setSelectedSectionId] = useState<number | null>(
     null
@@ -256,9 +265,9 @@ export default function Home() {
             transition={{ ease: "easeInOut", duration: 1 }}
             className="hidden absolute no-scrollbar bottom-0 left-0 w-full h-full md:snap-y md:overflow-y-scroll md:block snap-always snap-mandatory"
           >
-            {renderStorySection(ref1, 1, "precedents")}
-            {renderStorySection(ref2, 2, "witnessing")}
-            {renderStorySection(ref3, 3, "responding")}
+            {renderStorySection(ref1, 1, `precedents/${randomVideoNumber}`)}
+            {renderStorySection(ref2, 2, `witnessing/${randomVideoNumber}`)}
+            {renderStorySection(ref3, 3, `responding/${randomVideoNumber}`)}
           </motion.div>
           <motion.div
             layout
@@ -312,7 +321,9 @@ export default function Home() {
                 >
                   {isAnimateClicked && (
                     <div className="hidden md:flex h-full w-full center fade-in-quick">
-                      <p className="text-base text-black cloud-shadow-white">All Contributions</p>
+                      <p className="text-base text-black cloud-shadow-white">
+                        All Contributions
+                      </p>
                     </div>
                   )}
                 </motion.div>

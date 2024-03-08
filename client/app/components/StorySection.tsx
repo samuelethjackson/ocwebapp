@@ -43,6 +43,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
+
     const { isMenuClicked, setIsMenuClicked } = useAnimate();
 
 
