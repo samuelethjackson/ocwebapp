@@ -19,7 +19,7 @@ const VimeoElement: React.FC<VimeoElementProps> = ({ src, citation }) => {
         />
       </div>
       <div className="col-start-1 col-end-7 md:col-start-18 lg:col-end-24 row-start-2 md:row-start-1 h-full w-full flex items-end citation pt-0 pb-10 px-3 md:p-0">
-      <p className="pl-0 md:pl-5">
+      <p className="!-mt-2 pl-0 md:pl-5 md:!-mb-1">
           {citation}
         </p>
       </div>
