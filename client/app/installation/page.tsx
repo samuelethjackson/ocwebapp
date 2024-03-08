@@ -5,16 +5,12 @@ import TopBand from "../components/AboutTopBand";
 import Layout from "../components/Layout";
 import VimeoElement from "../components/VimeoElement";
 import ImageElement from "../components/ImageElement";
-import { useData } from "../components/StorySectionHelper";
 import { client } from "../lib/sanity";
 import { fullBlog } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
-import VideoElement from "../components/VideoElement";
-import Image from "next/image";
 import { urlForImage } from "../lib/image";
 
 const AboutPage: React.FC = () => {
-  const [activeSection, setActiveSection] = useState("");
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
@@ -28,15 +24,17 @@ const AboutPage: React.FC = () => {
           date,
           content,
         }[0]`;
-
+  
       const result = await client.fetch(query);
-
+  
       // Set the data state with the original content, including footnotes
       setData(result);
     };
-
+  
     getData();
-  });
+  }, []); 
+
+  console.log(data);
 
   return (
     <Layout

@@ -204,17 +204,20 @@ export default function Home() {
 
   const data = useData();
 
+  console.log(data);
+
+
   useEffect(() => {
     const param = searchParams.get("article");
     if (param) {
-      setIsAnimateClicked(true);
-      setSelectedStorySlug(param);
       const story = data?.find((story) => story.currentSlug === param);
-      console.log(story);
-      setSelectedStory(story || null);
-      console.log(selectedStory);
+      if (story !== selectedStory) {
+        setIsAnimateClicked(true);
+        setSelectedStorySlug(param);
+        setSelectedStory(story || null);
+      }
     }
-  }, [data]);
+  }, [selectedStory]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },
