@@ -155,7 +155,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             <motion.img
               src={videoPath}
               alt={""}
-              className={`dark:brightness-50 dark:contrast-100 brightness-[1.1] contrast-[0.7] object-cover object-bottom  ${
+              className={`dark:brightness-[0.7] dark:contrast-100 brightness-[1.1] contrast-[0.7] object-cover object-bottom  ${
                 !isAnimateClicked
                   ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
                   : "col-start-1 col-end-6 row-span-3 justify-self-start md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
@@ -172,7 +172,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             <motion.video
             id="backgroundvideo"
               src={videoPath}
-              className={`dark:brightness-50 dark:contrast-100 brightness-[1.1] contrast-[0.6] object-cover object-bottom ${
+              className={`dark:brightness-[0.7] dark:contrast-100 brightness-[1.1] contrast-[0.6] object-cover object-bottom ${
                 !isAnimateClicked
                   ? "col-start-1 col-end-6 row-span-3 md:col-span-5 md:row-start-1"
                   : "col-start-1 col-end-6 row-span-3 justify-self-start md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1"
