@@ -288,9 +288,9 @@ export default function Home() {
                 setActiveMobileSection(index + 1)
               }
             >
-              {renderStorySection(ref4, 1, "precedents")}
-              {renderStorySection(ref5, 2, "witnessing")}
-              {renderStorySection(ref6, 3, "responding")}
+              {renderStorySection(ref4, 1, `precedents/${randomVideoNumber}`)}
+            {renderStorySection(ref5, 2, `witnessing/${randomVideoNumber}`)}
+            {renderStorySection(ref6, 3, `responding/${randomVideoNumber}`)}
             </SwipeableViews>
           </motion.div>
           {!isAboutHovered && !isAnimateClicked && (
