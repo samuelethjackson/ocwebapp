@@ -98,12 +98,13 @@ const AboutPage: React.FC = () => {
             />
           </div>
           <div className="hidden h-screen col-start-18 col-end-24 md:flex items-start py-8 pt-36 pl-8">
-            <div className="flex fixed flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase bg-gradient-to-b from-transparent via-black to-transparent w-full">
+            <div className="flex w-full fixed flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
+            <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
               <a
                 href="#credits"
                 onClick={(e) => handleScroll(e, "credits")}
                 className={
-                  activeSection === "credits" ? "opacity-100" : "opacity-50"
+                  activeSection === "credits" ? "opacity-100 z-10" : "opacity-50 z-10"
                 }
               >
                 Credits
@@ -112,7 +113,7 @@ const AboutPage: React.FC = () => {
                 href="#press"
                 onClick={(e) => handleScroll(e, "press")}
                 className={
-                  activeSection === "press" ? "opacity-100" : "opacity-50"
+                  activeSection === "press" ? "opacity-100 z-10" : "opacity-50 z-10"
                 }
               >
                 Press
@@ -120,12 +121,13 @@ const AboutPage: React.FC = () => {
             </div>
             <div
               id="connect"
-              className="fixed self-end	flex flex-col w-full gap-2"
+              className="fixed self-end	flex flex-col gap-2 w-full"
             >
-              <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
+              <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
+              <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase z-10">
                 Download
               </h2>
-              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8 ">
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8 z-10">
                 <p className="flex flex-col gap-0 opacity-50">
                   <a className="!no-underline">Media Pack (PDF)</a>
                   <a className="!no-underline">Gallery Pack (PDF)</a>
