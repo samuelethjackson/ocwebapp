@@ -115,7 +115,7 @@ export default function Home() {
     return () => {
       observer.disconnect();
     };
-  }, [ref1, ref2, ref3, isAnimateClicked]);
+  }, [isAnimateClicked]);
 
   useEffect(() => {
     console.log("activeMobileSection:", activeMobileSection); // Add this line
@@ -256,7 +256,6 @@ export default function Home() {
               />
             </motion.div>
           )}
-          {!isAboutHovered && !isAnimateClicked && (
           <TopBand
             pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
             onArrowClick={handleArrowClick}
@@ -265,7 +264,6 @@ export default function Home() {
             isAnimateClicked={isAnimateClicked}
             setIsAnimateClicked={setIsAnimateClicked}
           />
-          )}
           <motion.div
             variants={bandVariants}
             initial="fadeOut" // Add this line

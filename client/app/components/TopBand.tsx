@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ArrowNextIcon from "./icons/arrowNextIcon";
 import ArrowBackIcon from "./icons/arrowBackIcon";
@@ -13,6 +13,7 @@ interface TopBandProps {
   isAnimateClicked: boolean;
   setIsAnimateClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 
 const TopBand: React.FC<TopBandProps> = ({
   pageName,
@@ -30,7 +31,7 @@ const TopBand: React.FC<TopBandProps> = ({
   const router = useRouter();
 
   return (
-    <div className={`fixed flex flex-col gap-4 z-[10000]`}>
+    <div className={`fixed flex flex-col gap-4 z-[10000] ${isAnimateClicked ? 'md:hidden' : ''}`}>
       <motion.div
         onClick={onTopBandClick}
         animate={isAboutHovered ? "fadeOut" : "fadeIn"}
@@ -44,7 +45,7 @@ const TopBand: React.FC<TopBandProps> = ({
           className="md:hidden flex justify-start w-12 px-4 py-1"
           onClick={() => onArrowClick?.("back")}
         >
-          {pageName !== "Precedents of" && <ArrowBackIcon />}
+          {!isAnimateClicked && pageName !== "Precedents of" && <ArrowBackIcon />}
         </div>
         {(pageName === "Precedents of" || pageName === "Witnessing via") &&
         <div className="hidden h-4 w-3 md:flex center mr-1 cursor-pointer">
@@ -56,7 +57,7 @@ const TopBand: React.FC<TopBandProps> = ({
         <div className="md:max-w-1/3 flex flex-row w-full gap-0 z-30 h-8">
           <motion.div
             key={pageName}
-            className="w-full cursor-pointer text-base font-normal leading-tight flex-row gap-1"
+            className={`w-full cursor-pointer text-base font-normal leading-tight flex-row gap-1 ${isAnimateClicked ? 'ml-[1px]' : ''}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             transition={{ ease: "easeInOut", duration: 1 }}
