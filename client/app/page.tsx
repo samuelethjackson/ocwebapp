@@ -211,17 +211,20 @@ export default function Home() {
 
   console.log(data);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+
   useEffect(() => {
     const param = searchParams.get("article");
     if (param) {
       const story = data?.find((story) => story.currentSlug === param);
-      if (story !== selectedStory) {
+      if (!selectedStory || (story && story !== selectedStory)) {
         setIsAnimateClicked(true);
         setSelectedStorySlug(param);
         setSelectedStory(story || null);
       }
     }
-  }, [selectedStory]);
+  }, [selectedStory, data]);
 
   const bandVariants = {
     fadeIn: { opacity: 1 },

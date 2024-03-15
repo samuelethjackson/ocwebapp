@@ -145,7 +145,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       <section
         id={id.toString()}
         ref={ref}
-        className={`w-full h-dvh md:h-screen grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-14"
+        className={`relative w-full h-dvh md:h-screen grid-parent px-0 md:px-5 overflow-hidden no-scrollbar ${ !isAnimateClicked ? "" : "mb-14"
       }`}
       >
         <div
