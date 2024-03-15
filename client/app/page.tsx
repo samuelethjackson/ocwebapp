@@ -101,7 +101,6 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(Number(entry.target.id));
-            console.log("activeSection:", Number(entry.target.id)); // Add this line
           }
         });
       },
@@ -115,11 +114,7 @@ export default function Home() {
     return () => {
       observer.disconnect();
     };
-  }, [ref1, ref2, ref3, isAnimateClicked]);
-
-  useEffect(() => {
-    console.log("activeMobileSection:", activeMobileSection); // Add this line
-  }, [activeMobileSection]);
+  }, []);
 
   let topBandText = "";
   let titleBandText = "";
@@ -211,6 +206,7 @@ export default function Home() {
 
   console.log(data);
 
+
   useEffect(() => {
     const param = searchParams.get("article");
     if (param) {
@@ -256,7 +252,6 @@ export default function Home() {
               />
             </motion.div>
           )}
-          {!isAboutHovered && !isAnimateClicked && (
           <TopBand
             pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
             onArrowClick={handleArrowClick}
@@ -265,7 +260,6 @@ export default function Home() {
             isAnimateClicked={isAnimateClicked}
             setIsAnimateClicked={setIsAnimateClicked}
           />
-          )}
           <motion.div
             variants={bandVariants}
             initial="fadeOut" // Add this line
@@ -295,8 +289,8 @@ export default function Home() {
               }
             >
               {renderStorySection(ref4, 1, `precedents/${randomVideoNumber}`)}
-              {renderStorySection(ref5, 2, `witnessing/${randomVideoNumber}`)}
-              {renderStorySection(ref6, 3, `responding/${randomVideoNumber}`)}
+            {renderStorySection(ref5, 2, `witnessing/${randomVideoNumber}`)}
+            {renderStorySection(ref6, 3, `responding/${randomVideoNumber}`)}
             </SwipeableViews>
           </motion.div>
           {!isAboutHovered && !isAnimateClicked && (
