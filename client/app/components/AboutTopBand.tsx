@@ -48,12 +48,12 @@ const AboutTopBand: React.FC<AboutTopBandProps> = ({ pageName }) => {
       <div className='md:w-1/3 w-full bg-white dark:bg-black absolute top-0 left-0 md:hidden flex flex-row pt-2 pb-10 pl-1'>
         <div
           key={pageName}
-          className="w-full text-base font-normal leading-tight pl-12 md:pl-0"
+          className="w-full text-base font-normal leading-tight pl-[44px] md:pl-0"
         >
           {pageName}
         </div>
       </div>
-      <div className='w-1/2 absolute pl-[12px] pt-9 md:hidden pb-1'>
+      <div className='w-1/2 absolute pl-[8px] pt-9 md:hidden pb-1'>
         Oceanic Refractions
       </div>
     </div>

@@ -221,8 +221,8 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
           </div>
         </article>
       </AnimatePresence>
-      <div className="fixed top-0 left-0 w-full h-min md:h-screen video-grid z-0 px-5 ">
-        <footer className="hidden absolute bottom-0 w-full place-self-end pb-4 col-start-4 md:flex flex-col citation">
+      <div className="fixed top-0 left-0 w-full z-10 h-min md:h-screen video-grid px-5 ">
+        <footer className="hidden absolute bottom-0 w-full place-self-end pb-4 col-start-4 md:flex flex-col citation !z-[99999]">
           {data && (
             <div>
               <AnimatePresence>

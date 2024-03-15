@@ -316,13 +316,13 @@ export default function Home() {
           )}
           <AnimatePresence>
             {isAnimateClicked && (
-              <div className="hidden md:grid half-grid h-screen w-[50vw] fixed right-0 top-0 md:top-[2vw] z-[900]">
+              <div className="hidden md:grid half-grid h-[60vh] w-[50vw] fixed right-0 top-0 z-[900]">
                 <motion.div
                   onClick={() => {
                     setIsAnimateClicked(false);
                     router.push(`/`);
                   }}
-                  className="col-start-2 row-start-2 flex cursor-pointer"
+                  className="col-start-2 row-start-2 row-end-4 flex cursor-pointer h-full w-full back-position"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}

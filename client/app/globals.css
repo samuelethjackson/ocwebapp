@@ -109,7 +109,7 @@ body::-webkit-scrollbar {
 }
 
 .about h2 {
-  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal;
+  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-[21px] font-normal leading-normal indent-12;
 }
 
 .about h3 {
@@ -137,7 +137,7 @@ body::-webkit-scrollbar {
 }
 
 .article h2 {
-  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[18px] font-normal leading-normal;
+  @apply text-white cloud-shadow-black dark:cloud-shadow-white dark:text-black text-base md:text-[18px] font-normal leading-normal indent-12;
 }
 
 .article h3 {
@@ -146,6 +146,10 @@ body::-webkit-scrollbar {
 
 .article p {
   @apply text-base md:text-[18px] indent-12 text-black dark:text-white font-normal col-span-10 max-w-[720px] mb-0;
+}
+
+.prose :where(.prose > :first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  text-indent: 0 !important;
 }
 
 .prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
@@ -188,6 +192,25 @@ li::marker {
 .citation p {
   @apply text-sm leading-[1.3rem] mt-2 indent-0;
 }
+
+.back-position {
+  @apply mt-0
+}
+
+
+@media screen and (min-height: 550px) and (max-height: 800px) {
+  .back-position {
+    @apply mt-[5vh];
+  }  
+}
+
+@media screen and (min-width: 1920px) {
+  .back-position {
+  @apply mt-[5vw];
+  }
+}
+
+
 
 .fade-in {
   animation: fadeIn ease-in-out 6s;
@@ -278,6 +301,10 @@ a {
 }
 
 .article a {
+  @apply underline;
+}
+
+p a {
   @apply underline;
 }
 

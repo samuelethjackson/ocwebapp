@@ -98,7 +98,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
           </motion.div>
         )}
         <motion.div
-          className={`absolute text-base font-normal leading-tight pl-5`}
+          className={`absolute text-base font-normal leading-tight pl-5 w-min`}
           variants={variants}
           initial="hidden"
           animate={isScrolledDown ? "visible" : "hidden"}
@@ -138,7 +138,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
         </div>
       )}
       {isAboutPage && isMobile && (
-        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4">
+        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4 ml-3">
         <NavigationItem label="About" link="/about" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
         <div className="flex flex-col md:flex-row gap-3 center">
           <ResolutionIcon highRes={highRes} setHighRes={setHighRes} />
@@ -147,7 +147,7 @@ const TitleBand: React.FC<TitleBandProps> = ({
       </div>
       )}
       {isInstallationPage && isMobile && (
-        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4">
+        <div className="w-full col-start-18 col-end-25 flex flex-col md:flex-row justify-between md:items-center items-end gap-4 ml-3">
         <NavigationItem label="Installation" link="/installation" setIsAboutHovered={setIsAboutHovered} onAboutHover={onAboutHover} />
         <div className="flex flex-col md:flex-row gap-3 center">
           <ResolutionIcon highRes={highRes} setHighRes={setHighRes} />

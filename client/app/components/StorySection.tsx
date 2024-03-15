@@ -90,7 +90,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             setHighRes(true);
           });
       }
-    }, []);
+    }, [setHighRes]);
 
     const filteredData = data?.filter(
       (post) => post.category === idCategoryMapping[id]

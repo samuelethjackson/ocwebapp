@@ -14,6 +14,7 @@ const ImageElement: React.FC<ImageElementProps> = ({ image, citation }) => {
           <img
             src={image}
             className='object-contain object-left-bottom w-full max-h-[100vh] !m-0'
+            alt=''
           />
         </div>
         <div className="col-start-1 col-end-7 md:col-start-18 lg:col-end-24 row-start-2 md:row-start-1 h-full w-full flex items-end citation pt-0 pb-10 px-3 md:p-0">

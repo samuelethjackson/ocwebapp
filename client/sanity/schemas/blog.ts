@@ -85,7 +85,7 @@
                     {
                       name: 'link',
                       type: 'object',
-                      title: 'External link',
+                      title: 'Link',
                       fields: [
                         {
                           name: 'href',
@@ -99,7 +99,7 @@
                           type: 'boolean'
                         }
                       ]
-                    }
+                    },
                   ]
                 },
               },
@@ -137,7 +137,19 @@
                     title: 'Caption',
                   }
                 ]
-              }
+              },
+              {
+                name: 'anchor',
+                type: 'object',
+                title: 'Anchor',
+                fields: [
+                  {
+                    name: 'anchor',
+                    type: 'text',
+                    title: 'Anchor',
+                  },
+                ]
+              },
             ]
           }
     ]
