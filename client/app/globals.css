@@ -197,6 +197,16 @@ li::marker {
   @apply mt-0
 }
 
+.anchor-bubble {
+  @apply cursor-pointer;
+}
+
+@media screen and (max-width: 680px) {
+  .anchor-bubble {
+    @apply cloud-shadow-black dark:cloud-shadow-white text-white dark:text-black;
+  }
+}
+
 
 @media screen and (min-height: 550px) and (max-height: 800px) {
   .back-position {
@@ -209,7 +219,6 @@ li::marker {
   @apply mt-[5vw];
   }
 }
-
 
 
 .fade-in {
