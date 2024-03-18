@@ -53,7 +53,7 @@ const AboutPage: React.FC = () => {
     });
   
     const observerLong = new IntersectionObserver(callback, {
-      threshold: 0.20,
+      threshold: 0.2,
     });
 
     const observerLonger = new IntersectionObserver(callback, {
@@ -90,7 +90,7 @@ const AboutPage: React.FC = () => {
         <TopBand pageName="About" />
         <main className="w-full h-full gridParent px-5 fade-in-quick">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 pb-8">
-            <div id="connect" className="grid md:hidden grid-cols-10 gap-8 short">
+            <div id="connect" className="grid md:hidden grid-cols-10 gap-8 short py-16">
               <h2 className="col-start-2 col-end-10">Connect with us</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="flex flex-col gap-0">
@@ -165,7 +165,7 @@ const AboutPage: React.FC = () => {
                   <a href="https://www.smellart.com.au/" target="_blank">
                     Smell Art
                   </a>{" "}
-                  (Australia).  
+                  (Australia).
                 </p>
               </div>
             </div>
@@ -246,7 +246,7 @@ const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div id="relationship" className="grid grid-cols-10 gap-8 long">
+            <div id="relationship" className="grid grid-cols-10 gap-8 longer">
               <h2 className="col-start-2 col-end-10">
                 Relationships and Circulation
               </h2>
@@ -723,9 +723,9 @@ const AboutPage: React.FC = () => {
               Design: Studio Folder
             </a>
           </div>
-          <div className="fixed md:relative left-0 pt-16 h-screen col-start-15 col-end-24 md:flex items-start py-8 md:pt-36 z-[999999] overflow-visible">
-            <div className="flex w-full h-12 md:h-min items-center fixed flex-row md:flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide px-12 md:pl-0 gap-8 md:gap-2 uppercase overflow-y-scroll overflow-x-visible bg-white dark:bg-black whitespace-nowrap no-scrollbar anchor-bubble-parent">
-              <div>
+          <div className="fixed md:relative left-0 top-8 md:top-28 h-screen col-start-15 col-end-24 md:flex items-start py-8 z-[999999] overflow-visible">
+            <div className="flex w-full h-12 md:h-min items-center md:items-start fixed flex-row md:flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide px-12 md:pl-0 gap-8 md:gap-2 uppercase overflow-y-scroll overflow-x-visible bg-white dark:bg-black whitespace-nowrap no-scrollbar anchor-bubble-parent">
+              <div className="md:hidden">
               <AnchorBubble
                 section="connect"
                 title="Connect with us"
@@ -772,7 +772,7 @@ const AboutPage: React.FC = () => {
             </div>
             <div
               id="connect"
-              className="hidden fixed self-end md:flex flex-col w-full gap-2"
+              className="hidden fixed bottom-12 self-end md:flex flex-col w-full gap-2"
             >
               <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
                 Connect with us

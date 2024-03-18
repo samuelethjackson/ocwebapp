@@ -10,6 +10,8 @@ import { fullBlog } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
 import { urlForImage } from "../lib/image";
 import AnchorElement from "../components/AnchorElement";
+import AnchorBubble from "../components/AnchorBubble";
+
 
 const AboutPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -32,33 +34,42 @@ const AboutPage: React.FC = () => {
     }
   };
 
-  const observer = useRef<IntersectionObserver | null>(null);
-
-  const observeSections = useCallback(() => {
-    observer.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log(entry); // Log the entry to see what's being returned
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    const sections = document.querySelectorAll("div[id]");
-    sections.forEach((section) => observer.current!.observe(section));
-  }, []);
-
   useEffect(() => {
-    observeSections();
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        console.log('IntersectionObserver Entry:', entry); // Debugging line
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+  
+          // Scroll the parent div of AnchorBubbles to the active AnchorBubble
+          const anchorBubbleParent = document.querySelector('.anchor-bubble-parent');
+          const activeBubble = document.querySelector(`.anchor-bubble[data-id="${entry.target.id}"]`);
+  
+          console.log('Active Bubble:', activeBubble); // Debugging line
+  
+          if (anchorBubbleParent && activeBubble) {
+            const scrollOffset = (activeBubble as HTMLElement).offsetLeft - (anchorBubbleParent as HTMLElement).offsetLeft;
+            const centeredOffset = scrollOffset - (anchorBubbleParent as HTMLElement).clientWidth / 2 + (activeBubble as HTMLElement).clientWidth / 2;
+            (anchorBubbleParent as HTMLElement).scrollLeft = centeredOffset;
+  
+            console.log('Scrolling to:', centeredOffset); // Debugging line
+          }
+        }
+      });
+    };
+  
+    const observerShort = new IntersectionObserver(callback, {
+      threshold: 1,
+    });
+  
+    const sectionsShort = document.querySelectorAll(".short");
+    sectionsShort.forEach((section) => observerShort.observe(section as Element));
+  
     return () => {
       // Cleanup observer on component unmount
-      const sections = document.querySelectorAll("div[id]");
-      sections.forEach((section) => observer.current!.unobserve(section));
+      sectionsShort.forEach((section) => observerShort.unobserve(section as Element));
     };
-  }, [observeSections]);
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -89,6 +100,28 @@ const AboutPage: React.FC = () => {
       setIsAboutHovered={setIsAboutHovered}
     >
       <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
+        <div className="left-0 h-12 top-16 flex w-full md:h-min items-center fixed flex-row md:hidden dark:text-white text-black text-xs font-normal leading-tight tracking-wide px-12 md:pl-0 gap-8 md:gap-2 uppercase overflow-y-scroll overflow-x-visible bg-white dark:bg-black whitespace-nowrap no-scrollbar anchor-bubble-parent z-[999999]">
+          <div>
+            <AnchorBubble
+              section="installation"
+              title="Installation"
+              handleScroll={handleScroll}
+              activeSection={activeSection}
+            />
+          </div>
+          <AnchorBubble
+            section="credits"
+            title="Credits"
+            handleScroll={handleScroll}
+            activeSection={activeSection}
+          />
+          <AnchorBubble
+            section="press"
+            title="Press"
+            handleScroll={handleScroll}
+            activeSection={activeSection}
+          />
+        </div>
         <TopBand pageName="Installation" />
         <main className="w-full h-full gridParent px-5 fade-in-quick gap-8 pb-8 overflow-x-hidden">
           <div className="prose col-start-1 col-end-7 pr-2 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col justify-start items-start gap-4 pt-40 pb-8">
@@ -99,25 +132,19 @@ const AboutPage: React.FC = () => {
           </div>
           <div className="hidden h-screen col-start-18 col-end-24 md:flex items-start py-8 pt-36 pl-8">
             <div className="flex w-full fixed flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
-            <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
-              <a
-                href="#credits"
-                onClick={(e) => handleScroll(e, "credits")}
-                className={
-                  activeSection === "credits" ? "opacity-100 z-10" : "opacity-50 z-10"
-                }
-              >
-                Credits
-              </a>
-              <a
-                href="#press"
-                onClick={(e) => handleScroll(e, "press")}
-                className={
-                  activeSection === "press" ? "opacity-100 z-10" : "opacity-50 z-10"
-                }
-              >
-                Press
-              </a>
+              <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
+              <AnchorBubble
+                section="credits"
+                title="Credits"
+                handleScroll={handleScroll}
+                activeSection={activeSection}
+              />
+              <AnchorBubble
+                section="press"
+                title="Press"
+                handleScroll={handleScroll}
+                activeSection={activeSection}
+              />
             </div>
             <div
               id="connect"

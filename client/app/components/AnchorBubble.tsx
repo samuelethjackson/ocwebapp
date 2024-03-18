@@ -12,7 +12,7 @@ const AnchorBubble: React.FC<AnchorBubbleProps> = ({ section, title, handleScrol
     <a
       href={`#${section}`}
       onClick={(e) => handleScroll(e, section)}
-      className={`anchor-bubble grow w-full ${activeSection === section ? "opacity-100" : "opacity-50"}`}
+      className={`anchor-bubble ${activeSection === section ? "opacity-100" : "opacity-50"}`}
       data-id={section} // Add the data-id attribute here
     >
       {title}

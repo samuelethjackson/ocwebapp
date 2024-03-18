@@ -6,7 +6,7 @@ interface AnchorElementProps {
 
 const AnchorElement: React.FC<AnchorElementProps> = ({ anchor }) => {
   return (
-    <div id={anchor}>
+    <div id={anchor} className='short'>
     </div>
   );
 };
