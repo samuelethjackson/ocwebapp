@@ -78,7 +78,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
 
     useEffect(() => {
       const videoElement = document.getElementById("backgroundvideo") as HTMLVideoElement;
-    
+
       if (videoElement) {
         videoElement
           .play()
@@ -303,7 +303,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
             exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 1 }}
           >
-            Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki
+            Oceanic Refractions
           </motion.p>
         )}
         </AnimatePresence>
