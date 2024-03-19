@@ -90,8 +90,8 @@ const AboutPage: React.FC = () => {
         <TopBand pageName="About" />
         <main className="w-full h-full gridParent px-5 fade-in-quick">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 pb-8">
-            <div id="connect" className="grid md:hidden grid-cols-10 gap-8 short py-16">
-              <h2 className="col-start-2 col-end-10">Connect with us</h2>
+            <div id="connect" className="grid md:hidden grid-cols-10 gap-8 short pt-12">
+              <h2 className="col-start-1 col-end-10">Connect with us</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="flex flex-col gap-0">
                   <a
@@ -110,7 +110,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="about" className="grid grid-cols-10 gap-8 short">
-              <h2 className="col-start-2 col-end-10">Who We Are</h2>
+              <h2 className="col-start-2 col-end-10 !indent-0">Who We Are</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                   <i>Oceanic Refractions</i> emerges from a long-standing
@@ -170,7 +170,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="background" className="grid grid-cols-10 gap-8 long">
-              <h2 className="col-start-2 col-end-10">
+              <h2 className="col-start-2 col-end-10 !indent-0">
                 Our Background and Approach
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
@@ -247,7 +247,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="relationship" className="grid grid-cols-10 gap-8 longer">
-              <h2 className="col-start-2 col-end-10">
+              <h2 className="col-start-2 col-end-10 !indent-0">
                 Relationships and Circulation
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
@@ -338,7 +338,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="community" className="grid grid-cols-10 gap-8 long">
-              <h2 className="col-start-2 col-end-10">Community</h2>
+              <h2 className="col-start-2 col-end-10 !indent-0">Community</h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                   We acknowledge the many generous individuals, communities, and
@@ -522,7 +522,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="philosophies" className="grid grid-cols-10 gap-8 longer">
-              <h2 className="col-start-2 col-end-10">
+              <h2 className="col-start-2 col-end-10 !indent-0">
                 Collective Philosophies, Values, and Ethics
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
@@ -662,7 +662,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div id="donations" className="grid grid-cols-10 gap-8 short">
-              <h2 className="col-start-2 col-end-10">
+              <h2 className="col-start-2 col-end-10 !indent-0">
                 Donate to Pacific Organisations
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
@@ -723,16 +723,9 @@ const AboutPage: React.FC = () => {
               Design: Studio Folder
             </a>
           </div>
-          <div className="fixed md:relative left-0 top-8 md:top-28 h-screen col-start-15 col-end-24 md:flex items-start py-8 z-[999999] overflow-visible">
+          <div className="fixed md:relative left-0 top-8 md:top-28 h-screen col-start-18 col-end-24 md:flex items-start py-8 z-[999999] overflow-visible">
             <div className="flex w-full h-12 md:h-min items-center md:items-start fixed flex-row md:flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide px-12 md:pl-0 gap-8 md:gap-2 uppercase overflow-y-scroll overflow-x-visible bg-white dark:bg-black whitespace-nowrap no-scrollbar anchor-bubble-parent">
-              <div className="md:hidden">
-              <AnchorBubble
-                section="connect"
-                title="Connect with us"
-                handleScroll={handleScroll}
-                activeSection={activeSection}
-              />
-              </div>
+
               <AnchorBubble
                 section="about"
                 title="Who we are"

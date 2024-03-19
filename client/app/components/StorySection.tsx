@@ -294,13 +294,13 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           </div>
         </motion.div>
         <AnimatePresence>
-        {!isAnimateClicked && (
+        {!isAnimateClicked && isAboutHovered && (
           <motion.p
             id="aboutText"
-            className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10 fade-in-quick`}
-            animate={!isAboutHovered ? "fadeOut" : "fadeIn"}
+            className={`text-black dark:text-white text-base absolute bottom-0 col-start-1 col-end-6 md:col-start-4 pl-12 md:col-end-24 text-left self-end font-normal leading-normal mb-10 z-10`}
             initial={{ opacity: 0 }}
-            variants={textVariants}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 1 }}
           >
             Oceanic Refractions Mangrove, Image: Laisiasa Dave Lavaki

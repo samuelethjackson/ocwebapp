@@ -101,14 +101,6 @@ const AboutPage: React.FC = () => {
     >
       <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
         <div className="left-0 h-12 top-16 flex w-full md:h-min items-center fixed flex-row md:hidden dark:text-white text-black text-xs font-normal leading-tight tracking-wide px-12 md:pl-0 gap-8 md:gap-2 uppercase overflow-y-scroll overflow-x-visible bg-white dark:bg-black whitespace-nowrap no-scrollbar anchor-bubble-parent z-[999999]">
-          <div>
-            <AnchorBubble
-              section="installation"
-              title="Installation"
-              handleScroll={handleScroll}
-              activeSection={activeSection}
-            />
-          </div>
           <AnchorBubble
             section="credits"
             title="Credits"
@@ -130,7 +122,7 @@ const AboutPage: React.FC = () => {
               components={myPortableTextComponents}
             />
           </div>
-          <div className="hidden h-screen col-start-18 col-end-24 md:flex items-start py-8 pt-36 pl-8">
+          <div className="hidden h-screen col-start-18 col-end-24 md:flex items-start py-8 pt-36">
             <div className="flex w-full fixed flex-col dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase">
               <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
               <AnchorBubble
