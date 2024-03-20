@@ -173,7 +173,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                   ))}
               </AnimatePresence>
           )}
-          <div className="prose dark:text-white prose-headings:indent-12 pt-[15dvh] md:pt-[20dvh] prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+          <div className="prose dark:text-white prose-headings:indent-12 pt-[20dvh] md:pt-[20dvh] prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
             <PortableText
               value={data?.content}
               components={{
