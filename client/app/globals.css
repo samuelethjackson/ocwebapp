@@ -91,7 +91,7 @@ body::-webkit-scrollbar {
   @apply hidden md:grid;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 860px) {
   .video-grid {
     grid-template-rows: 1fr 1fr 1fr;
   }
@@ -201,7 +201,7 @@ li::marker {
   @apply cursor-pointer;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 860px) {
   .anchor-bubble {
     @apply cloud-shadow-black dark:cloud-shadow-white text-white dark:text-black;
   }

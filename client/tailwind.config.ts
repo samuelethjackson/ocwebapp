@@ -8,6 +8,16 @@ const config: Config = {
   ],
   darkMode: "class",
   theme: {
+    screens: {
+      'sm': '860px',
+      // => @media (min-width: 860px) { ... }
+
+      'md': '960px',
+      // => @media (min-width: 1024px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1440px) { ... }
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

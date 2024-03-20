@@ -36,11 +36,11 @@ const TitleBand: React.FC<TitleBandProps> = ({
   const isInstallationPage = pathname === "/installation";
   const isHomePage = pathname === "/";
 
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 680 : false);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 860 : false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 680);
+      setIsMobile(window.innerWidth < 860);
     };
 
     window.addEventListener('resize', handleResize);

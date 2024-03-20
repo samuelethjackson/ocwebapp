@@ -260,7 +260,7 @@ export default function Home() {
             </motion.div>
           )}
           <TopBand
-            pageName={windowWidth <= 680 ? mobileTopBandText : topBandText}
+            pageName={windowWidth <= 860 ? mobileTopBandText : topBandText}
             onArrowClick={handleArrowClick}
             onTopBandClick={handleTopBandClick}
             isAboutHovered={isAboutHovered}
