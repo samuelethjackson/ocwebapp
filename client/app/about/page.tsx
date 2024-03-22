@@ -716,7 +716,7 @@ const AboutPage: React.FC = () => {
                 </ul>
               </div>
             </div>
-            <div id="donations" className="grid grid-cols-10 gap-8 short">
+            <div id="colophon" className="grid grid-cols-10 gap-8 short">
               <h2 className="col-start-2 col-end-10 !indent-0">
                 Colophon
               </h2>
@@ -735,7 +735,7 @@ const AboutPage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <div id="donations" className="grid grid-cols-10 gap-8 short">
+            <div id="legal" className="grid grid-cols-10 gap-8 short">
               <h2 className="col-start-2 col-end-10 !indent-0">
                 Legal Notice
               </h2>
@@ -792,6 +792,18 @@ const AboutPage: React.FC = () => {
               <AnchorBubble
                 section="donations"
                 title="Donate to Pacific Organisations"
+                handleScroll={handleScroll}
+                activeSection={activeSection}
+              />
+              <AnchorBubble
+                section="colophon"
+                title="Colophon"
+                handleScroll={handleScroll}
+                activeSection={activeSection}
+              />
+              <AnchorBubble
+                section="legal"
+                title="Legal Notice"
                 handleScroll={handleScroll}
                 activeSection={activeSection}
               />
