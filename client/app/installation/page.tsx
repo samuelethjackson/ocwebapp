@@ -144,7 +144,7 @@ const AboutPage: React.FC = () => {
             >
               <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
               <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase z-10">
-                Media Pack and Links
+                Media
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8 z-10">
                 <p className="flex flex-col gap-0 opacity-50">
