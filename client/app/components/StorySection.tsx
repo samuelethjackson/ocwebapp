@@ -141,7 +141,7 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
               </React.Fragment>
             ))}
           </h1>
-          <p className="cloud-shadow-grey !text-white pl-8 md:text-[21px]">
+          <p className="cloud-shadow-grey !text-white pl-8 md:text-[21px] max-w-md">
           {selectedStory.author.split("\\n").map((line, i) => (
               <React.Fragment key={i}>
                 <span dangerouslySetInnerHTML={{ __html: line }} />
