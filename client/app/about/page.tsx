@@ -30,28 +30,28 @@ const AboutPage: React.FC = () => {
         console.log('IntersectionObserver Entry:', entry); // Debugging line
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-  
+
           // Scroll the parent div of AnchorBubbles to the active AnchorBubble
           const anchorBubbleParent = document.querySelector('.anchor-bubble-parent');
           const activeBubble = document.querySelector(`.anchor-bubble[data-id="${entry.target.id}"]`);
-  
+
           console.log('Active Bubble:', activeBubble); // Debugging line
-  
+
           if (anchorBubbleParent && activeBubble) {
             const scrollOffset = (activeBubble as HTMLElement).offsetLeft - (anchorBubbleParent as HTMLElement).offsetLeft;
             const centeredOffset = scrollOffset - (anchorBubbleParent as HTMLElement).clientWidth / 2 + (activeBubble as HTMLElement).clientWidth / 2;
             (anchorBubbleParent as HTMLElement).scrollLeft = centeredOffset;
-  
+
             console.log('Scrolling to:', centeredOffset); // Debugging line
           }
         }
       });
     };
-  
+
     const observerShort = new IntersectionObserver(callback, {
       threshold: 0.5,
     });
-  
+
     const observerLong = new IntersectionObserver(callback, {
       threshold: 0.2,
     });
@@ -59,16 +59,16 @@ const AboutPage: React.FC = () => {
     const observerLonger = new IntersectionObserver(callback, {
       threshold: 0.1,
     });
-  
+
     const sectionsShort = document.querySelectorAll(".short");
     sectionsShort.forEach((section) => observerShort.observe(section as Element));
-  
+
     const sectionsLong = document.querySelectorAll(".long");
     sectionsLong.forEach((section) => observerLong.observe(section as Element));
 
     const sectionsLonger = document.querySelectorAll(".longer");
     sectionsLonger.forEach((section) => observerLonger.observe(section as Element));
-  
+
     return () => {
       // Cleanup observer on component unmount
       sectionsShort.forEach((section) => observerShort.unobserve(section as Element));
@@ -714,6 +714,39 @@ const AboutPage: React.FC = () => {
                     (Papua New Guinea)
                   </li>
                 </ul>
+              </div>
+            </div>
+            <div id="donations" className="grid grid-cols-10 gap-8 short">
+              <h2 className="col-start-2 col-end-10 !indent-0">
+                Colophon
+              </h2>
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
+                <p className="!indent-0">
+                  Oceanic Refractions Co-directors<br>
+                  AM Kanngieser, Mere Nailatikau
+                </p>
+                <p className="!indent-0">
+                  Website concept and editor<br>
+                  Elise Misao Hunchuck
+                </p>
+                <p className="!indent-0">
+                  Website design and build<br>
+                  Studio Folder
+                </p>
+              </div>
+            </div>
+            <div id="donations" className="grid grid-cols-10 gap-8 short">
+              <h2 className="col-start-2 col-end-10 !indent-0">
+                Legal Notice
+              </h2>
+              <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
+                <p className="!indent-0">
+                The copyright for published materials developed by <i>Oceanic Refractions</i> itself remains only with <i>Oceanic Refractions</i> or the individual author. The use or sharing of such images, audio features, video sequences, and texts in other electronic or printed publications is permitted for all non-commercial purposes.
+
+                <i>Oceanic Refractions</i> explicitly reserves the right to alter, supplement, or delete parts or the whole of the website's content, or to temporarily or completely discontinue publication without further notice.
+
+                <i>Oceanic Refractions</i> has no influence whatsoever on content offered through direct or indirect links to other web providers and pages and does not endorse any of this content – with the exception of the content on social media profiles administered by <i>Oceanic Refractions</i>.
+                </p>
               </div>
             </div>
             <a
