@@ -144,11 +144,11 @@ const AboutPage: React.FC = () => {
             >
               <div className="absolute -top-10 -left-2 bg-white dark:bg-black blur-sm h-64 w-full opacity-90 z-0"></div>
               <h2 className="w-full dark:text-white text-black text-xs font-normal leading-tight tracking-wide gap-2 uppercase z-10">
-                Media Packs and Links
+                Media Pack and Links
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8 z-10">
                 <p className="flex flex-col gap-0 opacity-50">
-                  <a className="!no-underline" href="https://github.com/samuelethjackson/ocwebapp/blob/main/client/public/Oceanic-Refractions-Media-Pack.zip">Media Pack (52 MB)</a>
+                  <a className="!no-underline" href="https://github.com/samuelethjackson/ocwebapp/blob/main/client/public/Oceanic-Refractions-Media-Pack.zip" target="_blank">Media Pack (52 MB)</a>
                   <a className="!no-underline" href="https://vimeo.com/user216391456" target="_blank">Trailer and Promos</a>
                 </p>
               </div>
