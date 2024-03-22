@@ -148,7 +148,7 @@ const AboutPage: React.FC = () => {
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8 z-10">
                 <p className="flex flex-col gap-0 opacity-50">
-                  <a className="!no-underline" href="https://www.oceanicrefractions.org/Oceanic-Refractions-Media-Pack.zip">Media Pack (52 MB)</a>
+                  <a className="!no-underline" href="https://www.oceanicrefractions.org/Oceanic-Refractions-Media-Pack.zip">Media Pack (50 MB)</a>
                   <a className="!no-underline" href="https://vimeo.com/user216391456" target="_blank">Trailer and Promos</a>
                 </p>
               </div>
