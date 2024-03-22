@@ -116,12 +116,16 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     };
 
     const fixedPositions = [
-      { top: "20vh", left: "20vw" },
+      { top: "15vh", left: "20vw" },
       { top: "30vh", left: "60vw" },
+      { top: "75vh", left: "45vw" },
       { top: "50vh", left: "30vw" },
       { top: "70vh", left: "70vw" },
+      { top: "70vh", left: "10vw" },
       { top: "45vh", left: "45vw" },
+      { top: "10vh", left: "50vw" },
       { top: "30vh", left: "10vw" },
+      { top: "75vh", left: "45vw" },
     ];
 
     return (
