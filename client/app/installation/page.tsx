@@ -40,31 +40,31 @@ const AboutPage: React.FC = () => {
         console.log('IntersectionObserver Entry:', entry); // Debugging line
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-  
+
           // Scroll the parent div of AnchorBubbles to the active AnchorBubble
           const anchorBubbleParent = document.querySelector('.anchor-bubble-parent');
           const activeBubble = document.querySelector(`.anchor-bubble[data-id="${entry.target.id}"]`);
-  
+
           console.log('Active Bubble:', activeBubble); // Debugging line
-  
+
           if (anchorBubbleParent && activeBubble) {
             const scrollOffset = (activeBubble as HTMLElement).offsetLeft - (anchorBubbleParent as HTMLElement).offsetLeft;
             const centeredOffset = scrollOffset - (anchorBubbleParent as HTMLElement).clientWidth / 2 + (activeBubble as HTMLElement).clientWidth / 2;
             (anchorBubbleParent as HTMLElement).scrollLeft = centeredOffset;
-  
+
             console.log('Scrolling to:', centeredOffset); // Debugging line
           }
         }
       });
     };
-  
+
     const observerShort = new IntersectionObserver(callback, {
       threshold: 1,
     });
-  
+
     const sectionsShort = document.querySelectorAll(".short");
     sectionsShort.forEach((section) => observerShort.observe(section as Element));
-  
+
     return () => {
       // Cleanup observer on component unmount
       sectionsShort.forEach((section) => observerShort.unobserve(section as Element));
@@ -150,6 +150,7 @@ const AboutPage: React.FC = () => {
                 <p className="flex flex-col gap-0 opacity-50">
                   <a className="!no-underline">Media Pack (PDF)</a>
                   <a className="!no-underline">Gallery Pack (PDF)</a>
+                  <a className="!no-underline" href="https://vimeo.com/user216391456">Trailer and Promos</a>
                 </p>
               </div>
             </div>
