@@ -294,7 +294,12 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
                       ))}
                     </h3>
                     <p className="cloud-shadow-grey text-white text-sm md:text-base pl-8">
-                      {post?.author}
+                    {post?.author.split("\\n").map((line, i) => (
+                        <React.Fragment key={i}>
+                          <span dangerouslySetInnerHTML={{ __html: line }} />
+                          {i !== post.author.split("\\n").length - 1 && <br />}
+                        </React.Fragment>
+                      ))}
                     </p>
                   </div>
                 </div>
