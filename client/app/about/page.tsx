@@ -421,7 +421,7 @@ const AboutPage: React.FC = () => {
                     <a href="https://elisehunchuck.com/" target="_blank">
                       Elise Misao Hunchuck
                     </a>{" "}
-                    (Canada/Germany), Website Concept, Design, and Editing (
+                    (Canada/Germany), Website Concept and Editing (
                     <i>Oceanic Refractions</i>)
                   </li>
                   <li>
