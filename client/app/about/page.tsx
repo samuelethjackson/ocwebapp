@@ -722,15 +722,15 @@ const AboutPage: React.FC = () => {
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
-                  Oceanic Refractions Co-directors<br>
+                  Oceanic Refractions Co-directors<br />
                   AM Kanngieser, Mere Nailatikau
                 </p>
                 <p className="!indent-0">
-                  Website concept and editor<br>
+                  Website concept and editor<br />
                   Elise Misao Hunchuck
                 </p>
                 <p className="!indent-0">
-                  Website design and build<br>
+                  Website design and build<br />
                   Studio Folder
                 </p>
               </div>
