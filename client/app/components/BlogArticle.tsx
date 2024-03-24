@@ -85,6 +85,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
           "currentSlug": slug.current,
           author,
           biographyText,
+          biographyName,
           date,
           language,
           citation,
@@ -201,10 +202,10 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                 {data && (
                   <div className="!indent-0 prose citation">
                     <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
-                    {data?.author.split("\\n").map((line, i) => (
+                    {data?.biographyName.split("\\n").map((line, i) => (
                         <React.Fragment key={i}>
                           <span dangerouslySetInnerHTML={{ __html: line }} />
-                          {i !== data.author.split("\\n").length - 1 && <br />}
+                          {i !== data.biographyName.split("\\n").length - 1 && <br />}
                         </React.Fragment>
                       ))}{" "}
                     </span>{" "}
