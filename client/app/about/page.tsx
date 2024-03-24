@@ -743,7 +743,7 @@ const AboutPage: React.FC = () => {
                 <p className="!indent-0">
                 The copyright for published materials developed by <i>Oceanic Refractions</i> itself remains only with <i>Oceanic Refractions</i> or the individual author. The use or sharing of such images, audio features, video sequences, and texts in other electronic or printed publications is permitted for all non-commercial purposes.
 
-                <i>Oceanic Refractions</i> explicitly reserves the right to alter, supplement, or delete parts or the whole of the website's content, or to temporarily or completely discontinue publication without further notice.
+                <i>Oceanic Refractions</i> explicitly reserves the right to alter, supplement, or delete parts or the whole of the website`s content, or to temporarily or completely discontinue publication without further notice.
 
                 <i>Oceanic Refractions</i> has no influence whatsoever on content offered through direct or indirect links to other web providers and pages and does not endorse any of this content – with the exception of the content on social media profiles administered by <i>Oceanic Refractions</i>.
                 </p>
