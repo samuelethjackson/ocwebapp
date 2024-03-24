@@ -722,7 +722,7 @@ const AboutPage: React.FC = () => {
               </h2>
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
-                  Oceanic Refractions Co-directors<br />
+                  Oceanic Refractions co-directors<br />
                   <a href="https://amkanngieser.com/" target="_blank">AM Kanngieser</a>, <a href="https://www.merenailatikau.com/" target="_blank">Mere Nailatikau</a>
                 </p>
                 <p className="!indent-0">
@@ -731,7 +731,7 @@ const AboutPage: React.FC = () => {
                 </p>
                 <p className="!indent-0">
                   Website design and build<br />
-                  <a href="http://www.studiofolder.it/" target="_blank">Studio Folder</a>
+                  <a href="http://www.studiofolder.it/" target="_blank">Studio Folder</a> (Marco Ferrari, Elisa Pasqual, Gresi Balliu)
                 </p>
               </div>
             </div>
