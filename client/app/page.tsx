@@ -12,6 +12,9 @@ import SwipeableViews from "react-swipeable-views";
 import BlogArticle from "./components/BlogArticle";
 import { storyOverview } from "./lib/interface";
 import { useData } from "./components/StorySectionHelper";
+import ReactPageScroller from 'react-page-scroller';
+
+
 
 export default function Home() {
   const ref1 = useRef<HTMLDivElement>(null);
@@ -94,32 +97,6 @@ export default function Home() {
       }
     });
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(Number(entry.target.id));
-            console.log("activeSection:", Number(entry.target.id)); // Add this line
-          }
-        });
-      },
-      { threshold: 0.7 } // Adjust this value to control when the callback is fired
-    );
-
-    if (ref1.current) observer.observe(ref1.current);
-    if (ref2.current) observer.observe(ref2.current);
-    if (ref3.current) observer.observe(ref3.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [isAnimateClicked]);
-
-  useEffect(() => {
-    console.log("activeMobileSection:", activeMobileSection); // Add this line
-  }, [activeMobileSection]);
 
   let topBandText = "";
   let titleBandText = "";
@@ -267,6 +244,16 @@ export default function Home() {
             isAnimateClicked={isAnimateClicked}
             setIsAnimateClicked={setIsAnimateClicked}
           />
+
+            <ReactPageScroller
+            animationTimer = {500}
+            >
+              {renderStorySection(ref1, 1, `precedents/${randomVideoNumber}`)}
+              {renderStorySection(ref2, 2, `witnessing/${randomVideoNumber}`)}
+              {renderStorySection(ref3, 3, `responding/${randomVideoNumber}`)}
+            </ReactPageScroller>
+          
+          {/*
           <motion.div
             variants={bandVariants}
             initial="fadeOut" // Add this line
@@ -279,6 +266,7 @@ export default function Home() {
             {renderStorySection(ref2, 2, `witnessing/${randomVideoNumber}`)}
             {renderStorySection(ref3, 3, `responding/${randomVideoNumber}`)}
           </motion.div>
+          */}
           <motion.div
             layout
             transition={{ duration: 2 }}
