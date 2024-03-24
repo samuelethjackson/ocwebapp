@@ -73,19 +73,11 @@ export default function Home() {
   const [isAboutHovered, setIsAboutHovered] = useState(false);
 
   const handleBottomBandClick = () => {
-    if (activeSection === 1 && ref2.current) {
-      ref2.current.scrollIntoView({ behavior: "smooth" });
-    } else if (activeSection === 2 && ref3.current) {
-      ref3.current.scrollIntoView({ behavior: "smooth" });
-    }
+    setActiveSection((prevSection) => Math.min(prevSection + 1, 3)); // 3 is the last section
   };
-
+  
   const handleTopBandClick = () => {
-    if (activeSection === 2 && ref1.current) {
-      ref1.current.scrollIntoView({ behavior: "smooth" });
-    } else if (activeSection === 3 && ref2.current) {
-      ref2.current.scrollIntoView({ behavior: "smooth" });
-    }
+    setActiveSection((prevSection) => Math.max(prevSection - 1, 1)); // 1 is the first section
   };
 
   const handleArrowClick = (direction: "next" | "back") => {
@@ -97,6 +89,10 @@ export default function Home() {
       }
     });
   };
+
+  useEffect(() => {
+    console.log("activeMobileSection:", activeMobileSection); // Add this line
+  }, [activeMobileSection]);
 
   let topBandText = "";
   let titleBandText = "";
@@ -245,13 +241,20 @@ export default function Home() {
             setIsAnimateClicked={setIsAnimateClicked}
           />
 
-            <ReactPageScroller
-            animationTimer = {500}
-            >
-              {renderStorySection(ref1, 1, `precedents/${randomVideoNumber}`)}
-              {renderStorySection(ref2, 2, `witnessing/${randomVideoNumber}`)}
-              {renderStorySection(ref3, 3, `responding/${randomVideoNumber}`)}
-            </ReactPageScroller>
+            <div className="hidden md:block">
+              <ReactPageScroller
+              customPageNumber={activeSection - 1} // subtract 1 because page index starts from 0
+              pageOnChange={(page) => {
+                // page index starts from 0, so we add 1 to get the section number
+                setActiveSection(page + 1);
+              }}
+              animationTimer = {500}
+              >
+                {renderStorySection(ref1, 1, `precedents/${randomVideoNumber}`)}
+                {renderStorySection(ref2, 2, `witnessing/${randomVideoNumber}`)}
+                {renderStorySection(ref3, 3, `responding/${randomVideoNumber}`)}
+              </ReactPageScroller>
+            </div>
           
           {/*
           <motion.div
