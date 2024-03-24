@@ -723,15 +723,15 @@ const AboutPage: React.FC = () => {
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                   Oceanic Refractions Co-directors<br />
-                  AM Kanngieser, Mere Nailatikau
+                  <a href="https://amkanngieser.com/" target="_blank">AM Kanngieser</a>, <a href="https://www.merenailatikau.com/" target="_blank">Mere Nailatikau</a>
                 </p>
                 <p className="!indent-0">
                   Website concept and editor<br />
-                  Elise Misao Hunchuck
+                  <a href="http://elisehunchuck.com/" target="_blank">Elise Misao Hunchuck</a>
                 </p>
                 <p className="!indent-0">
                   Website design and build<br />
-                  Studio Folder
+                  <a href="http://www.studiofolder.it/" target="_blank">Studio Folder</a>
                 </p>
               </div>
             </div>
@@ -742,9 +742,9 @@ const AboutPage: React.FC = () => {
               <div className="flex flex-col w-full col-span-12 pr-2 md:col-span-10 gap-8">
                 <p className="!indent-0">
                 The copyright for published materials developed by <i>Oceanic Refractions</i> itself remains only with <i>Oceanic Refractions</i> or the individual author. The use or sharing of such images, audio features, video sequences, and texts in other electronic or printed publications is permitted for all non-commercial purposes.
-
+                <br /><br />
                 <i>Oceanic Refractions</i> explicitly reserves the right to alter, supplement, or delete parts or the whole of the website`s content, or to temporarily or completely discontinue publication without further notice.
-
+                <br /><br />
                 <i>Oceanic Refractions</i> has no influence whatsoever on content offered through direct or indirect links to other web providers and pages and does not endorse any of this content – with the exception of the content on social media profiles administered by <i>Oceanic Refractions</i>.
                 </p>
               </div>
