@@ -731,7 +731,8 @@ const AboutPage: React.FC = () => {
                 </p>
                 <p className="!indent-0">
                   Website design and build<br />
-                  <a href="http://www.studiofolder.it/" target="_blank">Studio Folder</a> (Marco Ferrari, Elisa Pasqual, Gresi Balliu)
+                  <a href="http://www.studiofolder.it/" target="_blank">Studio Folder</a> (Marco Ferrari, Elisa Pasqual, Gresi Balliu)<br />
+                  <a href="https://michael.fm/" target="_blank">Michael Sommer</a>
                 </p>
               </div>
             </div>
