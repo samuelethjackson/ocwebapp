@@ -40,16 +40,13 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     },
     ref
   ) => {
+    const { data, isLoading, error } = useData();
+    const { isMenuClicked, setIsMenuClicked } = useAnimate();
+    const router = useRouter();
+
     // Check the file extension to determine if it's a GIF
     const isGif = video.endsWith(".gif");
     const videoPath = `/videos/${video}`; // Assuming the videos folder is in the public directory
-
-    const { isMenuClicked, setIsMenuClicked } = useAnimate();
-
-
-    const data = useData();
-
-    const router = useRouter();
 
     const textVariants = {
       fadeIn: {
@@ -70,10 +67,10 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
     };
 
     // Create a mapping between id and category
-    const idCategoryMapping: { [key: number]: string } = {
-      1: "Precedents of",
-      2: "Witnessing via",
-      3: "Responding to",
+    const idCategoryMapping: Record<string, string> = {
+      "1": "Precedents of",
+      "2": "Witnessing via",
+      "3": "Responding to",
     };
 
     useEffect(() => {
@@ -91,10 +88,6 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
           });
       }
     }, [setHighRes]);
-
-    const filteredData = data?.filter(
-      (post) => post.category === idCategoryMapping[id]
-    );
 
     const [videoAnimation, setVideoAnimation] = useState({
       scale: 1,
@@ -127,6 +120,28 @@ const StorySection = forwardRef<HTMLDivElement, StorySectionProps>(
       { top: "70vh", left: "75vw" },
       { top: "75vh", left: "30vw" },
     ];
+
+    if (isLoading) {
+      return (
+        <div className="relative w-full h-screen">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-pulse text-lg">Loading stories...</div>
+          </div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="relative w-full h-screen">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-red-500">Error loading stories: {error.message}</div>
+          </div>
+        </div>
+      );
+    }
+
+    const filteredData = data?.filter((post) => post.category === idCategoryMapping[id]);
 
     return (
       <div className="snap-start relative"

@@ -190,7 +190,7 @@ export default function Home() {
   useEffect(() => {
     const param = searchParams.get("article");
     if (param) {
-      const story = data?.find((story) => story.currentSlug === param);
+      const story = data?.data?.find((story) => story.currentSlug === param);
       if (!selectedStory || (story && story !== selectedStory)) {
         setIsAnimateClicked(true);
         setSelectedStorySlug(param);

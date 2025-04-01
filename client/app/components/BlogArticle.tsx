@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fullBlog } from "../lib/interface";
-import { client } from "../lib/sanity";
+import { FullBlog } from "../lib/types";
+import { getBlogBySlug } from "../lib/cms";
 import { PortableText } from "@portabletext/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PortableTextMarkComponentProps } from "@portabletext/react";
@@ -27,8 +27,9 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
   isAnimateClicked,
   setIsAnimateClicked,
 }) => {
-  const [data, setData] = useState<fullBlog | null>(null);
-
+  const [data, setData] = useState<FullBlog | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [hoveredFootnote, setHoveredFootnote] = useState<string | null>(null);
   const [clickedFootnote, setClickedFootnote] = useState<string | null>(null);
 
@@ -78,29 +79,19 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
   };
 
   useEffect(() => {
-    const getData = async () => {
-      const query = `
-        *[_type == "blog" && slug.current == '${params.slug}'] {
-          title,
-          "currentSlug": slug.current,
-          author,
-          biographyText,
-          biographyName,
-          date,
-          language,
-          citation,
-          category,
-          content,
-          footnotes
-        }[0]`;
-
-      const result = await client.fetch(query);
-
-      // Set the data state with the original content, including footnotes
-      setData(result);
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const result = await getBlogBySlug(params.slug);
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error("Failed to fetch article"));
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    getData();
+    fetchData();
   }, [params.slug]);
 
   // Define the types for your content blocks and mark definitions
@@ -139,6 +130,26 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
     backVideo = highRes ? "responding.gif" : "responding.mp4";
   }
 
+  if (isLoading) {
+    return (
+      <div className="fixed top-0 left-0 h-screen w-screen md:z-[100] grid-parent overflow-y-scroll no-scrollbar">
+        <div className="h-full col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex items-center justify-center">
+          <div className="animate-pulse text-lg">Loading article...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="fixed top-0 left-0 h-screen w-screen md:z-[100] grid-parent overflow-y-scroll no-scrollbar">
+        <div className="h-full col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex items-center justify-center">
+          <div className="text-red-500">Error loading article: {error.message}</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed top-0 left-0 h-screen w-screen md:z-[100] grid-parent overflow-y-scroll no-scrollbar">
       <AnimatePresence>
@@ -146,6 +157,7 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
           className={`h-full fade-in col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-12 row-start-2 row-end-auto article flex flex-col gap-20 pb-40 z-50`}
         >
           {data && (
+            <>
               <AnimatePresence>
                 {extractFootnotes(data.content)
                   .filter((footnote) => footnote.markKey === hoveredFootnote)
@@ -173,58 +185,51 @@ const BlogArticle: React.FC<BlogArticleProps> = ({
                     </motion.div>
                   ))}
               </AnimatePresence>
-          )}
-          <div className="prose dark:text-white prose-headings:indent-12 pt-[20dvh] md:pt-[20dvh] prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
-            <PortableText
-              value={data?.content}
-              components={{
-                marks: {
-                  footnote: Footnote, // The component you defined above
-                },
-              }}
-            />
-            <div className="flex flex-col gap-0 pt-20 citation">
-              <div>
-                {data && (
-                  <p className="!indent-0 !mt-0">Written in {data?.language}</p>
-                )}
-              </div>
-              <div>
-                {data && (
-                  <p className="!indent-0 !mt-0">
-                    Published on {formatDate(data?.date)}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="w-full md:w-3/4 flex flex-col gap-8 pt-20">
-              <div>
-                {data && (
-                  <div className="!indent-0 prose citation">
-                    <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
-                    {data?.biographyName.split("\\n").map((line, i) => (
-                        <React.Fragment key={i}>
-                          <span dangerouslySetInnerHTML={{ __html: line }} />
-                          {i !== data.biographyName.split("\\n").length - 1 && <br />}
-                        </React.Fragment>
-                      ))}{" "}
-                    </span>{" "}
-                    <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data?.biographyText }}></p>
+              <div className="prose dark:text-white prose-headings:indent-12 pt-[20dvh] md:pt-[20dvh] prose-strong:dark:text-white prose-strong:text-black prose-strong:font-bold">
+                <PortableText
+                  value={data.content}
+                  components={{
+                    marks: {
+                      footnote: Footnote,
+                    },
+                  }}
+                />
+                <div className="flex flex-col gap-0 pt-20 citation">
+                  <div>
+                    <p className="!indent-0 !mt-0">Written in {data.language}</p>
                   </div>
-                )}
-              </div>
-              <div>
-                {data && (
-                  <div className="!indent-0 prose citation">
-                  <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
-                    Cite this article{" "}
-                  </span>
-                  <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data?.citation }}></p>
+                  <div>
+                    <p className="!indent-0 !mt-0">
+                      Published on {formatDate(data.date)}
+                    </p>
+                  </div>
                 </div>
-                )}
+                <div className="w-full md:w-3/4 flex flex-col gap-8 pt-20">
+                  <div>
+                    <div className="!indent-0 prose citation">
+                      <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
+                        {data.biographyName.split("\\n").map((line, i) => (
+                          <React.Fragment key={i}>
+                            <span dangerouslySetInnerHTML={{ __html: line }} />
+                            {i !== data.biographyName.split("\\n").length - 1 && <br />}
+                          </React.Fragment>
+                        ))}{" "}
+                      </span>{" "}
+                      <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data.biographyText }}></p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="!indent-0 prose citation">
+                      <span className="text-white text-sm dark:text-black cloud-shadow-black-small dark:cloud-shadow-white-small mr-2">
+                        Cite this article{" "}
+                      </span>
+                      <p className="!indent-0 prose citation" dangerouslySetInnerHTML={{ __html: data.citation }}></p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
         </article>
       </AnimatePresence>
       <div className="fixed top-0 left-0 w-full z-10 h-min md:h-screen video-grid px-5 ">

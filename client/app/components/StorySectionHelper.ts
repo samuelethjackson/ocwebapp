@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
-import { storyOverview } from "../lib/interface";
-import { client } from "../lib/sanity";
+import { BlogOverview } from "../lib/types";
+import { getBlogOverviews } from "../lib/cms";
 
-export async function getData() {
-  const query = `*[_type == 'blog'] | order(_createdAt desc){
-    title,
-    "currentSlug": slug.current,
-    author,
-    category,
-    type,
-  }`;
+export function useData() {
+  const [data, setData] = useState<BlogOverview[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  const data = await client.fetch(query);
-  return data;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const result = await getBlogOverviews();
+        setData(result);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error("Failed to fetch data"));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return { data, isLoading, error };
 }
 
 export const randomPosition = (
@@ -68,19 +79,4 @@ export const useWindowDimensions = () => {
   }, []);
 
   return { windowWidth, windowHeight };
-};
-
-export const useData = () => {
-  const [data, setData] = useState<storyOverview[] | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result: storyOverview[] = await getData();
-      setData(result);
-    };
-
-    fetchData();
-  }, []);
-
-  return data;
 };
