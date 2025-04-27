@@ -5,7 +5,7 @@ import TopBand from "../components/AboutTopBand";
 import Layout from "../components/Layout";
 import AnchorBubble from "../components/AnchorBubble";
 
-const AboutPage: React.FC = () => {
+const FilmPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("");
   const [highRes, setHighRes] = useState(false);
   const [isAboutHovered, setIsAboutHovered] = useState(false);
@@ -79,7 +79,7 @@ const AboutPage: React.FC = () => {
 
   return (
     <Layout
-      pageName="About"
+      pageName="Film"
       highRes={highRes}
       setHighRes={setHighRes}
       isAboutHovered={isAboutHovered}
@@ -87,7 +87,7 @@ const AboutPage: React.FC = () => {
     >
       <div className="flex flex-col items-center justify-center min-h-dvh md:min-h-screen">
         <div className="md:hidden"></div>
-        <TopBand pageName="About" />
+        <TopBand pageName="Film Subtitles" />
         <main className="w-full h-full gridParent px-5 fade-in-quick">
           <div className="col-start-1 col-end-6 md:col-start-3 md:col-end-12 lg:col-start-4 lg:col-end-13 article flex flex-col gap-20 pt-40 pb-8">
             <div id="connect" className="grid md:hidden grid-cols-10 gap-8 short pt-12">
@@ -841,4 +841,4 @@ const AboutPage: React.FC = () => {
   );
 };
 
-export default AboutPage;
+export default FilmPage;
